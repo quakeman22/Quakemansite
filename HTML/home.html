@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<style>
+body { 
+  background: #0f1c2f; 
+  color: #cce0ff; 
+  font-family: 'Arial', sans-serif; 
+  margin: 0; 
+  padding: 1rem; 
+  text-align: center;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card {
+  width: 200px;
+  text-align: center;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  background: #1f2c44;
+}
+.card img { width: 100%; border-radius: 15px 15px 0 0; }
+.card div { padding: 10px; font-weight: bold; color: #ee6e1c; }
+.card:hover { transform: translateY(-3px); }
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+  border: 2px solid;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+.btn-icon { width: 24px; height: 24px; filter: grayscale(100%); transition: filter 0.3s ease; }
+.fb-btn { color: #1877F2; border-color: #1877F2; }
+.fb-btn:hover { background-color: #1877F2; color: white; transform: translateY(-3px); }
+.fb-btn:hover .btn-icon { filter: grayscale(0%); }
+.archive-btn { color: #000; border-color: #000; }
+.archive-btn:hover { background-color: #000; color: white; transform: translateY(-3px); }
+.archive-btn:hover .btn-icon { filter: grayscale(0%); }
+.discord-btn { color: #5865F2; border-color: #5865F2; }
+.discord-btn:hover { background-color: #5865F2; color: white; transform: translateY(-3px); }
+.discord-btn:hover .btn-icon { filter: grayscale(0%); }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <img src="" alt="" style="height: 120px; margin-right: 10px; border-radius: 12px;">
+  <img src="" alt="" style="height: 120px; border-radius: 12px;">
+</div>
+
+<div class="card-container">
+  <div class="card">
+    <a href="https://quakeman0.blogspot.com/p/scarface.html?m=1">
+      <img src="https://m.media-amazon.com/images/S/pv-target-images/0f7130e98bb104eccb3557dbaf694fbbc7fd79ed842b1f60b1128344e90931d1.jpg" alt="Scarface">
+      <div>Scarface</div>
+    </a>
+  </div>
+  <div class="card">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrA1A8wvX46e59MwVvuUfhvqshoQR6hCLOWV2OZTTGmqdBZg-W3nx_ApngKX3I4hV3SM8rY8SH4xEx2q5ywBedPD7SGIyuZDIJnQRMG2sdvDvCo5uk0AwosxKkoaEVZvzh8BrOG9_wiVsG8v1Q4MrZv0BxmawyQcSYuzjySoGa5W-bTQD2sCq6xi5GFosx/s1600/co61zd.png" alt="GunFever">
+    <div>GunFever</div>
+  </div>
+</div>
+
+<div style="margin-top: 20px; font-family: 'Pixelify Sans', Arial, sans-serif;">
+  <i style="font-size: 16px;">Tem alguma tradução? Me chama no Telegram ou entre no nosso servidor do Discord.</i>
+</div>
+
+<div style="margin-top: 20px;">
+  <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn fb-btn">
+    <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" class="btn-icon">Facebook
+  </a>
+  <a href="https://archive.org/details/j2mebr" target="_blank" class="social-btn archive-btn">
+    <img src="https://archive.org/download/logo-internetArchive-266x300-1/logo-internetArchive-266x300-1.png" class="btn-icon">Archive
+  </a>
+  <a href="https://discord.gg/dwqBTkeTzp" target="_blank" class="social-btn discord-btn">
+    <img src="https://cdn-icons-png.flaticon.com/32/2111/2111370.png" class="btn-icon">Discord
+  </a>
+</div>
+
+</body>
+</html>
