@@ -1,0 +1,108 @@
+<!-- GRADE DE 20 CARDS CENTRALIZADOS E PADRONIZADOS -->
+<div class="cards-wrapper">
+  <div class="cards-grid">
+
+    <!-- EXEMPLOS -->
+    <div class="card">
+      <a href="LINK1">
+        <div class="card-img">
+          <img src="https://static.wikia.nocookie.net/jaws/images/d/da/Jaws-movie-poster.jpg" alt="Título 1">
+        </div>
+        <div class="card-title">JAWS 3D</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="LINK2">
+        <div class="card-img">
+          <img src="https://static.wikia.nocookie.net/cyberpunk/images/2/20/Cyberpunk_The_Arasaka%27s_Plot_Title_Screen.png" alt="Título 2">
+        </div>
+        <div class="card-title">CYBERPUNK</div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="LINK3">
+        <div class="card-img">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpHly3WBcn_Mct0HGNC0kx50lNEL9OmN3MlRXrx2sTDl8cjgSV-A93taqawvW9CfapiOM2NBSgztLIDNfTWfnl8JHwUML34uMX2IRtPIhSJeNgZCoZbFKl4cGpUwwztVrHoogUz6Wk4o/s1600/download.webp" alt="Título 3">
+        </div>
+        <div class="card-title">NOWHERE</div>
+      </a>
+    </div>
+
+    <!-- Continue copiando os outros cards normalmente -->
+
+  </div>
+</div>
+
+<style>
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* responsivo */
+  gap: 20px;
+  justify-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+  max-width: 180px;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.25s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+}
+
+.card-img {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-title {
+  padding: 10px 6px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #222;
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-align: center;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* tablet = 2 colunas */
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* celular = 1 coluna */
+  }
+}
+</style>
