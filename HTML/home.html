@@ -12,58 +12,70 @@ body {
   padding: 1rem; 
   text-align: center;
 }
+
+/* Container de cards */
 .card-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   flex-wrap: wrap;
   margin-top: 20px;
 }
+
+/* Cards menores */
 .card {
-  width: 200px;
+  width: 150px; /* menor que antes */
   text-align: center;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
   transition: transform 0.2s;
   background: #1f2c44;
 }
-.card img { width: 100%; border-radius: 15px 15px 0 0; }
-.card div { padding: 10px; font-weight: bold; color: #ee6e1c; }
+.card img { width: 100%; border-radius: 12px 12px 0 0; }
+.card div { padding: 8px; font-weight: bold; color: #ee6e1c; font-size: 0.9rem; }
 .card:hover { transform: translateY(-3px); }
+
+/* Botões de redes sociais alinhados lado a lado */
+.social-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 
 .social-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+  gap: 5px;
+  padding: 6px 12px;
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   text-decoration: none;
   color: inherit;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 2px solid;
   background-color: transparent;
   transition: all 0.3s ease;
-  margin: 5px;
 }
-.btn-icon { width: 24px; height: 24px; filter: grayscale(100%); transition: filter 0.3s ease; }
+.btn-icon { width: 20px; height: 20px; filter: grayscale(100%); transition: filter 0.3s ease; }
 .fb-btn { color: #1877F2; border-color: #1877F2; }
-.fb-btn:hover { background-color: #1877F2; color: white; transform: translateY(-3px); }
+.fb-btn:hover { background-color: #1877F2; color: white; transform: translateY(-2px); }
 .fb-btn:hover .btn-icon { filter: grayscale(0%); }
 .archive-btn { color: #000; border-color: #000; }
-.archive-btn:hover { background-color: #000; color: white; transform: translateY(-3px); }
+.archive-btn:hover { background-color: #000; color: white; transform: translateY(-2px); }
 .archive-btn:hover .btn-icon { filter: grayscale(0%); }
 .discord-btn { color: #5865F2; border-color: #5865F2; }
-.discord-btn:hover { background-color: #5865F2; color: white; transform: translateY(-3px); }
+.discord-btn:hover { background-color: #5865F2; color: white; transform: translateY(-2px); }
 .discord-btn:hover .btn-icon { filter: grayscale(0%); }
 </style>
 </head>
 <body>
 
 <div style="text-align: center; margin-bottom: 20px;">
-  <img src="" alt="" style="height: 120px; margin-right: 10px; border-radius: 12px;">
-  <img src="" alt="" style="height: 120px; border-radius: 12px;">
+  <img src="" alt="" style="height: 100px; margin-right: 10px; border-radius: 12px;">
+  <img src="" alt="" style="height: 100px; border-radius: 12px;">
 </div>
 
 <div class="card-container">
@@ -83,7 +95,7 @@ body {
   <i style="font-size: 16px;">Tem alguma tradução? Me chama no Telegram ou entre no nosso servidor do Discord.</i>
 </div>
 
-<div style="margin-top: 20px;">
+<div class="social-container">
   <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn fb-btn">
     <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" class="btn-icon">Facebook
   </a>
