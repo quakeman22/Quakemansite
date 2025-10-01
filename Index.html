@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Meu Site</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<div class="app-header">
+  <button class="menuBtn" id="menuBtn">☰</button>
+  <div class="title">Meu Site</div>
+</div>
+
+<!-- Menu Lateral -->
+<div id="sideMenu">
+  <button class="closeBtn" id="closeMenu">&times;</button>
+  
+  <div class="accordion-menu">
+    <!-- Copie aqui os itens do menu sanfona que você enviou -->
+  </div>
+</div>
+
+<div id="overlay"></div>
+
+<!-- Contêiner central -->
+<div id="mainContainer" class="main-container">
+  <!-- Página inicial -->
+  <div style="text-align:center; margin-bottom:20px;">
+    <img src="img/logo1.png" alt="Logo1" style="height:120px; margin-right:10px; border-radius:12px;">
+    <img src="img/logo2.png" alt="Logo2" style="height:120px; border-radius:12px;">
+  </div>
+
+  <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+    <!-- Card 1 -->
+    <div class="card">
+      <a href="html/scarface.html">
+        <img src="img/cards/scarface.jpg" alt="Scarface">
+        <div class="card-title">Scarface</div>
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <a href="html/gunfever.html">
+        <img src="img/cards/gunfever.jpg" alt="GunFever">
+        <div class="card-title">GunFever</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i>Tem alguma tradução? Me chama no Telegram ou entre no nosso servidor do Discord.</i>
+  </div>
+
+  <div class="socials">
+    <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn fb-btn">
+      <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" class="btn-icon">Facebook
+    </a>
+    <a href="https://archive.org/details/j2mebr" target="_blank" class="social-btn archive-btn">
+      <img src="https://archive.org/download/logo-internetArchive-266x300-1/logo-internetArchive-266x300-1.png" class="btn-icon">Archive
+    </a>
+    <a href="https://discord.gg/dwqBTkeTzp" target="_blank" class="social-btn discord-btn">
+      <img src="https://cdn-icons-png.flaticon.com/32/2111/2111370.png" class="btn-icon">Discord
+    </a>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
