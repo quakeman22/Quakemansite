@@ -2,128 +2,52 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Página Inicial</title>
+<title>Meu Site</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; color:#333; }
+  body { font-family: 'Courier New', monospace; background:#f9f9f9; margin:0; overflow-x:hidden; color:#333; }
+  .app-header { position:fixed; top:0; left:0; width:100%; background:#fff; color:#333; z-index:50; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); font-family: 'Impact', sans-serif; font-size:1.2rem; }
+  .app-header .title { flex:1; text-align:center; }
 
-/* CABEÇALHO */
-.app-header { position:fixed; top:0; left:0; width:100%; background:#ff7f00; color:white; z-index:50; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3);}
-.app-header .title { flex:1; text-align:center; }
-.menuBtn { background:#ff7f00; color:white; border:none; border-radius:0.5rem; padding:0.3rem 0.6rem; font-weight:bold; cursor:pointer;}
-.menuBtn:hover { background:#ff9900; }
+  #sideMenu { position:fixed; top:0; left:-250px; width:250px; height:100%; background:#fff; color:#333; box-shadow: 3px 0 6px rgba(0,0,0,0.1); z-index:60; padding:1rem; display:flex; flex-direction:column; gap:0.5rem; transition:left 0.3s ease; }
+  #sideMenu.open { left:0; }
 
-/* MENU LATERAL */
-#sideMenu { position:fixed; top:0; left:-260px; width:260px; height:100%; background:#fff; color:#333; box-shadow:3px 0 8px rgba(0,0,0,0.2); z-index:60; padding:1rem; display:flex; flex-direction:column; gap:0.5rem; transition:left 0.3s ease; overflow-y:auto; }
-#sideMenu.open { left:0; }
-#overlay { position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:55; display:none; }
-#overlay.active { display:block; }
+  #sideMenu button, #sideMenu a {
+    width:100%; padding:0.5rem; border-radius:0.5rem; border:2px solid #333; background:#f2f2f2;
+    color:#333; font-weight:bold; font-family: 'Impact', sans-serif; cursor:pointer; text-align:center; text-decoration:none;
+  }
+  #sideMenu button:hover, #sideMenu a:hover { background:#333; color:#fff; }
 
-/* ACCORDION */
-.accordion-item { border-bottom:1px solid #eee; }
-.accordion-btn { background:none; cursor:pointer; padding:10px; width:100%; text-align:left; display:flex; align-items:center; font-weight:bold; border:none; outline:none; transition:background 0.2s; }
-.accordion-btn:hover { background:#f5f5f5; }
-.icon-img { width:20px; height:20px; margin-right:10px; }
-.accordion-content { max-height:0; overflow:hidden; transition:max-height 0.3s ease; display:flex; flex-direction:column; padding-left:25px; }
-.accordion-content a { padding:6px 0; text-decoration:none; color:#333; font-size:0.9rem; display:flex; align-items:center; }
-.sub-icon { width:16px; height:16px; margin-right:6px; }
-.accordion-item.active .accordion-content { max-height:800px; }
+  #overlay { position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:55; display:none; }
+  #overlay.active { display:block; }
 
-/* CONTEÚDO CENTRAL */
-#container { max-width:900px; margin:6rem auto 3rem auto; padding:0 1rem; text-align:center; }
+  .menuBtn { background:#f2f2f2; color:#333; border:2px solid #333; border-radius:0.5rem; padding:0.3rem 0.6rem; font-family: 'Impact', sans-serif; font-weight:bold; cursor:pointer; }
+  .menuBtn:hover { background:#333; color:#fff; }
 
-/* CARDS */
-.card-container { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
-.card { width:140px; text-align:center; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:transform 0.2s; background:white; }
-.card img { width:100%; border-radius:12px 12px 0 0; }
-.card div { padding:6px; font-weight:bold; font-size:0.85rem; color:#ff7f00; }
-.card:hover { transform:translateY(-3px); }
-
-/* SOCIAL BUTTONS */
-.social-container { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px; }
-.social-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; font-weight:bold; text-decoration:none; border:2px solid; border-radius:6px; transition:all 0.3s; }
-.btn-icon { width:20px; height:20px; filter:grayscale(100%); transition:filter 0.3s; }
-.fb-btn { color:#1877F2; border-color:#1877F2; }
-.fb-btn:hover { background:#1877F2; color:white; transform:translateY(-2px); }
-.fb-btn:hover .btn-icon { filter:grayscale(0%); }
-.archive-btn { color:#000; border-color:#000; }
-.archive-btn:hover { background:#000; color:white; transform:translateY(-2px); }
-.archive-btn:hover .btn-icon { filter:grayscale(0%); }
-.discord-btn { color:#5865F2; border-color:#5865F2; }
-.discord-btn:hover { background:#5865F2; color:white; transform:translateY(-2px); }
-.discord-btn:hover .btn-icon { filter:grayscale(0%); }
+  .editor-container { margin-top:5rem; width:90%; max-width:1000px; margin-left:auto; margin-right:auto; padding:1rem; }
+  #content { background:#fff; padding:1rem; border-radius:0.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
 </style>
 </head>
 <body>
 
 <div class="app-header">
   <button class="menuBtn" id="menuBtn">☰</button>
-  <div class="title">Página Inicial</div>
+  <div class="title">Meu Site</div>
 </div>
 
-<!-- MENU SANFONA -->
 <div id="sideMenu">
-  <div class="accordion-item">
-    <button class="accordion-btn"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="icon-img"> Home</button>
-    <div class="accordion-content">
-      <a href="HTML/p1.html"><img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" class="sub-icon"> TESTE1</a>
-      <a href="Linkaqui"><img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" class="sub-icon"> Sublink 2</a>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <button class="accordion-btn"><img src="https://cdn-icons-png.flaticon.com/512/3391/3391229.png" class="icon-img"> Posts</button>
-    <div class="accordion-content">
-      <a href="https://quakeman0.blogspot.com/p/allgames.html?m=1"><img src="https://cdn-icons-png.flaticon.com/512/786/786223.png" class="sub-icon"> Todos os jogos</a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/0/191.png" class="sub-icon"> Emuladores</a>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <button class="accordion-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Tools_icon.png" class="icon-img"> Utilitários</button>
-    <div class="accordion-content">
-      <a href="https://quakeman0.blogspot.com/p/doomtxt.html?m=1"><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" class="sub-icon"> Doom RPG</a>
-      <a href="https://quakeman0.blogspot.com/p/classeditor.html?m=1"><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" class="sub-icon"> Editor de classes</a>
-      <a href="#"><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" class="sub-icon"> Outros editores</a>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <button class="accordion-btn"><img src="https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png" class="icon-img"> Informações</button>
-    <div class="accordion-content">
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/69/69544.png" class="sub-icon"> Sobre</a>
-      <a href="#"><img src="https://icons.veryicon.com/png/o/miscellaneous/template-4/telephone-contact-1.png" class="sub-icon"> Contato</a>
-    </div>
-  </div>
+  <a href="HTML/p1.html" class="menu-link">📄 Página 1</a>
+  <a href="HTML/p2.html" class="menu-link">📄 Página 2</a>
+  <a href="HTML/p3.html" class="menu-link">📄 Página 3</a>
 </div>
 
 <div id="overlay"></div>
 
-<!-- CONTEÚDO CENTRAL -->
-<div id="container">
-  <div class="card-container">
-    <div class="card">
-      <a href="https://quakeman0.blogspot.com/p/scarface.html?m=1">
-        <img src="https://m.media-amazon.com/images/S/pv-target-images/0f7130e98bb104eccb3557dbaf694fbbc7fd79ed842b1f60b1128344e90931d1.jpg" alt="Scarface">
-        <div>Scarface</div>
-      </a>
-    </div>
-    <div class="card">
-      <a href="#">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrA1A8wvX46e59MwVvuUfhvqshoQR6hCLOWV2OZTTGmqdBZg-W3nx_ApngKX3I4hV3SM8rY8SH4xEx2q5ywBedPD7SGIyuZDIJnQRMG2sdvDvCo5uk0AwosxKkoaEVZvzh8BrOG9_wiVsG8v1Q4MrZv0BxmawyQcSYuzjySoGa5W-bTQD2sCq6xi5GFosx/s1600/co61zd.png" alt="GunFever">
-        <div>GunFever</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="social-container">
-    <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn fb-btn">
-      <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" class="btn-icon">Facebook
-    </a>
-    <a href="https://archive.org/details/j2mebr" target="_blank" class="social-btn archive-btn">
-      <img src="https://archive.org/download/logo-internetArchive-266x300-1/logo-internetArchive-266x300-1.png" class="btn-icon">Archive
-    </a>
-    <a href="https://discord.gg/dwqBTkeTzp" target="_blank" class="social-btn discord-btn">
-      <img src="https://cdn-icons-png.flaticon.com/32/2111/2111370.png" class="btn-icon">Discord
-    </a>
+<div class="editor-container">
+  <div id="content">
+    <h2>Bem-vindo!</h2>
+    <p>Selecione uma página no menu lateral.</p>
   </div>
 </div>
 
@@ -140,18 +64,22 @@ overlay.addEventListener('click', ()=>{
     overlay.classList.remove('active');
 });
 
-// Accordion
-const accItems = document.querySelectorAll('.accordion-item');
-accItems.forEach(item=>{
-  const btn = item.querySelector('.accordion-btn');
-  btn.addEventListener('click', ()=>{
-    item.classList.toggle('active');
-    accItems.forEach(other=>{
-      if(other!==item) other.classList.remove('active');
-    });
+// Carregar conteúdo dentro do contêiner
+document.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', async e => {
+    e.preventDefault();
+    const url = link.getAttribute('href');
+    try {
+      const res = await fetch(url);
+      const html = await res.text();
+      document.getElementById('content').innerHTML = html;
+      menu.classList.remove('open');
+      overlay.classList.remove('active');
+    } catch (err) {
+      document.getElementById('content').innerHTML = "<p style='color:red'>Erro ao carregar página.</p>";
+    }
   });
 });
 </script>
-
 </body>
 </html>
