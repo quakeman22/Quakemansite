@@ -4,159 +4,176 @@
 <meta charset="UTF-8">
 <title>Quakeman Site</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonte Pixelify Sans -->
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pixelify Sans', Arial, sans-serif;
+    }
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: #0f1c2f;
-    color: #cce0ff;
-    overflow-x: hidden;
-  }
+:root {
+  --accent: #71dba7;
+  --background: #191c1a;
+  --container: #7f9687;
+  --buttonBackground: #24342a;
+  --buttonText: #E6E1E5;
+  --text: #ffffff;
+}
 
-  /* HEADER */
-  .app-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #1a2a44;
-    color: #cce0ff;
-    z-index: 50;
-    padding: 0.75rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  .app-header .title { flex: 1; text-align: center; }
+body {
+  margin:0;
+  font-family: 'Pixelify Sans', Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
 
-  /* BOTÃO MENU */
-  .menuBtn {
-    background: #2a3b5c;
-    color: #cce0ff;
-    border: 2px solid #4d6ea6;
-    border-radius: 0.5rem;
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .menuBtn:hover {
-    background: #4d6ea6;
-    color: #fff;
-    box-shadow: 0 0 10px #4d6ea6;
-  }
+.app-header {
+  position: fixed;
+  top:0; left:0; right:0;
+  display:flex;
+  align-items:center;
+  padding:0.5rem 1rem;
+  z-index:50;
+  background:transparent;
+}
 
-  /* MENU LATERAL */
-  #sideMenu {
-    position: fixed;
-    top: 0;
-    left: -260px;
-    width: 260px;
-    height: 100%;
-    background: #1a2a44;
-    color: #cce0ff;
-    box-shadow: 3px 0 6px rgba(0,0,0,0.5);
-    z-index: 60;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: left 0.3s ease;
-    overflow-y: auto;
-  }
-  #sideMenu.open { left:0; }
+.menuBtn {
+  background: var(--buttonBackground);
+  color: var(--buttonText);
+  border: 2px solid var(--accent);
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+}
+.menuBtn:hover {
+  background: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 10px var(--accent);
+}
 
-  /* OVERLAY */
-  #overlay {
-    position: fixed;
-    inset:0;
-    background: rgba(0,0,0,0.3);
-    z-index:55;
-    display:none;
-  }
-  #overlay.active { display:block; }
+#sideMenu {
+  position: fixed;
+  top:0; left:-260px;
+  width:260px; height:100%;
+  background: var(--container);
+  color: var(--text);
+  z-index:60;
+  padding:1rem;
+  display:flex; flex-direction:column; gap:0.5rem;
+  transition: left 0.3s ease;
+  overflow-y:auto;
+}
+#sideMenu.open { left:0; }
 
-  /* ACORDION MENU */
-  .accordion-menu { width:100%; }
-  .accordion-btn {
-    background: #2a3b5c;
-    cursor: pointer;
-    padding: 12px 16px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    transition: background 0.3s;
-    color: #cce0ff;
-    border-radius: 0.4rem;
-  }
-  .accordion-btn:hover { background: #4d6ea6; color: #fff; }
-  .icon-img { width: 20px; height: 20px; margin-right: 10px; object-fit: contain; }
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    margin-top: 2px;
-  }
-  .accordion-content a {
-    padding: 10px 16px;
-    text-decoration: none;
-    color: #cce0ff;
-    border-top: 1px solid #3b4d6b;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    transition: background 0.2s;
-  }
-  .accordion-content a:hover { background: #4d6ea6; color: #fff; }
-  .sub-icon { width: 16px; height: 16px; margin-right: 8px; }
+#overlay {
+  position: fixed; inset:0;
+  background: rgba(0,0,0,0.3);
+  z-index:55;
+  display:none;
+}
+#overlay.active { display:block; }
 
-  .accordion-item.active .accordion-content { max-height: 500px; }
+.accordion-menu { width:100%; }
+.accordion-btn {
+  background: var(--buttonBackground);
+  cursor:pointer;
+  padding:12px 16px;
+  width:100%;
+  text-align:left;
+  border:none; outline:none;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  transition: background 0.3s;
+  color: var(--text);
+  border-radius:0.4rem;
+}
+.accordion-btn:hover { background: var(--accent); color: var(--text); }
+.icon-img { width:20px; height:20px; margin-right:10px; object-fit:contain; }
+.accordion-content {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.3s ease;
+  display:flex; flex-direction:column;
+  margin-top:2px;
+}
+.accordion-content a {
+  padding:10px 16px;
+  text-decoration:none;
+  color: var(--text);
+  border-top:1px solid rgba(255,255,255,0.05);
+  font-size:14px;
+  display:flex; align-items:center;
+  transition: background 0.2s;
+}
+.accordion-content a:hover { background: var(--accent); color: var(--text); }
+.sub-icon { width:16px; height:16px; margin-right:8px; }
+.accordion-item.active .accordion-content { max-height:500px; }
 
-  /* CONTAINER CENTRAL */
-  #mainContainer {
-    margin-top: 4rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1100px;
-    padding: 1rem;
-    min-height: 80vh;
-    background: #1f2c44;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    color: #cce0ff;
-    overflow: hidden;
-  }
+#mainContainer {
+  margin-top:3rem;
+  margin-left:auto; margin-right:auto;
+  max-width:1100px;
+  padding:1rem;
+  min-height:80vh;
+  background: var(--container);
+  border-radius:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.4);
+  color: var(--text);
+  overflow:hidden;
+}
 
-  iframe {
-    width: 100%;
-    height: 80vh;
-    border: none;
-    border-radius: 6px;
-  }
+iframe {
+  width:100%; height:80vh;
+  border:none;
+  border-radius:6px;
+  background: var(--container);
+}
+
+.footer {
+  margin-top:20px;
+  text-align:center;
+  font-size:16px;
+  color: var(--text);
+}
+
+  <!-- Fonte Pixelify Sans -->
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pixelify Sans', Arial, sans-serif;
+    }
+
+.app-header .title {
+  margin-left: auto; /* empurra para a direita */
+  font-size: 2rem;   /* maior, você pode ajustar */
+  font-weight: bold;
+  color: #cce0ff;   /* mantendo a cor que você gostou */
+}
+
 </style>
 </head>
 <body>
 
 <div class="app-header">
   <button class="menuBtn" id="menuBtn">☰</button>
-  <div class="title">Quakeman Site</div>
+  <div class="title" style="margin-left:auto;">Quakeman</div>
 </div>
 
 <div id="sideMenu">
   <div class="accordion-menu">
-    <!-- Item Home -->
     <div class="accordion-item">
       <button class="accordion-btn">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="icon-img" alt="Home" /> Home
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" class="icon-img" /> Home
       </button>
       <div class="accordion-content">
         <a href="HTML/home.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" class="sub-icon" />Página Inicial</a>
@@ -164,18 +181,15 @@
       </div>
     </div>
 
-    <!-- Item Posts -->
     <div class="accordion-item">
       <button class="accordion-btn">
-        <img src="https://cdn-icons-png.flaticon.com/512/3391/3391229.png" class="icon-img" alt="Posts" /> Posts
+        <img src="https://cdn-icons-png.flaticon.com/512/3391/3391229.png" class="icon-img" /> Posts
       </button>
       <div class="accordion-content">
         <a href="HTML/allgames.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/786/786223.png" class="sub-icon" /> Todos os jogos</a>
         <a href="HTML/emuladores.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/0/191.png" class="sub-icon" /> Emuladores</a>
       </div>
     </div>
-
-    <!-- Outros itens podem ser adicionados da mesma forma -->
   </div>
 </div>
 
@@ -185,35 +199,53 @@
   <iframe name="contentFrame" src="HTML/home.html"></iframe>
 </div>
 
+<div class="footer">
+  <i>Quakeman 2009/2025</i>
+</div>
+
 <script>
-  // Menu lateral toggle
+  // MENU LATERAL
   const menu = document.getElementById('sideMenu');
   const overlay = document.getElementById('overlay');
-  document.getElementById('menuBtn').addEventListener('click', ()=>{
-    menu.classList.add('open');
-    overlay.classList.add('active');
-  });
-  overlay.addEventListener('click', ()=>{
-    menu.classList.remove('open');
-    overlay.classList.remove('active');
-  });
+  const btn = document.getElementById('menuBtn');
+  btn.addEventListener('click',()=>{ menu.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',()=>{ menu.classList.remove('open'); overlay.classList.remove('active'); });
 
-  // Accordion menu
-  const accItems = document.querySelectorAll('.accordion-item');
-  accItems.forEach(item => {
-    const btn = item.querySelector('.accordion-btn');
-    btn.addEventListener('click', () => {
+  // ACORDION
+  document.querySelectorAll('.accordion-item').forEach(item=>{
+    item.querySelector('.accordion-btn').addEventListener('click',()=>{
       item.classList.toggle('active');
-      accItems.forEach(other => {
-        if(other !== item) other.classList.remove('active');
-      });
+      document.querySelectorAll('.accordion-item').forEach(other=>{ if(other!==item) other.classList.remove('active'); });
     });
   });
-</script>
 
-  <div style="margin-top: 20px; font-family: 'Pixelify Sans', Arial, sans-serif; text-align: center;">
-  <i style="font-size: 16px;">Quakeman 2009/2025</i>
-  </div>
+  // TEMA DINÂMICO
+  function setCssVar(name,value){ document.body.style.setProperty(name,value); if(name=='--background'){ document.querySelector("meta[name='theme-color']")?.setAttribute("content",value); } }
+
+  function applyTheme(){
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(darkMode){
+      setCssVar("--accent","#71dba7");
+      setCssVar("--background","#191c1a");
+      setCssVar("--container","#7f9687");
+      setCssVar("--buttonBackground","#24342a");
+      setCssVar("--buttonText","#E6E1E5");
+      setCssVar("--text","#ffffff");
+    }else{
+      setCssVar("--accent","#006c48");
+      setCssVar("--background","#fbfdf8");
+      setCssVar("--container","#24342a");
+      setCssVar("--buttonBackground","#fdfbff");
+      setCssVar("--buttonText","gray");
+      setCssVar("--text","#494550");
+    }
+  }
+  window.addEventListener("DOMContentLoaded",()=>{
+    applyTheme();
+    document.body.style.visibility='visible';
+    document.body.style.opacity=1;
+  });
+</script>
 
 </body>
 </html>
