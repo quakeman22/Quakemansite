@@ -160,6 +160,28 @@ iframe {
   color: #cce0ff;   /* mantendo a cor que você gostou */
 }
 
+<div id="mainContainer">
+  <iframe name="contentFrame" src="HTML/home.html"></iframe>
+</div>
+
+<!-- OUTROS ELEMENTOS -->
+
+<script>
+  const iframe = document.querySelector('iframe[name="contentFrame"]');
+
+  iframe.onload = function() {
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      if(doc.body.innerHTML.trim() === "" || doc.body.innerHTML.includes("404")) {
+        iframe.src = "HTML/404.html";
+      }
+    } catch(e) {
+      // Caso CORS impeça o acesso, ainda assim redireciona
+      iframe.src = "HTML/404.html";
+    }
+  }
+</script>    
+
 </style>
 </head>
 <body>
