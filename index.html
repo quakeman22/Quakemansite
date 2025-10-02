@@ -7,6 +7,7 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
 :root {
@@ -167,25 +168,48 @@ iframe {
   <div class="title">Quakeman</div>
 </div>
 
+<!-- Adicione isso no <head> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+.material-icons {
+  font-size: 20px;       /* tamanho do ícone */
+  margin-right: 10px;    /* espaçamento do texto */
+  vertical-align: middle;
+  color: var(--accent);  /* verde de destaque */
+}
+</style>
+
+<!-- Menu lateral -->
 <div id="sideMenu">
   <div class="accordion-menu">
+    <!-- Home -->
     <div class="accordion-item">
       <button class="accordion-btn">
-        <img src="https://cdn-icons-png.flaticon.com/512/10723/10723211.png" class="icon-img" /> Home
+        <span class="material-icons">home</span> Home
       </button>
       <div class="accordion-content">
-        <a href="HTML/home.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" class="sub-icon" />Página Inicial</a>
-        <a href="HTML/allgames.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" class="sub-icon" />Todos os Jogos</a>
+        <a href="HTML/home.html" target="contentFrame">
+          <span class="material-icons">dashboard</span> Página Inicial
+        </a>
+        <a href="HTML/allgames.html" target="contentFrame">
+          <span class="material-icons">games</span> Todos os Jogos
+        </a>
       </div>
     </div>
 
+    <!-- Posts -->
     <div class="accordion-item">
       <button class="accordion-btn">
-        <img src="https://cdn-icons-png.flaticon.com/512/4122/4122823.png" class="icon-img" /> Posts
+        <span class="material-icons">article</span> Posts
       </button>
       <div class="accordion-content">
-        <a href="HTML/allgames.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/786/786223.png" class="sub-icon" /> Todos os jogos</a>
-        <a href="HTML/emuladores.html" target="contentFrame"><img src="https://cdn-icons-png.flaticon.com/512/0/191.png" class="sub-icon" /> Emuladores</a>
+        <a href="HTML/allgames.html" target="contentFrame">
+          <span class="material-icons">videogame_asset</span> Todos os Jogos
+        </a>
+        <a href="HTML/emuladores.html" target="contentFrame">
+          <span class="material-icons">settings_input_component</span> Emuladores
+        </a>
       </div>
     </div>
   </div>
