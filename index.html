@@ -6,23 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonte Pixelify Sans -->
-  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Pixelify Sans', Arial, sans-serif;
-    }
+<link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
 
 <style>
 :root {
-  --accent: #71dba7;
-  --background: #191c1a;
-  --container: #7f9687;
-  --Quakeman: #71dba7;
-  --buttonBackground: #24342a;
-  --buttonText: #E6E1E5;
-  --text: #ffffff;
+  --accent: #71dba7;          /* verde destaque */
+  --background: #0d0d0d;      /* fundo geral mais escuro */
+  --container: #141414;       /* container principal */
+  --buttonBackground: #1c1c1c; 
+  --buttonText: #e0e0e0;
+  --text: #d1d1d1;            /* texto claro neutro */
 }
 
 body {
@@ -57,23 +50,34 @@ body {
 }
 .menuBtn:hover {
   background: var(--accent);
-  color: var(--text);
+  color: #111;
   box-shadow: 0 0 10px var(--accent);
 }
 
+/* MENU LATERAL ESCURO */
 #sideMenu {
   position: fixed;
-  top:0; left:-260px;
-  width:260px; height:100%;
-  background: var(--container);
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background: #111;     /* fundo bem escuro */
   color: var(--text);
   z-index:60;
   padding:1rem;
-  display:flex; flex-direction:column; gap:0.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
   transition: left 0.3s ease;
   overflow-y:auto;
 }
 #sideMenu.open { left:0; }
+
+/* Scroll customizado */
+#sideMenu::-webkit-scrollbar { width: 10px; }
+#sideMenu::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 5px; }
+#sideMenu::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid #111; }
+#sideMenu::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 #overlay {
   position: fixed; inset:0;
@@ -85,7 +89,7 @@ body {
 
 .accordion-menu { width:100%; }
 .accordion-btn {
-  background: var(--buttonBackground);
+  background: #1a1a1a;
   cursor:pointer;
   padding:12px 16px;
   width:100%;
@@ -98,7 +102,7 @@ body {
   color: var(--text);
   border-radius:0.4rem;
 }
-.accordion-btn:hover { background: var(--accent); color: var(--text); }
+.accordion-btn:hover { background: var(--accent); color: #111; }
 .icon-img { width:20px; height:20px; margin-right:10px; object-fit:contain; }
 .accordion-content {
   max-height:0;
@@ -110,13 +114,14 @@ body {
 .accordion-content a {
   padding:10px 16px;
   text-decoration:none;
+  background:#161616;
   color: var(--text);
   border-top:1px solid rgba(255,255,255,0.05);
   font-size:14px;
   display:flex; align-items:center;
   transition: background 0.2s;
 }
-.accordion-content a:hover { background: var(--accent); color: var(--text); }
+.accordion-content a:hover { background: var(--accent); color:#111; }
 .sub-icon { width:16px; height:16px; margin-right:8px; }
 .accordion-item.active .accordion-content { max-height:500px; }
 
@@ -147,31 +152,19 @@ iframe {
   color: var(--text);
 }
 
-  <!-- Fonte Pixelify Sans -->
-  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Pixelify Sans', Arial, sans-serif;
-    }
-
 .app-header .title {
-  margin-left: auto; /* empurra para a direita */
-  font-size: 2rem;   /* maior, você pode ajustar */
+  margin-left: auto;
+  font-size: 2rem;
   font-weight: bold;
-  color: #cce0ff;   /* mantendo a cor que você gostou */
+  color: var(--text);  /* sem azul */
 }
-
-<div id="mainContainer">
-  <iframe name="contentFrame" src="HTML/home.html"></iframe>
-</div>
-
 </style>
 </head>
 <body>
 
 <div class="app-header">
   <button class="menuBtn" id="menuBtn">☰</button>
-  <div class="title" style="margin-left:auto;">Quakeman</div>
+  <div class="title">Quakeman</div>
 </div>
 
 <div id="sideMenu">
@@ -209,14 +202,12 @@ iframe {
 </div>
 
 <script>
-  // MENU LATERAL
   const menu = document.getElementById('sideMenu');
   const overlay = document.getElementById('overlay');
   const btn = document.getElementById('menuBtn');
   btn.addEventListener('click',()=>{ menu.classList.toggle('open'); overlay.classList.toggle('active'); });
   overlay.addEventListener('click',()=>{ menu.classList.remove('open'); overlay.classList.remove('active'); });
 
-  // ACORDION
   document.querySelectorAll('.accordion-item').forEach(item=>{
     item.querySelector('.accordion-btn').addEventListener('click',()=>{
       item.classList.toggle('active');
@@ -224,39 +215,7 @@ iframe {
     });
   });
 
-  // TEMA DINÂMICO
-  function setCssVar(name,value){ document.body.style.setProperty(name,value); if(name=='--background'){ document.querySelector("meta[name='theme-color']")?.setAttribute("content",value); } }
-
-  function applyTheme(){
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if(darkMode){
-      setCssVar("--accent","#71dba7");
-      setCssVar("--background","#191c1a");
-      setCssVar("--container","#7f9687");
-      setCssVar("--buttonBackground","#24342a");
-      setCssVar("--buttonText","#E6E1E5");
-      setCssVar("--text","#ffffff");
-    }else{
-      setCssVar("--accent","#006c48");
-      setCssVar("--background","#fbfdf8");
-      setCssVar("--container","#24342a");
-      setCssVar("--buttonBackground","#fdfbff");
-      setCssVar("--buttonText","gray");
-      setCssVar("--text","#494550");
-    }
-  }
-  window.addEventListener("DOMContentLoaded",()=>{
-    applyTheme();
-    document.body.style.visibility='visible';
-    document.body.style.opacity=1;
-  });
-</script>
-
-  <!-- OUTROS ELEMENTOS -->
-
-<script>
   const iframe = document.querySelector('iframe[name="contentFrame"]');
-
   iframe.onload = function() {
     try {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
@@ -264,11 +223,10 @@ iframe {
         iframe.src = "HTML/404.html";
       }
     } catch(e) {
-      // Caso CORS impeça o acesso, ainda assim redireciona
       iframe.src = "HTML/404.html";
     }
   }
-</script>    
+</script>
 
 </body>
 </html>
