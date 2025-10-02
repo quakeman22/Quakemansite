@@ -60,16 +60,34 @@ body {
   background-color: transparent;
   transition: all 0.3s ease;
 }
-.btn-icon { width: 20px; height: 20px; filter: grayscale(100%); transition: filter 0.3s ease; }
-.fb-btn { color: #1877F2; border-color: #1877F2; }
-.fb-btn:hover { background-color: #1877F2; color: white; transform: translateY(-2px); }
-.fb-btn:hover .btn-icon { filter: grayscale(0%); }
-.archive-btn { color: #000; border-color: #000; }
-.archive-btn:hover { background-color: #000; color: white; transform: translateY(-2px); }
-.archive-btn:hover .btn-icon { filter: grayscale(0%); }
-.discord-btn { color: #5865F2; border-color: #5865F2; }
-.discord-btn:hover { background-color: #5865F2; color: white; transform: translateY(-2px); }
-.discord-btn:hover .btn-icon { filter: grayscale(0%); }
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+/* Todos os botões usando o verde de destaque */
+.fb-btn,
+.archive-btn,
+.discord-btn {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.fb-btn:hover,
+.archive-btn:hover,
+.discord-btn:hover {
+  background-color: var(--accent);
+  color: #111; /* texto escuro sobre o verde */
+  transform: translateY(-2px);
+}
+
+.fb-btn:hover .btn-icon,
+.archive-btn:hover .btn-icon,
+.discord-btn:hover .btn-icon {
+  filter: grayscale(0%);
+}
 </style>
 </head>
 <body>
