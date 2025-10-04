@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curiosidades J2ME</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .panel {
+      background: #1b1b1b;
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      position: relative;
+    }
+    .panel img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #curiosity {
+      font-size: 1.2rem;
+      color: #f5f5f5;
+      line-height: 1.5;
+      min-height: 80px;
+      padding: 15px;
+      background: #101010;
+      border-radius: 10px;
+      border: 1px solid #00ff88;
+      box-shadow: inset 0 0 10px rgba(0,255,136,0.2);
+      transition: opacity 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <img src="https://www.pikpng.com/pngl/b/436-4363456_this-free-icons-png-design-of-sci-fi.png" alt="J2ME Icon">
+    <h1>Curiosidades sobre J2ME</h1>
+    <p id="curiosity"></p>
+  </div>
+
+  <script>
+    const curiosities = [
+      "J2ME foi lançado oficialmente pela Sun Microsystems em 1999.",
+      "A Nokia foi uma das empresas que mais apostou em jogos J2ME nos anos 2000.",
+      "Muitos jogos famosos de J2ME eram versões reduzidas de franquias de console.",
+      "Entre 2006 e 2010, sites como Mobile9, GetJar e Zedge eram os mais acessados para baixar jogos Java.",
+      "A Gameloft se tornou uma das maiores desenvolvedoras de jogos J2ME no mundo.",
+      "O jogo Asphalt: Urban GT (2004) foi um dos maiores sucessos da Gameloft em J2ME.",
+      "Alguns jogos J2ME tinham apenas 64KB de tamanho!",
+      "Os aparelhos da série Nokia N-Gage rodavam jogos em J2ME, além dos próprios nativos.",
+      "Os jogos J2ME eram feitos em linguagem Java e compilados em arquivos .jar.",
+      "O site GetJar foi criado em 2004 e se tornou uma das maiores bibliotecas de jogos Java do mundo.",
+      "Muitos sites brasileiros famosos, como Superdownloads e Baixaki, tinham seções dedicadas a jogos Java.",
+      "Entre 2008 e 2012, a Gameloft, EA Mobile e Glu Mobile dominaram o mercado J2ME.",
+      "Jogos de luta em J2ME eram extremamente populares, como King of Fighters e Street Fighter adaptados.",
+      "O Opera Mini foi um dos aplicativos J2ME mais baixados da história.",
+      "Em 2009, estimava-se que existiam mais de 3 bilhões de aparelhos compatíveis com J2ME.",
+      "O jogo Prince of Persia em J2ME tinha várias versões diferentes dependendo do celular.",
+      "Snake, o clássico da Nokia, também teve uma versão em J2ME."
+      // 👉 podemos expandir até 200 curiosidades
+    ];
+
+    const curiosityElement = document.getElementById("curiosity");
+
+    function showRandomCuriosity() {
+      const randomIndex = Math.floor(Math.random() * curiosities.length);
+      curiosityElement.style.opacity = 0;
+      setTimeout(() => {
+        curiosityElement.textContent = curiosities[randomIndex];
+        curiosityElement.style.opacity = 1;
+      }, 500);
+    }
+
+    showRandomCuriosity();
+    setInterval(showRandomCuriosity, 7000);
+  </script>
+</body>
+</html>
