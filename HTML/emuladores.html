@@ -39,6 +39,10 @@ h1 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   transition: transform 0.3s, box-shadow 0.3s;
 }
+  .panel {
+      width: 70px;
+      height: 70px;
+  }
 
 .card:hover {
   transform: translateY(-5px);
@@ -77,7 +81,7 @@ h1 {
 
 <h1>Principais Emuladores J2ME</h1>
 
-<div class="cards">
+<div class="panel">
   <!-- J2ME Loader -->
   <div class="card">
     <img src="https://i.imgur.com/CbF0Yuv.png" alt="Logo J2ME">
@@ -87,8 +91,8 @@ h1 {
   </div>
 
   <!-- JL-MOD -->
-  <div class="card">
-    <img src="https://i.imgur.com/akECtTf.png" alt=Logo jlmod">
+  <div class="panel">
+    <img src="https://i.imgur.com/akECtTf.png" class=panel">
     <h2>JL-MOD</h2>
     <p>Uma modificação do J2ME Loader, trazendo novos recursos, correções e melhorias para rodar jogos.</p>
     <a class="btn" href="https://github.com/woesss/JL-Mod" target="_blank">GitHub</a>
