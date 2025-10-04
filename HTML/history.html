@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>A história do J2ME e a era dos jogos Java — Quakeman</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1C2F00;
+    --panel:#141826A8;
+    --accent:#71dba7;
+    --muted:#bcd8cf;
+    --text:#e9f6f0;
+  }
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:'Pixelify Sans',Arial, sans-serif;}
+  .wrap{max-width:980px;margin:3.2rem auto;padding:1.6rem;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);}
+  .hero{display:flex;gap:1rem;align-items:center;margin-bottom:1rem;}
+  .hero img{width:62px;height:62px;border-radius:10px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6));}
+  h1{margin:0;font-size:1.6rem;color:var(--accent);letter-spacing:0.6px;}
+  .lede{color:var(--muted);margin:0.6rem 0 1.2rem;}
+  section{margin-top:1.2rem;}
+  h2{font-size:1.05rem;margin:0 0 .6rem;color:#cfeee0;}
+  p{margin:0.45rem 0;line-height:1.5;color:var(--text);}
+  ul{margin:0.4rem 0 0.8rem 1.2rem;color:var(--text);}
+  .callout{background:var(--panel);padding:0.8rem;border-radius:8px;border-left:4px solid var(--accent);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);}
+  .timeline{display:grid;gap:0.6rem;margin-top:.6rem;}
+  .item{padding:.7rem;border-radius:8px;background:rgba(255,255,255,0.012);border:1px solid rgba(255,255,255,0.02);}
+  .sources{margin-top:1rem;font-size:.85rem;color:var(--muted);}
+  a.cite{color:var(--accent);text-decoration:none;border-bottom:1px dotted rgba(113,219,167,0.25);}
+  footer{margin-top:1.2rem;color:var(--muted);font-size:.9rem;text-align:center;}
+  /* responsivo breve */
+  @media (max-width:640px){
+    .hero{flex-direction:row;gap:.8rem}
+    .hero img{width:54px;height:54px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <img src="https://cdn-icons-png.flaticon.com/512/8385/8385142.png" alt="Ícone J2ME">
+    <div>
+      <h1>A história do J2ME e a era dos jogos Java</h1>
+      <p class="lede">Como o Java para celulares moldou uma geração de desenvolvedores, estúdios e comunidades — e por que a preservação importa.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>1. O que foi (e por que importou) o J2ME</h2>
+    <p>
+      J2ME (Java 2 Platform, Micro Edition, hoje Java ME) foi a camada de software que tornou possível executar apps e jogos portáveis em telefones com recursos limitados.
+      Criada por Sun Microsystems para dispositivos embarcados e celulares, o J2ME padronizou APIs (CLDC/MIDP) que permitiram distribuir jogos em formato <code>.jar/.jad</code> para centenas de aparelhos com diferentes telas e capacidades. A adoção foi massiva: bilhões de aparelhos passaram a suportar Java ME no início dos anos 2000, criando um mercado global de jogos mobile antes da era dos smartphones. 
+      <a class="cite" href="https://en.wikipedia.org/wiki/Java_Platform%2C_Micro_Edition" target="_blank" rel="noopener">(fonte: Java ME — Wikipedia)</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Cronologia condensada</h2>
+    <div class="timeline">
+      <div class="item"><strong>Finals dos anos 1990 / 2000:</strong> Sun formaliza a plataforma — surgem as primeiras engines MIDP e os conceitos de portabilidade entre aparelhos.</div>
+      <div class="item"><strong>2000–2006:</strong> Explosão de jogos Java: estúdios dedicados (incluindo Gameloft e outros independentes) prosperam criando centenas de títulos para feature phones.</div>
+      <div class="item"><strong>2007–2012:</strong> Mercado maduro, com milhares de jogos e canais de download (operadoras, sites, blogs, e lojas independentes). Paralelamente, o smartphone começa a crescer e gradualmente reduz a centralidade do J2ME.</div>
+      <div class="item"><strong>2013 em diante:</strong> Queda do J2ME como plataforma dominante — mas a comunidade de fãs e preservação ganha força para manter acervos e traduções.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Os grandes nomes: estúdios e jogos que marcaram</h2>
+    <p>
+      Entre as empresas que fizeram a transição para a era mobile destacam-se estúdios como a <strong>Gameloft</strong>, fundada em 1999 e que se consolidou produzindo muitos títulos de sucesso no formato Java (séries como Siberian Strike, Asphalt em versões mobile etc.). A história corporativa da Gameloft ilustra como empresas de jogos aproveitaram primeiro o mercado J2ME e depois migraram para iOS/Android. 
+      <a class="cite" href="https://en.wikipedia.org/wiki/Gameloft" target="_blank" rel="noopener">(fonte: Gameloft)</a>.
+    </p>
+    <p>
+      Estúdios menores como a <strong>Fishlabs</strong> também surgiram no período e trabalharam em ports e títulos que, mais tarde, migram para plataformas maiores (por exemplo, Galaxy on Fire estreou no J2ME antes de ganhar versões para iOS/PC). <a class="cite" href="https://en.wikipedia.org/wiki/Galaxy_on_Fire_2" target="_blank" rel="noopener">(fonte: Galaxy on Fire)</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>4. O ecossistema — lojas, sites e a cena brasileira</h2>
+    <p>
+      Antes das lojas unificadas (App Store / Play Store), a distribuição era fragmentada: operadoras disponibilizando pacotes, sites de fãs hospedando arquivos .jar/.jad, fóruns, blogs e canais como o <em>MobileGamer</em> que cobriam lançamentos, traduções e hacks. No Brasil surgiram comunidades e blogs dedicados a compartilhar traduções, guias e packs de jogos — muitos dos quais viraram fonte primária para quem queria localizar e jogar títulos estrangeiros.
+    </p>
+    <p class="callout">
+      Observação: para muitos jogadores a internet discada e conexões lentas eram parte do contexto — downloads demoravam, e isso incentivava a criação de “packs” (coleções) e o compartilhamento via FTP, RapidShare, MediaFire etc.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Pirataria, traduções e preservação</h2>
+    <p>
+      A pirataria foi um fator ambíguo: por um lado alimentou uma enorme difusão de títulos (muitos usuários passaram a conhecer jogos graças a cópias “emprestadas”); por outro, pressionou modelos de negócios. Ao mesmo tempo, as traduções feitas por fãs (muitas vezes publicadas em blogs e arquivos compartilhados) garantiram que jogos nacionais e versões localizadas existissem — e hoje esses mesmos arquivos são essenciais para preservação histórica.
+    </p>
+    <p>
+      Por isso a preservação (archiving) e projetos de tradução/curadoria são fundamentais: eles documentam metadados, screenshots, arquivos originais e as diferentes builds para aparelhos (240×320, 176×208, K800i, etc.), bem como as notas sobre compatibilidade.
+    </p>
+  </section>
+
+  <section>
+    <h2>6. Cultura — Orkut, comunidades e a socialização do jogo mobile</h2>
+    <p>
+      Plataformas sociais contemporâneas como o Orkut tiveram papel central na propagação de comunidades de jogadores brasileiros — grupos de fãs, trocas de dicas e anúncios de traduções. Fóruns e chats de MSN/IRC também foram pontos de encontro para tradutores e colecionadores.
+    </p>
+  </section>
+
+  <section>
+    <h2>7. A questão técnica (breve)</h2>
+    <p>
+      Tecnicamente, desenvolvedores J2ME lidavam com várias limitações: memória reduzida, telas com várias resoluções e ausência de features gráficas modernas. Para contornar isso criaram técnicas de otimização especiais (sprites compactados, engines custom para MIDP, e condicionais por operador/aparelho). O resultado foi uma profusão de hacks inteligentes que hoje são interessantes para estudo de engenharia reversa e portabilidade.
+    </p>
+    <p class="timeline">
+      <div class="item"><strong>Formatos:</strong> arquivos .jar (contendo classes + recursos) e .jad (manifestos de instalação).</div>
+      <div class="item"><strong>Perfis:</strong> CLDC (configuração) + MIDP (perfil móvel) foram as bases do desenvolvimento.</div>
+    </p>
+  </section>
+
+  <section>
+    <h2>8. Legado e por que preservar</h2>
+    <p>
+      O J2ME não é só nostalgia — é um capítulo importante da história dos jogos digitais. Dos pequenos estúdios que aprenderam a criar jogos com limites difíceis, às comunidades que traduziram e mantiveram títulos vivos, tudo isso representa conhecimento técnico e cultural que merece ser arquivado.
+    </p>
+    <p>
+      Projetos de preservação ajudam a manter metadados (quem traduziu, qual versão, screenshots, notas de compatibilidade) e também a manter os arquivos originais disponíveis para pesquisa, emulação e reprodução em dispositivos modernos.
+    </p>
+  </section>
+
+  <section>
+    <h2>Leitura complementar e fontes</h2>
+    <p class="sources">
+      As ideias e fatos deste texto foram compilados a partir de matérias, resumos técnicos e históricos sobre Java ME e a indústria de jogos móveis — entre elas:
+      <br>
+      • Java ME (J2ME) — documentação histórica e resumo técnico. <a class="cite" href="https://en.wikipedia.org/wiki/Java_Platform%2C_Micro_Edition" target="_blank" rel="noopener">Wikipedia Java ME</a>. 0
+      <br>
+      • Gameloft — histórico da empresa que publicou dezenas de títulos Java. <a class="cite" href="https://en.wikipedia.org/wiki/Gameloft" target="_blank" rel="noopener">Gameloft — Wikipedia</a>. 1
+      <br>
+      • Galaxy on Fire / Fishlabs — exemplo de título que passou por J2ME e depois por outras plataformas. <a class="cite" href="https://en.wikipedia.org/wiki/Galaxy_on_Fire_2" target="_blank" rel="noopener">Galaxy on Fire — Wikipedia</a>. 2
+      <br>
+      • Documentação técnica e capítulos introdutórios sobre J2ME (Oracle / JavaOne). 3
+      <br>
+      • Uma peça de contexto e memória sobre a cena de jogos J2ME e publicações (ex.: artigos e posts especializados). 4
+    </p>
+  </section>
+
+  <footer>Feito por Quakeman — projeto de preservação J2ME · © 2025</footer>
+</div>
+</body>
+</html>
