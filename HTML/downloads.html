@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traduções J2ME - Quakeman</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  color: #00ffcc;
+  text-align: center;
+}
+#fileList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.file-item {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+a.download-btn {
+  background: #00ffcc;
+  color: #000;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+a.download-btn:hover {
+  background: #00d4aa;
+}
+.loading {
+  text-align: center;
+  margin-top: 30px;
+  color: #aaa;
+}
+</style>
+</head>
+<body>
+
+<h1>📂 Traduções J2ME</h1>
+<p style="text-align:center;">Baixe aqui as traduções mais recentes do repositório.</p>
+
+<div id="loading" class="loading">Carregando lista...</div>
+<ul id="fileList"></ul>
+
+<script>
+fetch("https://api.github.com/repos/quakeman22/J2me-Tradu-es/contents/Novas%20Tradu%C3%A7%C3%B5es")
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById("fileList");
+    const loading = document.getElementById("loading");
+    loading.style.display = "none";
+
+    data.forEach(file => {
+      if (file.type === "file") {
+        const item = document.createElement("li");
+        item.className = "file-item";
+
+        const name = document.createElement("span");
+        name.textContent = file.name;
+
+        const btn = document.createElement("a");
+        btn.href = file.download_url;
+        btn.textContent = "Baixar";
+        btn.className = "download-btn";
+        btn.target = "_blank";
+
+        item.appendChild(name);
+        item.appendChild(btn);
+        list.appendChild(item);
+      }
+    });
+  })
+  .catch(err => {
+    document.getElementById("loading").textContent = "Erro ao carregar lista.";
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>
