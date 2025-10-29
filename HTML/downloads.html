@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traduções J2ME</title>
 
-<!-- Fonte pixel do Google Fonts -->
+<!-- Fonte pixel -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
@@ -16,9 +16,6 @@ body {
   margin: 0;
   padding: 20px;
   font-size: 12px;
-  .file-item span {
-  font-size: 10px; /* 👈 Tamanho dos nomes dos jogos */
-  }
   line-height: 1.5;
 }
 h1 {
@@ -41,6 +38,10 @@ h1 {
   justify-content: space-between;
   align-items: center;
 }
+.file-item span {
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
 a.download-btn {
   background: #00ffcc;
   color: #000;
@@ -51,12 +52,19 @@ a.download-btn {
   font-size: 10px;
 }
 a.download-btn:hover {
-  background: #0000;
+  background: #009977;
+  color: #fff;
 }
 .loading {
   text-align: center;
   margin-top: 30px;
   color: #aaa;
+  font-size: 10px;
+}
+.error {
+  text-align: center;
+  color: #ff6666;
+  margin-top: 20px;
   font-size: 10px;
 }
 </style>
@@ -67,39 +75,69 @@ a.download-btn:hover {
 <p style="text-align:center;">Baixe aqui as traduções mais recentes do repositório.</p>
 
 <div id="loading" class="loading">Carregando lista...</div>
+<div id="error" class="error" style="display:none;">Erro ao carregar lista. Mostrando dados em cache.</div>
 <ul id="fileList"></ul>
 
 <script>
-fetch("https://api.github.com/repos/quakeman22/J2me-Tradu-es/contents/Novas%20Tradu%C3%A7%C3%B5es")
-  .then(response => response.json())
+const apiURL = "https://api.github.com/repos/quakeman22/J2me-Tradu-es/contents/Novas%20Tradu%C3%A7%C3%B5es";
+const fallbackURL = "https://quakeman22.github.io/J2me-Tradu-es/lista.json"; // opcional
+
+function renderList(data) {
+  const list = document.getElementById("fileList");
+  const loading = document.getElementById("loading");
+  list.innerHTML = "";
+  loading.style.display = "none";
+
+  data.forEach(file => {
+    if (file.type === "file" || file.url) {
+      const item = document.createElement("li");
+      item.className = "file-item";
+
+      const name = document.createElement("span");
+      name.textContent = file.name || file.title || "Arquivo";
+
+      const btn = document.createElement("a");
+      btn.href = file.download_url || file.url;
+      btn.textContent = "Baixar";
+      btn.className = "download-btn";
+      btn.target = "_blank";
+
+      item.appendChild(name);
+      item.appendChild(btn);
+      list.appendChild(item);
+    }
+  });
+}
+
+function loadFromCache() {
+  const cached = localStorage.getItem("traducoes_cache");
+  if (cached) {
+    document.getElementById("error").style.display = "block";
+    renderList(JSON.parse(cached));
+  } else {
+    document.getElementById("loading").textContent = "Nenhum dado em cache disponível.";
+  }
+}
+
+fetch(apiURL)
+  .then(response => {
+    if (!response.ok) throw new Error(response.status);
+    return response.json();
+  })
   .then(data => {
-    const list = document.getElementById("fileList");
-    const loading = document.getElementById("loading");
-    loading.style.display = "none";
-
-    data.forEach(file => {
-      if (file.type === "file") {
-        const item = document.createElement("li");
-        item.className = "file-item";
-
-        const name = document.createElement("span");
-        name.textContent = file.name;
-
-        const btn = document.createElement("a");
-        btn.href = file.download_url;
-        btn.textContent = "Baixar";
-        btn.className = "download-btn";
-        btn.target = "_blank";
-
-        item.appendChild(name);
-        item.appendChild(btn);
-        list.appendChild(item);
-      }
-    });
+    localStorage.setItem("traducoes_cache", JSON.stringify(data));
+    renderList(data);
   })
   .catch(err => {
-    document.getElementById("loading").textContent = "Erro ao carregar lista.";
-    console.error(err);
+    console.warn("Erro ao buscar da API:", err);
+    // tenta carregar lista.json se existir
+    fetch(fallbackURL)
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        renderList(data);
+        localStorage.setItem("traducoes_cache", JSON.stringify(data));
+      })
+      .catch(() => loadFromCache());
   });
 </script>
 
