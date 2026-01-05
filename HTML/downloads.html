@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Downloads - Novas Traduções J2ME</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -16,66 +17,106 @@
       },
     }
   </script>
+  
   <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    .loading { animation: pulse 1.5s infinite; }
+  </style>
 </head>
 <body class="min-h-screen bg-background text-gray-200 font-pixel">
 
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold text-accent text-center mb-8">Novas Traduções J2ME</h1>
-    <p class="text-center text-lg mb-12">Downloads diretos dos jogos Java traduzidos para Português-BR.<br>
-       Clique no nome do jogo para baixar o .jar</p>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-accent text-center mb-4">Novas Traduções J2ME</h1>
+    <p class="text-center text-lg mb-8">Todos os jogos Java traduzidos para Português-BR disponíveis no repositório.<br>
+       Clique no nome do jogo para baixar o arquivo .jar diretamente.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Cada card é um jogo -->
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/2006%20Real%20Football%202D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">sports_soccer</span>
-        <h3 class="text-xl font-bold">2006 Real Football 2D</h3>
-        <p class="text-sm text-gray-400 mt-2">~315 KB</p>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Bioshock%20Mobile%20240x320%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">videogame_asset</span>
-        <h3 class="text-xl font-bold">Bioshock Mobile</h3>
-        <p class="text-sm text-gray-400 mt-2">~1.2 MB</p>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/God%20of%20War%202%20240x320%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">shield</span>
-        <h3 class="text-xl font-bold">God of War 2</h3>
-        <p class="text-sm text-gray-400 mt-2">~447 KB</p>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Resident%20Evil%20-%20Degenera%C3%A7%C3%A3o%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">local_hospital</span>
-        <h3 class="text-xl font-bold">Resident Evil - Degeneração</h3>
-        <p class="text-sm text-gray-400 mt-2">~1.6 MB</p>
-      </a>
-
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Cadillacs%20and%20Dinosaurs%20%5B240x320%5D%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">directions_car</span>
-        <h3 class="text-xl font-bold">Cadillacs and Dinosaurs</h3>
-        <p class="text-sm text-gray-400 mt-2">~1.1 MB</p>
-      </a>
-
-      <!-- Adicione mais cards aqui com as URLs dos outros jogos -->
-      <!-- Exemplo genérico para mais um: -->
-      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Super%20Mario%203D%20BR.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
-        <span class="material-icons text-5xl text-accent mb-4 block">person</span>
-        <h3 class="text-xl font-bold">Super Mario 3D</h3>
-        <p class="text-sm text-gray-400 mt-2">~488 KB</p>
-      </a>
-
-      <!-- ... continue adicionando os que quiser destacar ... -->
+    <div class="mb-6 text-center">
+      <input type="text" id="searchInput" placeholder="Buscar jogo..." class="px-4 py-2 rounded-lg bg-container border border-accent/50 text-white focus:outline-none focus:border-accent w-full max-w-md">
     </div>
 
-    <div class="mt-12 text-center">
-      <p class="text-gray-400">Mais jogos disponíveis no repositório completo:<br>
+    <div id="loading" class="text-center text-xl loading text-accent">
+      <span class="material-icons text-5xl inline-block">cloud_download</span><br>
+      Carregando lista de jogos...
+    </div>
+
+    <div id="error" class="hidden text-center text-red-400 text-xl"></div>
+
+    <div id="gamesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+      <!-- Os jogos serão inseridos aqui pelo JavaScript -->
+    </div>
+
+    <div class="mt-12 text-center text-gray-400">
+      <p>Total de jogos: <span id="totalCount">0</span></p>
+      <p class="mt-4">
+        Repositório completo: 
         <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" target="_blank" class="text-accent hover:underline">
-          Ver todos no GitHub →
+          Ver no GitHub →
         </a>
       </p>
     </div>
   </div>
+
+  <script>
+    const apiUrl = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Novas%20Tradu%C3%A7%C3%B5es';
+    const grid = document.getElementById('gamesGrid');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+    const searchInput = document.getElementById('searchInput');
+    const totalCount = document.getElementById('totalCount');
+    let allGames = [];
+
+    // Busca a lista de arquivos
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Erro ao carregar a lista (GitHub API limit?)');
+        return response.json();
+      })
+      .then(data => {
+        // Filtra só arquivos .jar
+        const jarFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar') && item.type === 'file');
+        
+        allGames = jarFiles.sort((a, b) => a.name.localeCompare(b.name));
+        totalCount.textContent = allGames.length;
+        
+        renderGames(allGames);
+        loading.classList.add('hidden');
+        grid.classList.remove('hidden');
+      })
+      .catch(err => {
+        loading.classList.add('hidden');
+        error.classList.remove('hidden');
+        error.textContent = 'Erro ao carregar os jogos: ' + err.message + '. Tente novamente mais tarde.';
+      });
+
+    // Renderiza os cards
+    function renderGames(games) {
+      grid.innerHTML = '';
+      games.forEach(file => {
+        const cleanName = file.name.replace(/\.jar$/i, '').replace(/\[.*?\]/g, '').trim(); // Remove .jar e resoluções
+        const card = document.createElement('a');
+        card.href = file.download_url;
+        card.download = file.name;
+        card.className = 'block p-5 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center';
+        card.innerHTML = `
+          <span class="material-icons text-5xl text-accent mb-3 block">videogame_asset</span>
+          <h3 class="text-lg font-bold break-words">${cleanName}</h3>
+          <p class="text-sm text-gray-400 mt-2">${file.name}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Busca em tempo real
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.toLowerCase();
+      const filtered = allGames.filter(file => 
+        file.name.toLowerCase().includes(term)
+      );
+      renderGames(filtered);
+      totalCount.textContent = filtered.length + (term ? ' (filtrados)' : '');
+    });
+  </script>
 </body>
 </html>
