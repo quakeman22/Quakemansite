@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark"> <!-- Começa em dark mode; remova "dark" se quiser light por padrão -->
+<html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8">
   <title>Quakeman Site</title>
@@ -8,7 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class', // Ativa dark mode via classe no <html>
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -32,12 +32,12 @@
 
   <!-- Header fixo -->
   <header class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-sm border-b border-accent/20">
-    <!-- Botão menu mobile + desktop -->
+    <!-- Botão menu (apenas mobile) -->
     <button id="menuBtn" class="lg:hidden p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition">
       <span class="material-icons text-3xl">menu</span>
     </button>
 
-    <h1 class="text-3xl font-bold text-accent ml-auto lg:ml-0">Quakeman</h1>
+    <h1 class="text-3xl font-bold text-accent mx-auto lg:mx-0">Quakeman</h1>
 
     <!-- Toggle Dark/Light Mode -->
     <button id="themeToggle" class="ml-auto p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition">
@@ -47,86 +47,86 @@
   </header>
 
   <!-- Drawer (menu lateral) -->
-  <div id="drawer" class="fixed inset-0 z-50 pointer-events-none">
-    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity" id="overlay"></div>
-    <aside class="absolute left-0 top-0 h-full w-64 bg-gray-900 pointer-events-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-      <div class="flex flex-col h-full py-4 overflow-y-auto">
-        <div class="px-4 mb-8 hidden lg:block">
-          <h2 class="text-2xl font-bold text-accent">Menu</h2>
+  <div id="drawer" class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-gray-900 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out pointer-events-none lg:pointer-events-auto">
+    <!-- Overlay (apenas mobile) -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 transition-opacity duration-300 lg:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside class="h-full overflow-y-auto py-4 px-3 pointer-events-auto">
+      <div class="px-4 mb-8 hidden lg:block">
+        <h2 class="text-2xl font-bold text-accent">Menu</h2>
+      </div>
+
+      <nav class="flex-1 space-y-2">
+        <!-- Home -->
+        <div class="space-y-1">
+          <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
+            <div class="flex items-center gap-3">
+              <span class="material-icons text-accent">home</span>
+              <span>Home</span>
+            </div>
+            <span class="material-icons text-xl transition-transform rotate-0">expand_more</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
+            <a href="HTML/home.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">dashboard</span> Página Inicial
+            </a>
+            <a href="HTML/about.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">help</span> Sobre
+            </a>
+            <a href="HTML/history.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">local_cafe</span> História
+            </a>
+            <a href="HTML/extras/curiosidades.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">auto_stories</span> Curiosidades
+            </a>
+          </div>
         </div>
 
-        <!-- Accordion Menu -->
-        <nav class="flex-1 px-3 space-y-2">
-          <!-- Home -->
-          <div class="space-y-1">
-            <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
-              <div class="flex items-center gap-3">
-                <span class="material-icons text-accent">home</span>
-                <span>Home</span>
-              </div>
-              <span class="material-icons text-xl transition-transform">expand_more</span>
-            </button>
-            <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
-              <a href="HTML/home.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">dashboard</span> Página Inicial
-              </a>
-              <a href="HTML/about.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">help</span> Sobre
-              </a>
-              <a href="HTML/history.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">local_cafe</span> História
-              </a>
-              <a href="HTML/extras/curiosidades.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">auto_stories</span> Curiosidades
-              </a>
+        <!-- Posts -->
+        <div class="space-y-1">
+          <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
+            <div class="flex items-center gap-3">
+              <span class="material-icons text-accent">article</span>
+              <span>Posts</span>
             </div>
+            <span class="material-icons text-xl transition-transform rotate-0">expand_more</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
+            <a href="HTML/allgames.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">videogame_asset</span> Todos os Jogos
+            </a>
+            <a href="HTML/emuladores.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">gamepad</span> Emuladores
+            </a>
+            <a href="HTML/downloads.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">cloud_download</span> Downloads
+            </a>
+            <a href="HTML/packs.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">cloud_download</span> Packs
+            </a>
           </div>
+        </div>
 
-          <!-- Posts -->
-          <div class="space-y-1">
-            <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
-              <div class="flex items-center gap-3">
-                <span class="material-icons text-accent">article</span>
-                <span>Posts</span>
-              </div>
-              <span class="material-icons text-xl transition-transform">expand_more</span>
-            </button>
-            <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
-              <a href="HTML/allgames.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">videogame_asset</span> Todos os Jogos
-              </a>
-              <a href="HTML/emuladores.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">gamepad</span> Emuladores
-              </a>
-              <a href="HTML/downloads.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">cloud_download</span> Downloads
-              </a>
-              <a href="HTML/packs.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">cloud_download</span> Packs
-              </a>
+        <!-- Tradutores -->
+        <div class="space-y-1">
+          <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
+            <div class="flex items-center gap-3">
+              <span class="material-icons text-accent">person</span>
+              <span>Tradutores</span>
             </div>
+            <span class="material-icons text-xl transition-transform rotate-0">expand_more</span>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
+            <a href="HTML/allgames.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">edit_document</span> Teste
+            </a>
+            <a href="HTML/emuladores.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
+              <span class="material-icons">edit_document</span> teste
+            </a>
           </div>
-
-          <!-- Tradutores -->
-          <div class="space-y-1">
-            <button class="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800 hover:bg-accent hover:text-black transition text-left">
-              <div class="flex items-center gap-3">
-                <span class="material-icons text-accent">person</span>
-                <span>Tradutores</span>
-              </div>
-              <span class="material-icons text-xl transition-transform">expand_more</span>
-            </button>
-            <div class="max-h-0 overflow-hidden transition-all duration-300 space-y-1">
-              <a href="HTML/allgames.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">edit_document</span> Teste
-              </a>
-              <a href="HTML/emuladores.html" target="contentFrame" class="flex items-center gap-3 px-8 py-2 rounded hover:bg-gray-700 transition">
-                <span class="material-icons">edit_document</span> teste
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </aside>
   </div>
 
@@ -142,40 +142,46 @@
   </main>
 
   <script>
-    // Toggle menu mobile
+    // Elementos
     const menuBtn = document.getElementById('menuBtn');
     const drawer = document.getElementById('drawer');
     const overlay = document.getElementById('overlay');
 
+    // Abre/fecha menu no mobile
     menuBtn?.addEventListener('click', () => {
-      drawer.classList.toggle('pointer-events-auto');
-      overlay.classList.toggle('opacity-100');
+      drawer.classList.toggle('-translate-x-full');
       overlay.classList.toggle('opacity-0');
-      drawer.querySelector('aside').classList.toggle('-translate-x-full');
+      overlay.classList.toggle('opacity-100');
+      document.body.classList.toggle('overflow-hidden'); // impede scroll do fundo
     });
 
+    // Fecha ao clicar no overlay
     overlay.addEventListener('click', () => {
-      drawer.classList.remove('pointer-events-auto');
+      drawer.classList.add('-translate-x-full');
+      overlay.classList.add('opacity-0');
       overlay.classList.remove('opacity-100');
-      drawer.querySelector('aside').classList.add('-translate-x-full');
+      document.body.classList.remove('overflow-hidden');
     });
 
-    // Accordion simples (abre um de cada vez)
-    document.querySelectorAll('aside button').forEach(btn => {
+    // Accordion (abre um por vez + gira seta)
+    document.querySelectorAll('#drawer button').forEach(btn => {
       btn.addEventListener('click', () => {
+        const arrow = btn.querySelector('.material-icons:last-child');
         const content = btn.nextElementSibling;
         const isOpen = content.classList.contains('max-h-96');
 
-        // Fecha todos
-        document.querySelectorAll('aside .max-h-96').forEach(open => {
+        // Fecha todos os outros
+        document.querySelectorAll('#drawer .max-h-96').forEach(open => {
           open.classList.remove('max-h-96');
           open.classList.add('max-h-0');
+          open.previousElementSibling.querySelector('.material-icons:last-child').classList.remove('-rotate-180');
         });
 
-        // Abre o clicado (se não estava aberto)
+        // Abre o atual se não estava aberto
         if (!isOpen) {
           content.classList.remove('max-h-0');
           content.classList.add('max-h-96');
+          arrow.classList.add('-rotate-180');
         }
       });
     });
@@ -190,12 +196,10 @@
       html.classList.toggle('dark');
       sun.classList.toggle('hidden');
       moon.classList.toggle('hidden');
-
-      // Salva preferência
       localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // Carrega preferência salva
+    // Carrega tema salvo
     if (localStorage.getItem('theme') === 'light') {
       html.classList.remove('dark');
       sun.classList.remove('hidden');
