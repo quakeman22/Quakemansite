@@ -1,145 +1,81 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traduções J2ME</title>
-
-<!-- Fonte pixel -->
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-<style>
-body {
-  font-family: 'Press Start 2P', cursive;
-  background: #0d1117;
-  color: #fff;
-  margin: 0;
-  padding: 20px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-h1 {
-  color: #00ffcc;
-  text-align: center;
-  font-size: 14px;
-}
-#fileList {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
-.file-item {
-  background: #161b22;
-  border: 1px solid #30363d;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.file-item span {
-  font-size: 10px;
-  overflow-wrap: anywhere;
-}
-a.download-btn {
-  background: #00ffcc;
-  color: #000;
-  text-decoration: none;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 10px;
-}
-a.download-btn:hover {
-  background: #009977;
-  color: #fff;
-}
-.loading {
-  text-align: center;
-  margin-top: 30px;
-  color: #aaa;
-  font-size: 10px;
-}
-.error {
-  text-align: center;
-  color: #ff6666;
-  margin-top: 20px;
-  font-size: 10px;
-}
-</style>
-</head>
-<body>
-
-<h1>📂 Traduções J2ME</h1>
-<p style="text-align:center;">Baixe aqui as traduções mais recentes do repositório.</p>
-
-<div id="loading" class="loading">Carregando lista...</div>
-<div id="error" class="error" style="display:none;">Erro ao carregar lista. Mostrando dados em cache.</div>
-<ul id="fileList"></ul>
-
-<script>
-const apiURL = "https://api.github.com/repos/quakeman22/J2me-Tradu-es/contents/Novas%20Tradu%C3%A7%C3%B5es";
-const fallbackURL = "https://quakeman22.github.io/J2me-Tradu-es/lista.json"; // opcional
-
-function renderList(data) {
-  const list = document.getElementById("fileList");
-  const loading = document.getElementById("loading");
-  list.innerHTML = "";
-  loading.style.display = "none";
-
-  data.forEach(file => {
-    if (file.type === "file" || file.url) {
-      const item = document.createElement("li");
-      item.className = "file-item";
-
-      const name = document.createElement("span");
-      name.textContent = file.name || file.title || "Arquivo";
-
-      const btn = document.createElement("a");
-      btn.href = file.download_url || file.url;
-      btn.textContent = "Baixar";
-      btn.className = "download-btn";
-      btn.target = "_blank";
-
-      item.appendChild(name);
-      item.appendChild(btn);
-      list.appendChild(item);
+  <meta charset="UTF-8">
+  <title>Downloads - Novas Traduções J2ME</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { accent: '#71dba7', background: '#0d0d0d', container: '#141414' },
+          fontFamily: { pixel: ['"Pixelify Sans"', 'Arial', 'sans-serif'] },
+        },
+      },
     }
-  });
-}
+  </script>
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-background text-gray-200 font-pixel">
 
-function loadFromCache() {
-  const cached = localStorage.getItem("traducoes_cache");
-  if (cached) {
-    document.getElementById("error").style.display = "block";
-    renderList(JSON.parse(cached));
-  } else {
-    document.getElementById("loading").textContent = "Nenhum dado em cache disponível.";
-  }
-}
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-accent text-center mb-8">Novas Traduções J2ME</h1>
+    <p class="text-center text-lg mb-12">Downloads diretos dos jogos Java traduzidos para Português-BR.<br>
+       Clique no nome do jogo para baixar o .jar</p>
 
-fetch(apiURL)
-  .then(response => {
-    if (!response.ok) throw new Error(response.status);
-    return response.json();
-  })
-  .then(data => {
-    localStorage.setItem("traducoes_cache", JSON.stringify(data));
-    renderList(data);
-  })
-  .catch(err => {
-    console.warn("Erro ao buscar da API:", err);
-    // tenta carregar lista.json se existir
-    fetch(fallbackURL)
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => {
-        renderList(data);
-        localStorage.setItem("traducoes_cache", JSON.stringify(data));
-      })
-      .catch(() => loadFromCache());
-  });
-</script>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cada card é um jogo -->
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/2006%20Real%20Football%202D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">sports_soccer</span>
+        <h3 class="text-xl font-bold">2006 Real Football 2D</h3>
+        <p class="text-sm text-gray-400 mt-2">~315 KB</p>
+      </a>
 
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Bioshock%20Mobile%20240x320%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">videogame_asset</span>
+        <h3 class="text-xl font-bold">Bioshock Mobile</h3>
+        <p class="text-sm text-gray-400 mt-2">~1.2 MB</p>
+      </a>
+
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/God%20of%20War%202%20240x320%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">shield</span>
+        <h3 class="text-xl font-bold">God of War 2</h3>
+        <p class="text-sm text-gray-400 mt-2">~447 KB</p>
+      </a>
+
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Resident%20Evil%20-%20Degenera%C3%A7%C3%A3o%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">local_hospital</span>
+        <h3 class="text-xl font-bold">Resident Evil - Degeneração</h3>
+        <p class="text-sm text-gray-400 mt-2">~1.6 MB</p>
+      </a>
+
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Cadillacs%20and%20Dinosaurs%20%5B240x320%5D%20%5BBR%5D.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">directions_car</span>
+        <h3 class="text-xl font-bold">Cadillacs and Dinosaurs</h3>
+        <p class="text-sm text-gray-400 mt-2">~1.1 MB</p>
+      </a>
+
+      <!-- Adicione mais cards aqui com as URLs dos outros jogos -->
+      <!-- Exemplo genérico para mais um: -->
+      <a href="https://raw.githubusercontent.com/quakeman22/j2metraduzidos/main/Novas%20Tradu%C3%A7%C3%B5es/Super%20Mario%203D%20BR.jar" download class="block p-6 bg-container rounded-lg border-2 border-accent/30 hover:border-accent hover:bg-accent/10 transition text-center">
+        <span class="material-icons text-5xl text-accent mb-4 block">person</span>
+        <h3 class="text-xl font-bold">Super Mario 3D</h3>
+        <p class="text-sm text-gray-400 mt-2">~488 KB</p>
+      </a>
+
+      <!-- ... continue adicionando os que quiser destacar ... -->
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-gray-400">Mais jogos disponíveis no repositório completo:<br>
+        <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" target="_blank" class="text-accent hover:underline">
+          Ver todos no GitHub →
+        </a>
+      </p>
+    </div>
+  </div>
 </body>
 </html>
