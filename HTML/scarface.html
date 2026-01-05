@@ -1,117 +1,168 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8">
-<title>Scarface - Tony Montana</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Scarface - Tony Montana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { accent: '#71dba7', background: '#0d0d0d', container: '#141414' },
+          fontFamily: { pixel: ['"Pixelify Sans"', 'Arial', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    .carousel-3d {
+      perspective: 1400px;
+    }
+    .carousel-item {
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: blur(4px);
+      opacity: 0.4;
+    }
+    /* Estado Anterior */
+    .carousel-item.prev {
+      transform: translateX(-75%) scale(0.8) rotateY(30deg);
+      z-index: 10;
+    }
+    /* Estado Ativo (Focado) */
+    .carousel-item.active {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateX(0) scale(1.1);
+      z-index: 30;
+    }
+    /* Estado Próximo */
+    .carousel-item.next {
+      transform: translateX(75%) scale(0.8) rotateY(-30deg);
+      z-index: 10;
+    }
+    
+    @media (max-width: 768px) {
+      .carousel-item.prev { transform: translateX(-55%) scale(0.7) rotateY(20deg); }
+      .carousel-item.next { transform: translateX(55%) scale(0.7) rotateY(-20deg); }
+      .carousel-item.active { transform: translateX(0) scale(1.05); }
+    }
 
-<!-- Fonte Pixelify Sans -->
-<link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
-
-<style>
-body {
-  font-family: 'Pixelify Sans', Arial, sans-serif;
-  color: #ffffff;
-  margin: 0;
-  padding: 1rem;
-  text-align: center;
-  background: transparent; /* Sem cor de fundo */
-}
-
-img.header-img {
-  max-width: 90%;
-  height: auto;
-  margin: 1rem auto;
-  display: block;
-}
-
-.sliderBox {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-  gap: 1rem;
-  justify-items: center;
-  margin: 2rem 0;
-}
-
-.sliderBox .sliderContent {
-  width: 100%;
-  max-width: 220px;
-}
-
-.sliderBox .sliderContent img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-
-.sliderBox .sliderContent img:hover {
-  transform: scale(1.05);
-}
-
-.abt-button {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.abt-button a {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: #71dba7;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 6px;
-  transition: all 0.3s;
-}
-
-.abt-button a:hover {
-  background: #4dd2a0;
-}
-
-.abt-button p {
-  margin: 0.2rem 0;
-  font-size: 0.9rem;
-}
-</style>
+    .caption {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #71dba7;
+      text-shadow: 0 0 10px rgba(113, 219, 167, 0.3);
+      transition: opacity 0.5s ease;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen bg-background text-gray-200 font-pixel flex flex-col justify-center py-12">
 
-<!-- Imagem de topo -->
-<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg05051qxMdxz23kZQMIS7sDbJCKKlW4lrse4XUBuYxNWNiruoGQm2S0w2dPh8YoNmcczSsmxAnpF6SUbFJ4pfpYFpjiUPmqg6a1X4lOWp4agDDq48g-sYrAzSFAK5hcw93Y32wzjFJEbTwYEDhwMIMrtgA-eFtXT404G-1vxLXkBvKzLfaKgpa-VHUKY_Z/w451-h163/Header.png" alt="Header" class="header-img">
+  <div class="max-w-4xl mx-auto px-4 w-full">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg05051qxMdxz23kZQMIS7sDbJCKKlW4lrse4XUBuYxNWNiruoGQm2S0w2dPh8YoNmcczSsmxAnpF6SUbFJ4pfpYFpjiUPmqg6a1X4lOWp4agDDq48g-sYrAzSFAK5hcw93Y32wzjFJEbTwYEDhwMIMrtgA-eFtXT404G-1vxLXkBvKzLfaKgpa-VHUKY_Z/w451-h163/Header.png" 
+         alt="Scarface" class="max-w-xs md:max-w-md mx-auto w-full rounded-xl shadow-2xl mb-8">
 
-<!-- Descrição -->
-<p>No papel do gangster de sangue frio e implacável Tony Montana, o jogador precisa viver e manter uma guerra de gangues nas ruas de Miami para atingir seu objetivo, tornar-se o Rei da cidade do mundo criminoso.</p>
+    <h1 class="text-3xl md:text-5xl font-bold text-accent text-center mb-6">Scarface - Tony Montana</h1>
 
-<!-- Notas -->
-<blockquote>
-<p>Notas:</p>
-<p>Produtora: Living Mobile | Lançamento: 2009 | Resolução: 240x320</p>
-<p>Tradutor: Quakeman | Ano: 2025</p>
-</blockquote>
+    <p class="text-lg text-center mb-8 leading-relaxed max-w-2xl mx-auto px-2">
+      No papel do implacável Tony Montana, lute para reconquistar seu império nas ruas de Miami em uma guerra de gangues eletrizante.
+    </p>
 
-<!-- Slider de imagens 2x2 -->
-<div class="sliderBox">
-  <div class="sliderContent">
-    <a href="#" target="_blank"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhzsP0b8t01d6_ukrs0Y_93EnSWt2UJjTgT0F2j8XDqUXAB5RWzo6fvzhWqU_X1f5FccQVtdshoyKh5M_XpCxuApoKWaMyy0WPdu3Cps8SF8LCqQPAFgXWr-XBU5NlXJnnUVQVh69Xbb8MsvekmK9MHWtNdnkmBwUGQcJ5smFUwLZuRS9K3ZH6oTZBE8_G5=s16000" alt="Menu do Jogo"></a>
+    <div class="bg-container rounded-lg p-6 mb-12 shadow-lg border border-accent/10 max-w-xl mx-auto w-full text-center">
+      <h2 class="text-xl font-bold text-accent mb-2 underline decoration-accent/30">Ficha Técnica</h2>
+      <p class="text-sm md:text-base opacity-90">Living Mobile | 2009 | 240x320</p>
+      <p class="text-sm md:text-base text-accent/80 mt-1">Tradução: Quakeman (2025)</p>
+    </div>
+
+    <div class="relative carousel-3d max-w-3xl mx-auto overflow-visible">
+      <div id="carouselTrack" class="flex justify-center items-center h-80 md:h-[30rem] relative">
+        </div>
+
+      <button id="prevBtn" class="absolute left-[-10px] md:left-[-40px] top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-accent hover:text-black text-accent rounded-full p-2 border border-accent/20 transition-all">
+        <span class="material-icons text-4xl">chevron_left</span>
+      </button>
+      <button id="nextBtn" class="absolute right-[-10px] md:right-[-40px] top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-accent hover:text-black text-accent rounded-full p-2 border border-accent/20 transition-all">
+        <span class="material-icons text-4xl">chevron_right</span>
+      </button>
+
+      <div id="dots" class="flex justify-center gap-2 mt-6"></div>
+    </div>
+
+    <div class="text-center mt-16">
+      <a href="https://github.com/quakeman22/J2me-Tradu-es/raw/refs/heads/main/Novas%20Tradu%C3%A7%C3%B5es/2025/Scarface%20The%20Rise%20of%20Tony%20Montana%20240x320%20%5BBR%5D.jar" 
+         class="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-black transition-all duration-200 bg-accent font-pixel rounded-xl hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(113,219,167,0.4)]">
+        DOWNLOAD .JAR
+      </a>
+      <p class="mt-4 text-xs tracking-widest opacity-50 uppercase">Tamanho: 343 KB</p>
+    </div>
   </div>
-  <div class="sliderContent">
-    <a href="#" target="_blank"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiJpk9GkoFz7tQegPbLw3d6z99B3kjWKAi0tEac4o_igAqg4nU5yW4i_iFkFaQq7QrUZAA5Q387f5vy_0UnyKPikpkgP3-A7J_uWRoDmWQ6Z4fGEsxRU48BAyFzZqzb3NqtglFj50IC9hbgh2QG_IZfP10ffD78j4lG8j0TmWtz_qDE_nQ-s-WfU_UBa-tC=s16000" alt="Jogando"></a>
-  </div>
-  <div class="sliderContent">
-    <a href="#" target="_blank"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhT5RnWSOlFpzSgp-yh73YtZeHoBAUqr7O-4CSPE0VBdbH_fAPOQj1HAV7tE-LN3yZJyVGVFfKVWVjQQpucIEcHdr4uuC4iPRm9GzZqC8pX1ScVA1ETiUeF-3aKuuu1c6IgOJYKwVYKLLVskGOogtUG48HiAGmyBqYmkLfzIyMI9QzZ_X334hYTpdy48ow0=s16000" alt="Jogando"></a>
-  </div>
-  <div class="sliderContent">
-    <a href="#" target="_blank"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjuITauyHZ_6hTQW6T770cCwW5kJtqJ4QSqOlvqr5P1erxi_aEjdvw7FWprjC_gEQSBHD4ktMxtur_1Vf3g7HrohJNEJaA539Ly815q6huWpXMmPvcJ51MqqMl1kUQiEPi7QNvVrxFpBKSlyzITCPXKLw_-9BLPAKUkDWTi1XyzqwyD3CXtWL6e4rZ5i2_T=s16000" alt="Jogando"></a>
-  </div>
-</div>
 
-<!-- Botão de Download -->
-<div class="abt-button">
-  <a href="https://github.com/quakeman22/J2me-Tradu-es/raw/refs/heads/main/Novas%20Tradu%C3%A7%C3%B5es/2025/Scarface%20The%20Rise%20of%20Tony%20Montana%20240x320%20%5BBR%5D.jar">Download</a>
-  <p class="up">Direto</p>
-  <p class="down">343kb .jar</p>
-</div>
+  <script>
+    const screenshots = [
+      { thumb: "https://blogger.googleusercontent.com/img/a/AVvXsEhzsP0b8t01d6_ukrs0Y_93EnSWt2UJjTgT0F2j8XDqUXAB5RWzo6fvzhWqU_X1f5FccQVtdshoyKh5M_XpCxuApoKWaMyy0WPdu3Cps8SF8LCqQPAFgXWr-XBU5NlXJnnUVQVh69Xbb8MsvekmK9MHWtNdnkmBwUGQcJ5smFUwLZuRS9K3ZH6oTZBE8_G5=s800", full: "#", caption: "Menu Inicial" },
+      { thumb: "https://blogger.googleusercontent.com/img/a/AVvXsEiJpk9GkoFz7tQegPbLw3d6z99B3kjWKAi0tEac4o_igAqg4nU5yW4i_iFkFaQq7QrUZAA5Q387f5vy_0UnyKPikpkgP3-A7J_uWRoDmWQ6Z4fGEsxRU48BAyFzZqzb3NqtglFj50IC9hbgh2QG_IZfP10ffD78j4lG8j0TmWtz_qDE_nQ-s-WfU_UBa-tC=s800", full: "#", caption: "Cutscenes" },
+      { thumb: "https://blogger.googleusercontent.com/img/a/AVvXsEhT5RnWSOlFpzSgp-yh73YtZeHoBAUqr7O-4CSPE0VBdbH_fAPOQj1HAV7tE-LN3yZJyVGVFfKVWVjQQpucIEcHdr4uuC4iPRm9GzZqC8pX1ScVA1ETiUeF-3aKuuu1c6IgOJYKwVYKLLVskGOogtUG48HiAGmyBqYmkLfzIyMI9QzZ_X334hYTpdy48ow0=s800", full: "#", caption: "Gameplay Ação" },
+      { thumb: "https://blogger.googleusercontent.com/img/a/AVvXsEjuITauyHZ_6hTQW6T770cCwW5kJtqJ4QSqOlvqr5P1erxi_aEjdvw7FWprjC_gEQSBHD4ktMxtur_1Vf3g7HrohJNEJaA539Ly815q6huWpXMmPvcJ51MqqMl1kUQiEPi7QNvVrxFpBKSlyzITCPXKLw_-9BLPAKUkDWTi1XyzqwyD3CXtWL6e4rZ5i2_T=s800", full: "#", caption: "Combate Miami" }
+    ];
 
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('dots');
+    let currentIndex = 0;
+
+    function render() {
+      track.innerHTML = '';
+      const total = screenshots.length;
+      
+      const indices = [
+        (currentIndex - 1 + total) % total,
+        currentIndex,
+        (currentIndex + 1) % total
+      ];
+
+      const states = ['prev', 'active', 'next'];
+
+      indices.forEach((index, i) => {
+        const slide = document.createElement('div');
+        slide.className = `carousel-item ${states[i]} absolute flex flex-col items-center w-48 md:w-56`;
+        slide.innerHTML = `
+          <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-accent/30 shadow-2xl">
+            <img src="${screenshots[index].thumb}" class="w-full aspect-[3/4] object-cover">
+            <div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+          <div class="caption ${states[i] === 'active' ? 'opacity-100' : 'opacity-0'}">${screenshots[index].caption}</div>
+        `;
+        track.appendChild(slide);
+      });
+
+      updateDots();
+    }
+
+    function updateDots() {
+      dotsContainer.innerHTML = '';
+      screenshots.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-gray-700'}`;
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    document.getElementById('nextBtn').onclick = () => { currentIndex = (currentIndex + 1) % screenshots.length; render(); };
+    document.getElementById('prevBtn').onclick = () => { currentIndex = (currentIndex - 1 + screenshots.length) % screenshots.length; render(); };
+
+    // Auto-play suave
+    let timer = setInterval(() => document.getElementById('nextBtn').click(), 5000);
+    document.querySelector('.carousel-3d').onmouseenter = () => clearInterval(timer);
+    document.querySelector('.carousel-3d.').onmouseleave = () => timer = setInterval(() => document.getElementById('nextBtn').click(), 5000);
+
+    render();
+  </script>
 </body>
 </html>
