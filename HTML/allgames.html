@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body class="min-h-screen bg-background text-gray-200 font-pixel">
+<body class="bg-background text-gray-200 font-pixel h-auto">
 
 <div class="max-w-7xl mx-auto px-4 py-12">
   <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
@@ -86,7 +86,7 @@ const games = [
   { title: "GUNFEVER", img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co61zd.webp", link: "LINK7" },
   { title: "HOLY WARS", img: "https://downloadwap.com/thumbs4/games/preview/All/Games/s/1324018741.jpg", link: "LINK8" },
   { title: "RAYMAN 3", img: "https://assets-prd.ignimgs.com/2024/03/15/raymanngage-1710518837826.jpg", link: "LINK9" },
-  { title: "SCARFACE", img: "https://m.media-amazon.com/images/M/MV5BZGIxMGI0YmItZGJkMi00MmY1LWE4YWYtMmU2OWRhODEwZTg1XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/scarface.html" },
+  { title: "SCARFACE", img: "https://m.media-amazon.com/images/M/MV5BZGIxMGI0YmItZGJkMi00MmYxLWE4YWYtMmU2OWRhODEwZTg1XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/scarface.html" },
   { title: "Sword Of Fury", img: "https://static.tvtropes.org/pmwiki/pub/images/sof4dec.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/sf.html" }
 ];
 
@@ -104,12 +104,12 @@ function renderGames(list) {
 
   list.forEach(game => {
     const card = document.createElement("a");
-card.href = game.link || "#";
-card.target = "contentFrame"; // <<< carrega no iframe do index
-card.className =
-  "group block bg-container rounded-xl overflow-hidden shadow-lg " +
-  "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
-  "transform hover:-translate-y-2";
+    card.href = game.link || "#";
+    card.target = "contentFrame";
+    card.className =
+      "group block bg-container rounded-xl overflow-hidden shadow-lg " +
+      "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
+      "transform hover:-translate-y-2";
 
     card.innerHTML = `
       <div class="relative aspect-[3/4] overflow-hidden">
