@@ -32,22 +32,27 @@
 
   <!-- Header fixo -->
   <header class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-sm border-b border-accent/20">
-    <button id="menuBtn" class="lg:hidden p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition">
+    <!-- Botão menu só no mobile -->
+    <button id="menuBtn" class="p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition lg:hidden">
       <span class="material-icons text-3xl">menu</span>
     </button>
 
-    <h1 class="text-3xl font-bold text-accent mx-auto lg:mx-0">Quakeman</h1>
+    <!-- Título: centralizado no mobile, à esquerda no desktop -->
+    <h1 class="text-3xl font-bold text-accent absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 lg:ml-8">
+      Quakeman
+    </h1>
 
-    <button id="themeToggle" class="ml-auto p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition">
+    <!-- Botão tema sempre à direita -->
+    <button id="themeToggle" class="p-2 rounded-lg bg-container border-2 border-accent text-accent hover:bg-accent hover:text-black transition">
       <span class="material-icons text-2xl sun hidden">light_mode</span>
       <span class="material-icons text-2xl moon">dark_mode</span>
     </button>
   </header>
 
-  <!-- Overlay (escurece a tela no mobile) -->
+  <!-- Overlay só no mobile -->
   <div id="overlay" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden"></div>
 
-  <!-- Menu lateral (drawer) -->
+  <!-- Menu lateral -->
   <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto py-4 px-3">
     <div class="px-4 mb-8 hidden lg:block">
       <h2 class="text-2xl font-bold text-accent">Menu</h2>
@@ -126,7 +131,7 @@
   </aside>
 
   <!-- Conteúdo principal -->
-  <main class="flex-1 mt-16 lg:ml-64 px-4 py-6">
+  <main class="flex-1 mt-16 lg:ml-64 px-4 py-6 transition-all duration-300">
     <div class="max-w-5xl mx-auto bg-container rounded-lg shadow-2xl overflow-hidden">
       <iframe name="contentFrame" src="HTML/home.html" class="w-full h-[80vh] md:h-screen border-0"></iframe>
     </div>
@@ -141,40 +146,38 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
-    // Função para abrir o menu
     function openMenu() {
       sidebar.classList.remove('-translate-x-full');
       overlay.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden'); // impede scroll do fundo
+      document.body.classList.add('overflow-hidden');
     }
 
-    // Função para fechar o menu
     function closeMenu() {
       sidebar.classList.add('-translate-x-full');
       overlay.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
     }
 
-    // Botão abre o menu
-    menuBtn.addEventListener('click', openMenu);
-
-    // Clique no overlay fecha
+    if (menuBtn) {
+      menuBtn.addEventListener('click', openMenu);
+    }
     overlay.addEventListener('click', closeMenu);
 
-    // Accordion (mesmo de antes, com rotação da seta)
+    // Accordion dos itens do menu
     document.querySelectorAll('#sidebar button').forEach(btn => {
       btn.addEventListener('click', () => {
         const arrow = btn.querySelector('.material-icons:last-child');
         const content = btn.nextElementSibling;
         const isOpen = content.classList.contains('max-h-96');
 
-        // Fecha todos
+        // Fecha todos os outros
         document.querySelectorAll('#sidebar .max-h-96').forEach(open => {
           open.classList.remove('max-h-96');
           open.classList.add('max-h-0');
           open.previousElementSibling.querySelector('.material-icons:last-child').classList.remove('-rotate-180');
         });
 
+        // Abre o clicado
         if (!isOpen) {
           content.classList.remove('max-h-0');
           content.classList.add('max-h-96');
@@ -196,6 +199,7 @@
       localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
     });
 
+    // Carrega tema salvo
     if (localStorage.getItem('theme') === 'light') {
       html.classList.remove('dark');
       sun.classList.remove('hidden');
