@@ -24,53 +24,71 @@
   <style>
     .loading { animation: pulse 1.5s infinite; }
 
-    /* Essencial para eliminar scroll indesejado em iframe */
+    /* Remove scroll forçado e esconde barra visível */
     html, body {
       height: auto !important;
       min-height: 0 !important;
-      overflow: hidden !important;
       margin: 0;
       padding: 0;
+      overflow: hidden !important; /* Body não rola diretamente */
     }
-    body {
-      display: flex;
-      flex-direction: column;
+
+    /* Wrapper que permite rolagem suave sem barra visível */
+    .scroll-container {
+      height: 100vh; /* Ocupa toda a altura disponível no iframe */
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE/Edge */
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, novos Edge */
+    }
+
+    .scroll-content {
+      min-height: 100%;
+      padding-bottom: 2rem; /* Espaço extra no final para não cortar conteúdo */
     }
   </style>
 </head>
 <body class="bg-background text-gray-200 font-pixel">
 
-  <div class="w-full max-w-6xl mx-auto px-4 py-8"> <!-- Reduzido de py-12 para py-8 -->
-    <h1 class="text-4xl font-bold text-accent text-center mb-4">Novas Traduções J2ME</h1>
-    <p class="text-center text-lg mb-8">Todos os jogos Java traduzidos para Português-BR disponíveis no repositório.<br>
-       Clique no nome do jogo para baixar o arquivo .jar diretamente.</p>
+  <!-- Novo wrapper para rolagem invisível -->
+  <div class="scroll-container">
+    <div class="scroll-content w-full max-w-6xl mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold text-accent text-center mb-4">Novas Traduções J2ME</h1>
+      <p class="text-center text-lg mb-8">Todos os jogos Java traduzidos para Português-BR disponíveis no repositório.<br>
+         Clique no nome do jogo para baixar o arquivo .jar diretamente.</p>
 
-    <div class="mb-6 text-center">
-      <input type="text" id="searchInput" placeholder="Buscar jogo..." 
-             class="px-4 py-2 rounded-lg bg-container border border-accent/50 text-white 
-                    focus:outline-none focus:border-accent w-full max-w-md">
-    </div>
+      <div class="mb-6 text-center">
+        <input type="text" id="searchInput" placeholder="Buscar jogo..." 
+               class="px-4 py-2 rounded-lg bg-container border border-accent/50 text-white 
+                      focus:outline-none focus:border-accent w-full max-w-md">
+      </div>
 
-    <div id="loading" class="text-center text-xl loading text-accent">
-      <span class="material-icons text-5xl inline-block">cloud_download</span><br>
-      Carregando lista de jogos...
-    </div>
+      <div id="loading" class="text-center text-xl loading text-accent">
+        <span class="material-icons text-5xl inline-block">cloud_download</span><br>
+        Carregando lista de jogos...
+      </div>
 
-    <div id="error" class="hidden text-center text-red-400 text-xl"></div>
+      <div id="error" class="hidden text-center text-red-400 text-xl"></div>
 
-    <div id="gamesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden min-h-0">
-      <!-- Os jogos serão inseridos aqui pelo JavaScript -->
-    </div>
+      <div id="gamesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+        <!-- Os jogos serão inseridos aqui pelo JavaScript -->
+      </div>
 
-    <div class="mt-12 text-center text-gray-400">
-      <p>Total de jogos: <span id="totalCount">0</span></p>
-      <p class="mt-4">
-        Repositório completo: 
-        <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" 
-           target="_blank" class="text-accent hover:underline">
-          Ver no GitHub →
-        </a>
-      </p>
+      <div class="mt-12 text-center text-gray-400">
+        <p>Total de jogos: <span id="totalCount">0</span></p>
+        <p class="mt-4">
+          Repositório completo: 
+          <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" 
+             target="_blank" class="text-accent hover:underline">
+            Ver no GitHub →
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 
@@ -83,14 +101,12 @@
     const totalCount = document.getElementById('totalCount');
     let allGames = [];
 
-    // Busca a lista de arquivos
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) throw new Error('Erro ao carregar a lista (GitHub API limit?)');
         return response.json();
       })
       .then(data => {
-        // Filtra só arquivos .jar
         const jarFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar') && item.type === 'file');
         
         allGames = jarFiles.sort((a, b) => a.name.localeCompare(b.name));
@@ -106,11 +122,10 @@
         error.textContent = 'Erro ao carregar os jogos: ' + err.message + '. Tente novamente mais tarde.';
       });
 
-    // Renderiza os cards
     function renderGames(games) {
       grid.innerHTML = '';
       games.forEach(file => {
-        const cleanName = file.name.replace(/\.jar$/i, '').replace(/\[.*?\]/g, '').trim(); // Remove .jar e resoluções
+        const cleanName = file.name.replace(/\.jar$/i, '').replace(/\[.*?\]/g, '').trim();
         const card = document.createElement('a');
         card.href = file.download_url;
         card.download = file.name;
@@ -124,7 +139,6 @@
       });
     }
 
-    // Busca em tempo real
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.toLowerCase();
       const filtered = allGames.filter(file => 
