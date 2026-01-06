@@ -27,130 +27,148 @@
   <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Forçar comportamento ideal dentro de iframe -->
   <style>
+    /* Remove scroll forçado no body/html */
     html, body {
       height: auto !important;
       min-height: 0 !important;
-      overflow: hidden !important;
       margin: 0;
       padding: 0;
+      overflow: hidden !important;
     }
-    body {
-      display: flex;
-      flex-direction: column;
+
+    /* Wrapper principal com scroll invisível */
+    .scroll-container {
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE/Edge antigo */
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge novo */
+    }
+
+    .scroll-content {
+      min-height: 100%;
+      padding-bottom: 3rem; /* Espaço extra no final para não cortar o último jogo */
     }
   </style>
 </head>
 
 <body class="bg-background text-gray-200 font-pixel">
 
-<div class="w-full max-w-7xl mx-auto px-4 py-8"> <!-- py-8 em vez de py-12 para reduzir altura -->
-  <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
-    Todos os Jogos Traduzidos
-  </h1>
-  <p class="text-center text-lg mb-8">
-    Galeria completa dos jogos J2ME traduzidos para PT-BR.
-  </p>
+  <!-- Wrapper com scroll invisível -->
+  <div class="scroll-container">
+    <div class="scroll-content w-full max-w-7xl mx-auto px-4 py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
+        Todos os Jogos Traduzidos
+      </h1>
+      <p class="text-center text-lg mb-8">
+        Galeria completa dos jogos J2ME traduzidos para PT-BR.
+      </p>
 
-  <!-- Busca -->
-  <div class="max-w-md mx-auto mb-10">
-    <input id="searchInput" type="text" placeholder="Buscar jogo..."
-      class="w-full px-5 py-3 rounded-lg bg-container border border-accent/50 text-white
-             focus:outline-none focus:border-accent transition">
+      <!-- Busca -->
+      <div class="max-w-md mx-auto mb-10">
+        <input id="searchInput" type="text" placeholder="Buscar jogo..."
+          class="w-full px-5 py-3 rounded-lg bg-container border border-accent/50 text-white
+                 focus:outline-none focus:border-accent transition">
+      </div>
+
+      <!-- Grid -->
+      <div id="gamesGrid"
+           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+      </div>
+
+      <p id="noResults" class="hidden text-center text-gray-400 mt-12">
+        Nenhum jogo encontrado...
+      </p>
+    </div>
   </div>
 
-  <!-- Grid -->
-  <div id="gamesGrid"
-       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 min-h-0">
-  </div>
+  <script>
+  const games = [
+    { title: "REvil: Nightmare", img: "https://static.wikia.nocookie.net/shipping/images/1/1e/Resident-Evil-Logo.jpg", link: "GITHUBLINK" },
+    { title: "Prince Of Persia: TOT", img: "https://store.ubisoft.com/on/demandware.static/-/Sites-masterCatalog/default/dw51eb2b4b/images/large/56c4948888a7e300458b47ce.jpg", link: "GITHUBLINK" },
+    { title: "Knight Tales", img: "https://cdn.mobygames.com/667ba814-abcb-11ed-be6f-02420a000197.webp", link: "GITHUBLINK" },
+    { title: "Prince Of Porn 2", img: "https://cdn.discordapp.com/attachments/1402192002988118076/1402192003168731156/images_45.jpg", link: "GITHUBLINK" },
+    { title: "Mr. Schizoo 2", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6_7RoomMs4axqC_N56RErkmQ243huePeHIm6eIY3tLazjpBzHyzgjUHo&s=10", link: "GITHUBLINK" },
+    { title: "War Of The Worlds", img: "https://downloadwap.com/thumbs4/games/preview/2020d/img/362926_war_of_the_worlds_1.gif", link: "GITHUBLINK" },
+    { title: "Kobe Bryant Pro Basketball 2008", img: "https://cdn.discordapp.com/attachments/1334906181721915545/1334906182212522117/image.png", link: "GITHUBLINK" },
+    { title: "REvil: Relatórios Confidenciais", img: "https://cdn.discordapp.com/attachments/1355199840543314010/1355199840782385343/image.png", link: "GITHUBLINK" },
+    { title: "Guerra na China", img: "https://cdn.discordapp.com/attachments/1354445151032053961/1354445151258411158/over.jpg", link: "GITHUBLINK" },
+    { title: "A Dog Adventure 3D", img: "https://cdn.discordapp.com/attachments/1349097926105895022/1349097926252564552/dogg.png", link: "GITHUBLINK" },
+    { title: "Treasure Towers", img: "https://cdn.discordapp.com/attachments/1348713184252657814/1348713184411779193/tt.png", link: "GITHUBLINK" },
+    { title: "Rainbow Six: Vegas", img: "https://cdn.discordapp.com/attachments/1348698514263244882/1348698514456318002/Tom_Clancy_Rainbow_Six_Vegas_Game_Cover.png", link: "GITHUBLINK" },
+    { title: "REvil: Genesis", img: "https://cdn.discordapp.com/attachments/1334708395483205672/1334708395911155744/regenesis-1667074639909.png", link: "GITHUBLINK" },
+    { title: "Splinter Cell: Pack", img: "https://static.wikia.nocookie.net/splintercell/images/a/ab/SplinterCellCover.jpg", link: "GITHUBLINK" },
+    { title: "Bomberman Atomic 3D", img: "https://cdn.mobygames.com/screenshots/16235277-3d-bomberman-atomic-j2me-loading-screen.png", link: "GITHUBLINK" },
+    { title: "Bomberman 3D", img: "https://static.wikia.nocookie.net/every-video-game-ever-made/images/1/1d/Bomberman_3D.jpg", link: "GITHUBLINK" },
+    { title: "Cadillacs and Dinosaurs", img: "https://cdn.discordapp.com/attachments/1339999939723395123/1339999940071526440/CADILACSEDINOS.jpg", link: "GITHUBLINK" },
+    { title: "Mad Rat", img: "https://cdn.discordapp.com/attachments/1339991315357630534/1339991316125323294/title_1.png", link: "GITHUBLINK" },
+    { title: "Herói Solitário", img: "https://cdn.discordapp.com/attachments/1326213974425075712/1326213974886322207/BackGround.png", link: "GITHUBLINK" },
+    { title: "Army Rangers 3D", img: "https://cdn.discordapp.com/attachments/1335660107303882822/1335660108025434194/0.png", link: "GITHUBLINK" },
+    { title: "Real Football 06", img: "https://downloadwap.com/thumbs4/games/preview/2020d/img/358874_real_football_2006_1.gif", link: "https://quakeman22.github.io/Quakemansite/HTML/jaws.html" },
+    { title: "CYBERPUNK", img: "https://static.wikia.nocookie.net/cyberpunk/images/2/20/Cyberpunk_The_Arasaka%27s_Plot_Title_Screen.png", link: "LINK2" },
+    { title: "NOWHERE", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpHly3WBcn_Mct0HGNC0kx50lNEL9OmN3MlRXrx2sTDl8cjgSV-A93taqawvW9CfapiOM2NBSgztLIDNfTWfnl8JHwUML34uMX2IRtPIhSJeNgZCoZbFKl4cGpUwwztVrHoogUz6Wk4o/s1600/download.webp", link: "LINK3" },
+    { title: "ASPHALT 1", img: "https://static.wikia.nocookie.net/asphalt/images/7/77/Asphalt_Urban_GT.jpg", link: "LINK4" },
+    { title: "NIGHTMARE CREATURES", img: "https://assets-prd.ignimgs.com/2022/12/24/nightmarecreatures-1671921633373.jpg", link: "LINK5" },
+    { title: "RainbowSix 3", img: "https://m.media-amazon.com/images/M/MV5BZGY3YTI0YmUtZDYxOC00MzdlLTg1NzctMzU5ZWYyZTMzMzc0XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/r6.html" },
+    { title: "GUNFEVER", img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co61zd.webp", link: "LINK7" },
+    { title: "HOLY WARS", img: "https://downloadwap.com/thumbs4/games/preview/All/Games/s/1324018741.jpg", link: "LINK8" },
+    { title: "RAYMAN 3", img: "https://assets-prd.ignimgs.com/2024/03/15/raymanngage-1710518837826.jpg", link: "LINK9" },
+    { title: "SCARFACE", img: "https://m.media-amazon.com/images/M/MV5BZGIxMGI0YmItZGJkMi00MmYxLWE4YWYtMmU2OWRhODEwZTg1XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/scarface.html" },
+    { title: "Sword Of Fury", img: "https://static.tvtropes.org/pmwiki/pub/images/sof4dec.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/sf.html" }
+  ];
 
-  <p id="noResults" class="hidden text-center text-gray-400 mt-12">
-    Nenhum jogo encontrado...
-  </p>
-</div>
+  const grid = document.getElementById("gamesGrid");
+  const searchInput = document.getElementById("searchInput");
+  const noResults = document.getElementById("noResults");
 
-<script>
-const games = [
-  { title: "REvil: Nightmare", img: "https://static.wikia.nocookie.net/shipping/images/1/1e/Resident-Evil-Logo.jpg", link: "GITHUBLINK" },
-  { title: "Prince Of Persia: TOT", img: "https://store.ubisoft.com/on/demandware.static/-/Sites-masterCatalog/default/dw51eb2b4b/images/large/56c4948888a7e300458b47ce.jpg", link: "GITHUBLINK" },
-  { title: "Knight Tales", img: "https://cdn.mobygames.com/667ba814-abcb-11ed-be6f-02420a000197.webp", link: "GITHUBLINK" },
-  { title: "Prince Of Porn 2", img: "https://cdn.discordapp.com/attachments/1402192002988118076/1402192003168731156/images_45.jpg", link: "GITHUBLINK" },
-  { title: "Mr. Schizoo 2", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6_7RoomMs4axqC_N56RErkmQ243huePeHIm6eIY3tLazjpBzHyzgjUHo&s=10", link: "GITHUBLINK" },
-  { title: "War Of The Worlds", img: "https://downloadwap.com/thumbs4/games/preview/2020d/img/362926_war_of_the_worlds_1.gif", link: "GITHUBLINK" },
-  { title: "Kobe Bryant Pro Basketball 2008", img: "https://cdn.discordapp.com/attachments/1334906181721915545/1334906182212522117/image.png", link: "GITHUBLINK" },
-  { title: "REvil: Relatórios Confidenciais", img: "https://cdn.discordapp.com/attachments/1355199840543314010/1355199840782385343/image.png", link: "GITHUBLINK" },
-  { title: "Guerra na China", img: "https://cdn.discordapp.com/attachments/1354445151032053961/1354445151258411158/over.jpg", link: "GITHUBLINK" },
-  { title: "A Dog Adventure 3D", img: "https://cdn.discordapp.com/attachments/1349097926105895022/1349097926252564552/dogg.png", link: "GITHUBLINK" },
-  { title: "Treasure Towers", img: "https://cdn.discordapp.com/attachments/1348713184252657814/1348713184411779193/tt.png", link: "GITHUBLINK" },
-  { title: "Rainbow Six: Vegas", img: "https://cdn.discordapp.com/attachments/1348698514263244882/1348698514456318002/Tom_Clancy_Rainbow_Six_Vegas_Game_Cover.png", link: "GITHUBLINK" },
-  { title: "REvil: Genesis", img: "https://cdn.discordapp.com/attachments/1334708395483205672/1334708395911155744/regenesis-1667074639909.png", link: "GITHUBLINK" },
-  { title: "Splinter Cell: Pack", img: "https://static.wikia.nocookie.net/splintercell/images/a/ab/SplinterCellCover.jpg", link: "GITHUBLINK" },
-  { title: "Bomberman Atomic 3D", img: "https://cdn.mobygames.com/screenshots/16235277-3d-bomberman-atomic-j2me-loading-screen.png", link: "GITHUBLINK" },
-  { title: "Bomberman 3D", img: "https://static.wikia.nocookie.net/every-video-game-ever-made/images/1/1d/Bomberman_3D.jpg", link: "GITHUBLINK" },
-  { title: "Cadillacs and Dinosaurs", img: "https://cdn.discordapp.com/attachments/1339999939723395123/1339999940071526440/CADILACSEDINOS.jpg", link: "GITHUBLINK" },
-  { title: "Mad Rat", img: "https://cdn.discordapp.com/attachments/1339991315357630534/1339991316125323294/title_1.png", link: "GITHUBLINK" },
-  { title: "Herói Solitário", img: "https://cdn.discordapp.com/attachments/1326213974425075712/1326213974886322207/BackGround.png", link: "GITHUBLINK" },
-  { title: "Army Rangers 3D", img: "https://cdn.discordapp.com/attachments/1335660107303882822/1335660108025434194/0.png", link: "GITHUBLINK" },
-  { title: "Real Football 06", img: "https://downloadwap.com/thumbs4/games/preview/2020d/img/358874_real_football_2006_1.gif", link: "https://quakeman22.github.io/Quakemansite/HTML/jaws.html" },
-  { title: "CYBERPUNK", img: "https://static.wikia.nocookie.net/cyberpunk/images/2/20/Cyberpunk_The_Arasaka%27s_Plot_Title_Screen.png", link: "LINK2" },
-  { title: "NOWHERE", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpHly3WBcn_Mct0HGNC0kx50lNEL9OmN3MlRXrx2sTDl8cjgSV-A93taqawvW9CfapiOM2NBSgztLIDNfTWfnl8JHwUML34uMX2IRtPIhSJeNgZCoZbFKl4cGpUwwztVrHoogUz6Wk4o/s1600/download.webp", link: "LINK3" },
-  { title: "ASPHALT 1", img: "https://static.wikia.nocookie.net/asphalt/images/7/77/Asphalt_Urban_GT.jpg", link: "LINK4" },
-  { title: "NIGHTMARE CREATURES", img: "https://assets-prd.ignimgs.com/2022/12/24/nightmarecreatures-1671921633373.jpg", link: "LINK5" },
-  { title: "RainbowSix 3", img: "https://m.media-amazon.com/images/M/MV5BZGY3YTI0YmUtZDYxOC00MzdlLTg1NzctMzU5ZWYyZTMzMzc0XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/r6.html" },
-  { title: "GUNFEVER", img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co61zd.webp", link: "LINK7" },
-  { title: "HOLY WARS", img: "https://downloadwap.com/thumbs4/games/preview/All/Games/s/1324018741.jpg", link: "LINK8" },
-  { title: "RAYMAN 3", img: "https://assets-prd.ignimgs.com/2024/03/15/raymanngage-1710518837826.jpg", link: "LINK9" },
-  { title: "SCARFACE", img: "https://m.media-amazon.com/images/M/MV5BZGIxMGI0YmItZGJkMi00MmYxLWE4YWYtMmU2OWRhODEwZTg1XkEyXkFqcGc@._V1_.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/scarface.html" },
-  { title: "Sword Of Fury", img: "https://static.tvtropes.org/pmwiki/pub/images/sof4dec.jpg", link: "https://quakeman22.github.io/Quakemansite/HTML/sf.html" }
-];
+  function renderGames(list) {
+    grid.innerHTML = "";
+    if (!list.length) {
+      noResults.classList.remove("hidden");
+      return;
+    }
+    noResults.classList.add("hidden");
 
-const grid = document.getElementById("gamesGrid");
-const searchInput = document.getElementById("searchInput");
-const noResults = document.getElementById("noResults");
+    list.forEach(game => {
+      const card = document.createElement("a");
+      card.href = game.link || "#";
+      card.target = "contentFrame";
+      card.className =
+        "group block bg-container rounded-xl overflow-hidden shadow-lg " +
+        "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
+        "transform hover:-translate-y-2";
 
-function renderGames(list) {
-  grid.innerHTML = "";
-  if (!list.length) {
-    noResults.classList.remove("hidden");
-    return;
+      card.innerHTML = `
+        <div class="relative aspect-[3/4] overflow-hidden">
+          <img src="${game.img}" alt="${game.title}" loading="lazy"
+               onerror="this.src='https://via.placeholder.com/300x400?text=Sem+Imagem'"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div class="p-4 text-center">
+          <h3 class="text-lg font-bold text-white group-hover:text-accent transition">
+            ${game.title}
+          </h3>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
   }
-  noResults.classList.add("hidden");
 
-  list.forEach(game => {
-    const card = document.createElement("a");
-    card.href = game.link || "#";
-    card.target = "contentFrame";
-    card.className =
-      "group block bg-container rounded-xl overflow-hidden shadow-lg " +
-      "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
-      "transform hover:-translate-y-2";
+  renderGames(games);
 
-    card.innerHTML = `
-      <div class="relative aspect-[3/4] overflow-hidden">
-        <img src="${game.img}" alt="${game.title}" loading="lazy"
-             onerror="this.src='https://via.placeholder.com/300x400?text=Sem+Imagem'"
-             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent
-                    opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-lg font-bold text-white group-hover:text-accent transition">
-          ${game.title}
-        </h3>
-      </div>
-    `;
-    grid.appendChild(card);
+  searchInput.addEventListener("input", () => {
+    const term = searchInput.value.toLowerCase().trim();
+    renderGames(games.filter(g => g.title.toLowerCase().includes(term)));
   });
-}
-
-renderGames(games);
-
-searchInput.addEventListener("input", () => {
-  const term = searchInput.value.toLowerCase().trim();
-  renderGames(games.filter(g => g.title.toLowerCase().includes(term)));
-});
-</script>
+  </script>
 
 </body>
 </html>
