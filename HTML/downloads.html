@@ -23,17 +23,32 @@
   
   <style>
     .loading { animation: pulse 1.5s infinite; }
+
+    /* Essencial para eliminar scroll indesejado em iframe */
+    html, body {
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
   </style>
 </head>
-<body class="min-h-screen bg-background text-gray-200 font-pixel">
+<body class="bg-background text-gray-200 font-pixel">
 
-  <div class="max-w-6xl mx-auto px-4 py-12">
+  <div class="w-full max-w-6xl mx-auto px-4 py-8"> <!-- Reduzido de py-12 para py-8 -->
     <h1 class="text-4xl font-bold text-accent text-center mb-4">Novas Traduções J2ME</h1>
     <p class="text-center text-lg mb-8">Todos os jogos Java traduzidos para Português-BR disponíveis no repositório.<br>
        Clique no nome do jogo para baixar o arquivo .jar diretamente.</p>
 
     <div class="mb-6 text-center">
-      <input type="text" id="searchInput" placeholder="Buscar jogo..." class="px-4 py-2 rounded-lg bg-container border border-accent/50 text-white focus:outline-none focus:border-accent w-full max-w-md">
+      <input type="text" id="searchInput" placeholder="Buscar jogo..." 
+             class="px-4 py-2 rounded-lg bg-container border border-accent/50 text-white 
+                    focus:outline-none focus:border-accent w-full max-w-md">
     </div>
 
     <div id="loading" class="text-center text-xl loading text-accent">
@@ -43,7 +58,7 @@
 
     <div id="error" class="hidden text-center text-red-400 text-xl"></div>
 
-    <div id="gamesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+    <div id="gamesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden min-h-0">
       <!-- Os jogos serão inseridos aqui pelo JavaScript -->
     </div>
 
@@ -51,7 +66,8 @@
       <p>Total de jogos: <span id="totalCount">0</span></p>
       <p class="mt-4">
         Repositório completo: 
-        <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" target="_blank" class="text-accent hover:underline">
+        <a href="https://github.com/quakeman22/j2metraduzidos/tree/main/Novas%20Tradu%C3%A7%C3%B5es" 
+           target="_blank" class="text-accent hover:underline">
           Ver no GitHub →
         </a>
       </p>
