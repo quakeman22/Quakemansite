@@ -26,11 +26,26 @@
 
   <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Forçar comportamento ideal dentro de iframe -->
+  <style>
+    html, body {
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
 </head>
 
-<body class="bg-background text-gray-200 font-pixel h-auto">
+<body class="bg-background text-gray-200 font-pixel">
 
-<div class="max-w-7xl mx-auto px-4 py-12">
+<div class="w-full max-w-7xl mx-auto px-4 py-8"> <!-- py-8 em vez de py-12 para reduzir altura -->
   <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
     Todos os Jogos Traduzidos
   </h1>
@@ -47,7 +62,7 @@
 
   <!-- Grid -->
   <div id="gamesGrid"
-       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 min-h-0">
   </div>
 
   <p id="noResults" class="hidden text-center text-gray-400 mt-12">
