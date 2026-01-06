@@ -1,185 +1,239 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-<meta charset="UTF-8">
-<title>Home</title>
+  <meta charset="UTF-8">
+  <title>Home - Quakeman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonte Pixelify -->
-<link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <!-- Fonte Pixelify Sans -->
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
 
-<style>
-body { 
-  background: #FF00DA00; 
-  color: #7CFFB3;
-  font-family: 'Pixelify Sans', Arial, sans-serif; 
-  margin: 0; 
-  padding: 1rem; 
-  text-align: center;
-}
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Pixelify Sans', Arial, sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-/* Container de cards */
-.card-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-  .curiosity {
-      font-size: 1.2rem;
-      color: #f5f5f5;
-      line-height: 1.5;
-      min-height: 80px;
-      padding: 15px;
-      background: #101010;
-      border-radius: 10px;
-      border: 1px solid #00ff88;
-      box-shadow: inset 0 0 10px rgba(0,255,136,0.2);
-      transition: opacity 0.5s ease-in-out;
-  }
-.panel {
-      background: #1b1b1b;
-      border: 2px solid #00ff88;
-      border-radius: 15px;
-      padding: 30px;
-      max-width: 700px;
+    h1 {
+      font-size: 2.5rem;
+      color: #71dba7;
+      text-shadow: 0 0 10px rgba(113, 219, 167, 0.4);
+      margin-bottom: 1rem;
       text-align: center;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-      position: relative;
-}  
-/* Cards menores */
-.card {
-  width: 150px;
-  text-align: center;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
-  background: #454C47;
-}
+    }
 
-/* Remove sublinhado de links */
-.card a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
+    p.intro {
+      font-size: 1.2rem;
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+    }
 
-.card img { 
-  width: 100%; 
-  border-radius: 12px 12px 0 0; 
-}
+    /* Grid: 2x2 no mobile, mais colunas no desktop */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      max-width: 1200px;
+      width: 100%;
+      margin-bottom: 4rem;
+    }
 
-.card div { 
-  padding: 8px; 
-  font-weight: bold; 
-  color: #FFFFFF; 
-  font-size: 0.9rem; 
-  font-family: 'Pixelify Sans', Arial, sans-serif; 
-}
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+    }
 
-.card:hover { 
-  transform: translateY(-3px); 
-}
+    .game-card {
+      background: #141414;
+      border: 2px solid #71dba7;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6),
+                  0 0 15px rgba(113, 219, 167, 0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
 
-/* Botões de redes sociais alinhados lado a lado */
-.social-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8),
+                  0 0 25px rgba(113, 219, 167, 0.5);
+      border-color: #8effc1;
+    }
 
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  font-family: 'Pixelify Sans', Arial, sans-serif;
-  font-weight: bold;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 6px;
-  border: 2px solid;
-  background-color: transparent;
-  transition: all 0.3s ease;
-}
+    /* Imagem colada nas bordas, como no original */
+    .game-card img {
+      width: 100%;
+      height: 260px;              /* Altura boa, mais impacto */
+      object-fit: cover;          /* Preenche o espaço, corta se necessário (estilo clássico de card) */
+      display: block;
+      border-bottom: 2px solid #71dba7; /* Linha separadora sutil */
+    }
 
-.btn-icon {
-  width: 20px;
-  height: 20px;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
+    .game-card .info {
+      padding: 1.2rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #141414;
+    }
 
-/* Todos os botões usando o verde de destaque */
-:root { --accent: #7CFFB3; }
+    .game-card .title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #71dba7;
+      margin-bottom: 0.4rem;
+    }
 
-.fb-btn,
-.archive-btn,
-.discord-btn {
-  color: var(--accent);
-  border-color: var(--accent);
-}
+    .game-card .status {
+      font-size: 0.95rem;
+      color: #a0ffa0;
+      font-style: italic;
+    }
 
-.fb-btn:hover,
-.archive-btn:hover,
-.discord-btn:hover {
-  background-color: var(--accent);
-  color: #111; /* texto escuro sobre o verde */
-  transform: translateY(-2px);
-}
+    /* Seção de convite */
+    .invite-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
 
-.fb-btn:hover .btn-icon,
-.archive-btn:hover .btn-icon,
-.discord-btn:hover .btn-icon {
-  filter: grayscale(0%);
-}
-</style>
+    .invite-section i {
+      font-size: 1.3rem;
+      color: #b0ffb0;
+      line-height: 1.6;
+    }
+
+    /* Botões sociais */
+    .social-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      font-family: 'Pixelify Sans', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #71dba7;
+      border: 2px solid #71dba7;
+      border-radius: 12px;
+      background: transparent;
+      transition: all 0.4s ease;
+    }
+
+    .social-btn img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(0.8);
+      transition: filter 0.3s;
+    }
+
+    .social-btn:hover {
+      background: #71dba7;
+      color: #0d0d0d;
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(113, 219, 167, 0.6);
+    }
+
+    .social-btn:hover img {
+      filter: brightness(0) invert(0.1);
+    }
+
+    /* Mobile fino */
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      p.intro { font-size: 1.1rem; }
+      .game-card img { height: 200px; }
+      .game-card .title { font-size: 1.2rem; }
+      .social-btn { padding: 10px 16px; font-size: 1rem; gap: 8px; }
+      .social-btn img { width: 24px; height: 24px; }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1> Traduções recentes </h1>
-  </header>
+  <h1>Bem-vindo ao Quakeman</h1>
+  
+  <p class="intro">
+    O maior acervo de jogos Java (J2ME) traduzidos para português brasileiro.<br>
+    Reviva clássicos do celular antigo com traduções completas e de qualidade!
+  </p>
 
-<div style="text-align: center; margin-bottom: 20px;">
-  <img src="" alt="" style="height: 100px; margin-right: 10px; border-radius: 12px;">
-  <img src="" alt="" style="height: 100px; border-radius: 12px;">
-</div>
+  <!-- 4 Cards destacados -->
+  <div class="cards-grid">
+    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
+      <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
+      <div class="info">
+        <div class="title">O Jornaleiro</div>
+        <div class="status">Tradução Completa • Recente</div>
+      </div>
+    </a>
 
-<div class="card-container">
-  <div class="card">
-    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar">
-      <img src="https://i.imgur.com/tOdjMps.jpeg" alt="Scarface">
-      <div>O Jornaleiro</div>
+    <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank">
+      <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
+      <div class="info">
+        <div class="title">Death Traps 2</div>
+        <div class="status">Jogável Online • Emulador</div>
+      </div>
+    </a>
+
+    <a href="https://archive.org/details/j2mebr" class="game-card" target="_blank">
+      <img src="https://via.placeholder.com/600x260/141414/71dba7?text=Scarface+BR" alt="Scarface">
+      <div class="info">
+        <div class="title">Scarface</div>
+        <div class="status">Tradução em Andamento</div>
+      </div>
+    </a>
+
+    <a href="https://github.com/quakeman22/J2me-Tradu-es" class="game-card" target="_blank">
+      <img src="https://via.placeholder.com/600x260/141414/71dba7?text=+300+Jogos+Traduzidos" alt="Repositório">
+      <div class="info">
+        <div class="title">Mais de 300 Jogos</div>
+        <div class="status">Repositório Completo no GitHub</div>
+      </div>
     </a>
   </div>
-  
-  <div class="card">
-    <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1">
-      <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="GunFever">
-      <div>Death Traps 2</div>
-    </a> 
+
+  <div class="invite-section">
+    <i>Tem alguma tradução, sugestão ou quer ajudar no projeto?<br>
+    Me chama no Telegram ou entra no nosso servidor do Discord!</i>
   </div>
-</div>
 
-<div style="margin-top: 20px; font-family: 'Pixelify Sans', Arial, sans-serif;">
-  <i style="font-size: 16px;">Tem alguma tradução? Me chama no Telegram ou entre no nosso servidor do Discord.</i>
-</div>
-
-<div class="social-container">
-  <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn fb-btn">
-    <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" class="btn-icon">Facebook
-  </a>
-  <a href="https://archive.org/details/j2mebr" target="_blank" class="social-btn archive-btn">
-    <img src="https://archive.org/download/logo-internetArchive-266x300-1/logo-internetArchive-266x300-1.png" class="btn-icon">Archive
-  </a>
-  <a href="https://discord.gg/dwqBTkeTzp" target="_blank" class="social-btn discord-btn">
-    <img src="https://cdn-icons-png.flaticon.com/32/2111/2111370.png" class="btn-icon">Discord
-  </a>
-</div>
+  <div class="social-container">
+    <a href="https://www.facebook.com/profile.php?id=61561667938901" target="_blank" class="social-btn">
+      <img src="https://cdn.icons-png.flaticon.com/32/733/733547.png" alt="Facebook"> Facebook
+    </a>
+    <a href="https://archive.org/details/j2mebr" target="_blank" class="social-btn">
+      <img src="https://archive.org/images/giphy.gif" alt="Archive" style="border-radius:6px;"> Archive.org
+    </a>
+    <a href="https://discord.gg/dwqBTkeTzp" target="_blank" class="social-btn">
+      <img src="https://cdn.icons-png.flaticon.com/32/2111/2111370.png" alt="Discord"> Discord
+    </a>
+  </div>
 
 </body>
 </html>
