@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Todos os Jogos - Quakeman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            accent: '#71dba7',
+            background: '#0d0d0d',
+            container: '#141414'
+          },
+          fontFamily: {
+            pixel: ['"Pixelify Sans"', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* Remove scroll forçado no body/html */
+    html, body {
+      height: auto !important;
+      min-height: 0 !important;
+      margin: 0;
+      padding: 0;
+      overflow: hidden !important;
+    }
+
+    /* Wrapper principal com scroll invisível */
+    .scroll-container {
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE/Edge antigo */
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge novo */
+    }
+
+    .scroll-content {
+      min-height: 100%;
+      padding-bottom: 3rem; /* Espaço extra no final para não cortar o último jogo */
+    }
+  </style>
+</head>
+
+<body class="bg-background text-gray-200 font-pixel">
+
+  <!-- Wrapper com scroll invisível -->
+  <div class="scroll-container">
+    <div class="scroll-content w-full max-w-7xl mx-auto px-4 py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
+        Real Football
+      </h1>
+      <p class="text-center text-lg mb-8">
+        Lista completa com todos os RF em português.
+      </p>
+
+      <!-- Busca -->
+      <div class="max-w-md mx-auto mb-10">
+        <input id="searchInput" type="text" placeholder="Buscar jogo..."
+          class="w-full px-5 py-3 rounded-lg bg-container border border-accent/50 text-white
+                 focus:outline-none focus:border-accent transition">
+      </div>
+
+      <!-- Grid -->
+      <div id="gamesGrid"
+           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+      </div>
+
+      <p id="noResults" class="hidden text-center text-gray-400 mt-12">
+        Nenhum jogo encontrado...
+      </p>
+    </div>
+  </div>
+
+  <script>
+  const games = [
+    { title: "Real Football 2005", img: "https://i.imgur.com/gFLwhZg.png", link: "GITHUBLINK" },
+    { title: "Real Football 2005", img: "https://i.imgur.com/iNAKYN8.png", link: "GITHUBLINK" },
+    { title: "Real Football 2006", img: "https://i.imgur.com/DtECPgV.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2007", img: "https://media.pocketgamer.com/artwork/na-cyv/rf_2007.jpg", link: "GITHUBLINK" },
+	{ title: "Real Football 2008", img: "https://i.imgur.com/6jNeoOk.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2009", img: "https://i.imgur.com/492ZGur.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2010", img: "https://i.imgur.com/5xHVU5m.jpeg", link: "GITHUBLINK" },
+	{ title: "Real Football 2011", img: "https://i.imgur.com/sGip2xp.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2012", img: "https://i.imgur.com/LaevIZL.jpeg", link: "GITHUBLINK" },
+	{ title: "Real Football 2013", img: "https://i.imgur.com/BpVvKTz.jpeg", link: "GITHUBLINK" },
+	{ title: "Real Football 2014", img: "https://i.imgur.com/j8XloEI.jpeg", link: "GITHUBLINK" },
+	{ title: "Real Football 2015", img: "https://i.imgur.com/lC6wgh5.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2016", img: "https://i.imgur.com/waAiBZu.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2017", img: "https://i.imgur.com/HSFhI13.png", link: "GITHUBLINK" },
+	{ title: "Real Football 2018", img: "https://i.imgur.com/jkxg36L.jpeg", link: "GITHUBLINK" },
+    
+  ];
+
+  const grid = document.getElementById("gamesGrid");
+  const searchInput = document.getElementById("searchInput");
+  const noResults = document.getElementById("noResults");
+
+  function renderGames(list) {
+    grid.innerHTML = "";
+    if (!list.length) {
+      noResults.classList.remove("hidden");
+      return;
+    }
+    noResults.classList.add("hidden");
+
+    list.forEach(game => {
+      const card = document.createElement("a");
+      card.href = game.link || "#";
+      card.target = "contentFrame";
+      card.className =
+        "group block bg-container rounded-xl overflow-hidden shadow-lg " +
+        "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
+        "transform hover:-translate-y-2";
+
+      card.innerHTML = `
+        <div class="relative aspect-[3/4] overflow-hidden">
+          <img src="${game.img}" alt="${game.title}" loading="lazy"
+               onerror="this.src='https://via.placeholder.com/300x400?text=Sem+Imagem'"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div class="p-4 text-center">
+          <h3 class="text-lg font-bold text-white group-hover:text-accent transition">
+            ${game.title}
+          </h3>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  renderGames(games);
+
+  searchInput.addEventListener("input", () => {
+    const term = searchInput.value.toLowerCase().trim();
+    renderGames(games.filter(g => g.title.toLowerCase().includes(term)));
+  });
+  </script>
+
+</body>
+</html>
