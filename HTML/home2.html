@@ -13,7 +13,7 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background: #0d0d0d;
+      background: #0a0a0a;
     }
 
     .scroll-container {
@@ -32,13 +32,13 @@
       align-items: center;
       padding: 1.5rem 1rem 2rem;
       font-family: 'Pixelify Sans', Arial, sans-serif;
-      color: #e0e0e0;
+      color: #f0f4f8;
     }
 
     h1 {
       font-size: 2.2rem;
-      color: #71dba7;
-      text-shadow: 0 0 8px rgba(113, 219, 167, 0.5);
+      color: #5aa0e6;
+      text-shadow: 0 0 8px rgba(90, 160, 230, 0.5);
       margin: 0.5rem 0 1rem;
       text-align: center;
     }
@@ -48,7 +48,7 @@
       max-width: 90%;
       text-align: center;
       margin: 0 0 1.5rem;
-      color: #b0b0b0;
+      color: #b0b8c4;
       line-height: 1.4;
     }
 
@@ -72,19 +72,21 @@
     .game-card {
       display: flex;
       flex-direction: column;
-      background: #141414;
+      background: #111111;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.5), 0 0 12px rgba(113,219,167,0.15);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5), 0 0 12px rgba(90,160,230,0.15);
       transition: all 0.25s ease;
       text-decoration: none;
       color: inherit;
       height: 100%;
+      border: 1px solid #5c606a;
     }
 
     .game-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.7), 0 0 20px rgba(113,219,167,0.4);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.7), 0 0 20px rgba(90,160,230,0.4);
+      border-color: #5aa0e6;
     }
 
     .img-wrapper {
@@ -118,7 +120,7 @@
     .title {
       font-size: 1rem;
       font-weight: bold;
-      color: #ffffff;
+      color: #f0f4f8;
       line-height: 1.2;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -128,12 +130,12 @@
     }
 
     .game-card:hover .title {
-      color: #71dba7;
+      color: #5aa0e6;
     }
 
     .status {
       font-size: 0.75rem;
-      color: #a0ffa0;
+      color: #a0d0ff; /* azul suave para status */
       font-style: italic;
       opacity: 0.85;
     }
@@ -153,8 +155,8 @@
       padding: 8px 14px;
       font-size: 0.9rem;
       font-weight: bold;
-      color: #71dba7;
-      border: 2px solid #71dba7;
+      color: #5aa0e6;
+      border: 2px solid #5aa0e6;
       border-radius: 10px;
       background: transparent;
       transition: all 0.3s ease;
@@ -168,8 +170,8 @@
     }
 
     .social-btn:hover {
-      background: #71dba7;
-      color: #0d0d0d;
+      background: #5aa0e6;
+      color: #001f3f; /* azul escuro para contraste */
       transform: translateY(-3px);
     }
 
