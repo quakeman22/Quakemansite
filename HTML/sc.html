@@ -73,14 +73,15 @@
   <script>
     const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/GL/SC';
     
+    // O nome da variável deve ser consistente
     const games = [
       { title: "Splinter Cell", img: "https://i.imgur.com/D9map8I.png" },
       { title: "Splinter Cell Extended Ops", img: "https://i.imgur.com/ZjPiMep.png" },
       { title: "Splinter Cell Pandora Tomorrow 240x320", img: "https://i.imgur.com/aO0jD5Y.png" },
-	  { title: "Splinter Cell Pandora Tomorrow 3D 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
-	  { title: "Splinter Cell Pandora Tomorrow 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
+      { title: "Splinter Cell Pandora Tomorrow 3D 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
+      { title: "Splinter Cell Pandora Tomorrow 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
       { title: "Splinter Cell Chaos Theory 240x320", img: "https://i.imgur.com/4rTEYSE.png" },
-	  { title: "Splinter Cell Chaos Theory 176X208", img: "https://i.imgur.com/4rTEYSE.png" },
+      { title: "Splinter Cell Chaos Theory 176X208", img: "https://i.imgur.com/4rTEYSE.png" },
       { title: "Splinter Cell Double Agent 240x320", img: "https://i.imgur.com/jw3lECq.png" },
       { title: "Splinter Cell Conviction 240x320", img: "https://i.imgur.com/rxChqAX.png" },
     ];
@@ -92,24 +93,28 @@
       .then(res => res.json())
       .then(data => {
         githubFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar'));
-        renderList(manualGames);
+        // Alterado de manualGames para games
+        renderList(games); 
       })
-      .catch(() => renderList(manualGames));
+      .catch(() => renderList(games));
 
     function renderList(list) {
       listContainer.innerHTML = '';
       
       list.forEach(game => {
-        const fileMatch = githubFiles.find(f => 
-          f.name.toLowerCase().includes(game.title.toLowerCase())
-        );
+        // Busca flexível: verifica se o nome do arquivo contém as palavras-chave do título
+        const fileMatch = githubFiles.find(f => {
+          const fileName = f.name.toLowerCase();
+          const gameTitle = game.title.toLowerCase();
+          return fileName.includes(gameTitle.split(' ')[2] || gameTitle); 
+        });
         
         const downloadUrl = fileMatch ? fileMatch.download_url : "#";
-        const fileSize = fileMatch ? (fileMatch.size / 1024).toFixed(0) + " KB" : "";
+        const fileSize = fileMatch ? (fileMatch.size / 1024).toFixed(0) + " KB" : "N/A";
 
         const row = document.createElement('a');
         row.href = downloadUrl;
-        row.download = fileMatch ? fileMatch.name : "";
+        if (fileMatch) row.download = fileMatch.name;
         row.className = 'game-row flex items-center px-4 py-2.5 bg-container rounded-md border border-border cursor-pointer';
         
         row.innerHTML = `
@@ -123,6 +128,6 @@
         listContainer.appendChild(row);
       });
     }
-  </script>
+</script>
 </body>
 </html>
