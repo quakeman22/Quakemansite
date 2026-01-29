@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quakeman Wap</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --blue-dark:   #001f3f;
+            --blue-mid:    #003366;
+            --blue-light:  #5aa0e6;
+            --gray-darker: #1e2127;
+            --gray-dark:   #2a2d33;
+            --gray-mid:    #3a3e46;
+            --gray-light:  #4a4e56;
+            --gray-border: #5c606a;
+            --text-light:  #f0f4f8;
+            --text-soft:   #b0b8c4;
+            --radius:      10px;
+            --shadow:      0 4px 16px rgba(0,0,0,0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pixelify Sans', Arial, sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(135deg, #141618 0%, #1e2127 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #ref_bar_out {
+            background: var(--blue-mid);
+            color: white;
+            font-size: 13px;
+            text-align: center;
+            padding: 8px 12px;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid #0a1f38;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        #ref_bar_in a {
+            color: #a0d0ff;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        #ref_bar_in a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        #main_container {
+            max-width: 980px;
+            width: 95%;
+            margin: 25px auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--gray-darker);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-border);
+        }
+
+        .header_table {
+            background: linear-gradient(to right, #0f1e3a, #1a3559);
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--blue-light);
+        }
+
+        .neon-logo {
+            font-family: 'Pixelify Sans', 'Courier New', monospace;
+            font-size: 30px;
+            font-weight: 0;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow:
+                0 0 7px  #00f0ff,
+                0 0 10px #00f0ff,
+                0 0 21px #00f0ff,
+                0 0 42px #00f0ff,
+                0 0 82px #00f0ff,
+                0 0 92px #00f0ff,
+                0 0 102px #00f0ff,
+                0 0 151px rgba(0, 240, 255, 0.7);
+            animation: 
+                neon-flicker 1.8s infinite alternate,
+                neon-glow 4s ease-in-out infinite alternate;
+            transition: all 0.35s ease;
+            user-select: none;
+            padding: 0 10px;
+        }
+
+        .neon-logo:hover {
+            color: #ffffff;
+            transform: scale(1.04);
+            text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #00f0ff,
+                0 0 70px #00f0ff,
+                0 0 100px #00f0ff;
+        }
+
+        @keyframes neon-flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                    0 0 7px  #00f0ff,
+                    0 0 10px #00f0ff,
+                    0 0 21px #00f0ff,
+                    0 0 42px #00f0ff;
+                opacity: 0.92;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.45;
+            }
+        }
+
+        @keyframes neon-glow {
+            from {
+                text-shadow:
+                    0 0 10px #00f0ff,
+                    0 0 20px #00f0ff,
+                    0 0 30px #00f0ff,
+                    0 0 50px #00f0ff;
+            }
+            to {
+                text-shadow:
+                    0 0 20px #00f0ff,
+                    0 0 40px #00f0ff,
+                    0 0 70px #00f0ff,
+                    0 0 120px rgba(0, 240, 255, 0.8);
+            }
+        }
+
+        .header_table small {
+            font-size: 13px;
+            color: #a0d0ff;
+            font-weight: 500;
+        }
+
+        .content_layout {
+            display: flex;
+            min-height: 580px;
+        }
+
+        .sidebar {
+            width: 240px;
+            padding: 20px 16px;
+            border-right: 1px solid var(--gray-border);
+            background: var(--gray-dark);
+        }
+
+        .accordion {
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--gray-mid);
+            margin-bottom: 20px;
+        }
+
+        .accordion-header {
+            width: 100%;
+            background: linear-gradient(#454b55, #3a3f47);
+            border: none;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .accordion-header:hover {
+            background: var(--blue-light);
+            color: white;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            background: var(--gray-dark);
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body a {
+            display: block;
+            padding: 10px 16px;
+            font-size: 13.5px;
+            color: var(--text-soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gray-border);
+            transition: all 0.2s;
+        }
+
+        .accordion-body a:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-body a:hover {
+            background: linear-gradient(to right, #3a4a6a, var(--blue-light));
+            color: white;
+            padding-left: 22px;
+        }
+
+        .sidebar small {
+            font-size: 12px;
+            color: var(--text-soft);
+            margin-top: 16px;
+            display: block;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .main_content {
+            flex: 1;
+            padding: 20px;
+            background: #181b21;
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            height: 520px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 2px solid var(--blue-light);
+            background: #0f1115;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer {
+            background: var(--blue-mid);
+            color: #d0e0ff;
+            padding: 14px;
+            font-size: 12px;
+            text-align: center;
+            border-top: 1px solid #0a1f38;
+        }
+
+        @media (max-width: 768px) {
+            .content_layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--gray-border);
+            }
+            .iframe-wrapper {
+                height: 420px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header_table {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .neon-logo {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="ref_bar_out">
+    <div id="ref_bar_in">
+        <a href="Gameloft-2006-in%20(3).html">Página Inicial</a>  | 
+        <a href="#">Configurações</a>  | 
+        <a href="#">Sobre</a>
+    </div>
+</div>
+
+<div id="main_container">
+
+    <div class="header_table">
+        <div class="neon-logo">Quakeman</div>
+        <small>Reviva a era Java & WAP</small>
+    </div>
+
+    <div class="content_layout">
+
+        <nav class="sidebar">
+            <div class="accordion">
+                <button class="accordion-header">Menu</button>
+                <div class="accordion-body">
+				    <a href="https://quakeman22.github.io/Quakemansite/HTML/downloads2.html" target="post_frame">Todos os Jogos</a>
+                    <a href="https://quakeman22.github.io/Quakemansite/HTML/sc1.html" target="post_frame">Splinter Cell</a>
+                    <a href="https://quakeman22.github.io/Quakemansite/HTML/devalley1.html" target="post_frame">Devalley</a>
+                    <a href="https://quakeman22.github.io/Quakemansite/HTML/rf1.html" target="post_frame">Real Football</a>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <button class="accordion-header">Extras</button>
+                <div class="accordion-body">
+                    <a href="https://zb3.me/freej2me-web/web/" target="post_frame">Emulador Online</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main_content">
+            <div class="iframe-wrapper">
+                <iframe name="post_frame" src="https://quakeman22.github.io/Quakemansite/HTML/home2.html" title="Bem-vindo ao acervo de jogos Java traduzidos"></iframe>
+            </div>
+        </main>
+
+    </div>
+
+    <div class="footer">
+        © 2009–2026 Quakeman • Preservando com carinho para nostálgicos do Javinha.
+    </div>
+
+</div>
+
+<script>
+    // Accordion functionality
+    document.querySelectorAll(".accordion-header").forEach(header => {
+        header.addEventListener("click", () => {
+            const body = header.nextElementSibling;
+            const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
+
+            document.querySelectorAll(".accordion-body").forEach(el => {
+                el.style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
