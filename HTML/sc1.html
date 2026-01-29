@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de Jogos - Splinter Cell</title>
+  <title>Lista de Jogos - Gameloft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,10 +12,10 @@
       theme: {
         extend: {
           colors: { 
-            accent: '#71dba7',
-            background: '#0d0d0d',
-            container: '#141414',
-            border: '#2a2a2a',
+            accent: '#5aa0e6',
+            background: '#0a0a0a',
+            container: '#111111',
+            border: '#5c606a',
             textLight: '#f0f4f8',
             textSoft: '#b0b8c4'
           },
@@ -48,7 +48,7 @@
     }
     .game-row:hover {
       background: rgba(90, 160, 230, 0.12); 
-      border-left: 4px solid ##5aa0e6;
+      border-left: 4px solid #5aa0e6;
       padding-left: 1.25rem !important;
     }
 
@@ -65,14 +65,13 @@
 
   <div class="scroll-container">
     <div class="w-full px-3 py-2">
-      <div id="gamesList" class="space-y-1 pt-4">
+      <div id="gamesList" class="space-y-1">
         </div>
     </div>
   </div>
 
   <script>
-    // Link da pasta Splinter Cell no seu GitHub
-    const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/Ubisoft';
+    const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/GL/SC';
     
     const games = [
       { title: "Splinter Cell", img: "https://i.imgur.com/D9map8I.png" },
@@ -86,22 +85,20 @@
     const listContainer = document.getElementById('gamesList');
     let githubFiles = [];
 
-    // Busca os arquivos JAR
     fetch(githubApi)
       .then(res => res.json())
       .then(data => {
         githubFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar'));
-        renderList(games);
+        renderList(manualGames);
       })
-      .catch(() => renderList(games));
+      .catch(() => renderList(manualGames));
 
     function renderList(list) {
       listContainer.innerHTML = '';
       
       list.forEach(game => {
-        // Tenta encontrar o arquivo JAR correspondente
         const fileMatch = githubFiles.find(f => 
-          f.name.toLowerCase().includes(game.title.toLowerCase().split(':')[0])
+          f.name.toLowerCase().includes(game.title.toLowerCase())
         );
         
         const downloadUrl = fileMatch ? fileMatch.download_url : "#";
@@ -113,10 +110,10 @@
         row.className = 'game-row flex items-center px-4 py-2.5 bg-container rounded-md border border-border cursor-pointer';
         
         row.innerHTML = `
-          <img src="${game.img}" class="game-thumb mr-3" onerror="this.src='https://via.placeholder.com/48?text=SC'">
+          <img src="${game.img}" class="game-thumb mr-3" onerror="this.src='https://via.placeholder.com/48?text=RF'">
           <div class="flex-1 min-w-0">
             <h3 class="text-sm font-medium text-textLight truncate">${game.title}</h3>
-            <p class="text-[10px] text-accent uppercase opacity-70">Ubisoft Entertainment</p>
+            <p class="text-[10px] text-accent uppercase opacity-70">Gameloft</p>
           </div>
           <span class="text-xs text-textSoft ml-3 whitespace-nowrap">${fileSize}</span>
         `;
