@@ -2,148 +2,127 @@
 <html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8">
-  <title>Todos os Jogos - Quakeman</title>
+  <title>Lista de Jogos - Gameloft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            accent: '#71dba7',
-            background: '#0d0d0d',
-            container: '#141414'
+          colors: { 
+            accent: '#5aa0e6',
+            background: '#0a0a0a',
+            container: '#111111',
+            border: '#5c606a',
+            textLight: '#f0f4f8',
+            textSoft: '#b0b8c4'
           },
-          fontFamily: {
-            pixel: ['"Pixelify Sans"', 'Arial', 'sans-serif']
-          }
-        }
-      }
+        },
+      },
     }
   </script>
-
-  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  
   <style>
-    /* Remove scroll forçado no body/html */
     html, body {
-      height: auto !important;
-      min-height: 0 !important;
+      height: 100%;
       margin: 0;
       padding: 0;
-      overflow: hidden !important;
+      overflow: hidden;
+      background: #0d0d0d;
     }
-
-    /* Wrapper principal com scroll invisível */
     .scroll-container {
-      height: 100vh;
+      height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none;  /* IE/Edge antigo */
+      scrollbar-width: none;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    
+    .game-row {
+      transition: all 0.2s ease;
+    }
+    .game-row:hover {
+      background: rgba(90, 160, 230, 0.12); 
+      border-left: 4px solid #5aa0e6;
+      padding-left: 1.25rem !important;
     }
 
-    .scroll-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Edge novo */
-    }
-
-    .scroll-content {
-      min-height: 100%;
-      padding-bottom: 3rem; /* Espaço extra no final para não cortar o último jogo */
+    .game-thumb {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      background: transparent;
+      flex-shrink: 0;
     }
   </style>
 </head>
+<body class="bg-background text-textLight font-pixel">
 
-<body class="bg-background text-gray-200 font-pixel">
-
-  <!-- Wrapper com scroll invisível -->
   <div class="scroll-container">
-    <div class="scroll-content w-full max-w-7xl mx-auto px-4 py-8">
-      <h1 class="text-4xl md:text-5xl font-bold text-accent text-center mb-4">
-        Splinter Cell
-      </h1>
-      <p class="text-center text-lg mb-8">
-        Lista completa com quase todos os jogos Splinter Cell em Português.
-      </p>
-
-      <!-- Busca -->
-      <div class="max-w-md mx-auto mb-10">
-        <input id="searchInput" type="text" placeholder="Buscar jogo..."
-          class="w-full px-5 py-3 rounded-lg bg-container border border-accent/50 text-white
-                 focus:outline-none focus:border-accent transition">
-      </div>
-
-      <!-- Grid -->
-      <div id="gamesGrid"
-           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-      </div>
-
-      <p id="noResults" class="hidden text-center text-gray-400 mt-12">
-        Nenhum jogo encontrado...
-      </p>
+    <div class="w-full px-3 py-2">
+      <div id="gamesList" class="space-y-1">
+        </div>
     </div>
   </div>
 
   <script>
-  const games = [
-    { title: "Splinter Cell", img: "https://i.imgur.com/D9map8I.png", link: "GITHUBLINK" },
-	{ title: "Splinter Cell: Extended Ops", img: "https://i.imgur.com/ZjPiMep.png", link: "GITHUBLINK" },
-    { title: "Splinter Cell: Pandora Tomorrow", img: "https://i.imgur.com/aO0jD5Y.png", link: "GITHUBLINK" },
-    { title: "Splinter Cell: Chaos Theory", img: "https://i.imgur.com/4rTEYSE.png", link: "GITHUBLINK" },
-	{ title: "Splinter Cell: Double Agent", img: "https://i.imgur.com/jw3lECq.png", link: "GITHUBLINK" },
-	{ title: "Splinter Cell: Conviction", img: "https://i.imgur.com/rxChqAX.png", link: "GITHUBLINK" },
-  ];
+    const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/GL/SC';
+    
+    const games = [
+      { title: "Splinter Cell", img: "https://i.imgur.com/D9map8I.png" },
+      { title: "Splinter Cell Extended Ops", img: "https://i.imgur.com/ZjPiMep.png" },
+      { title: "Splinter Cell Pandora Tomorrow 240x320", img: "https://i.imgur.com/aO0jD5Y.png" },
+	  { title: "Splinter Cell Pandora Tomorrow 3D 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
+	  { title: "Splinter Cell Pandora Tomorrow 176x208", img: "https://i.imgur.com/aO0jD5Y.png" },
+      { title: "Splinter Cell Chaos Theory 240x320", img: "https://i.imgur.com/4rTEYSE.png" },
+	  { title: "Splinter Cell Chaos Theory 176X208", img: "https://i.imgur.com/4rTEYSE.png" },
+      { title: "Splinter Cell Double Agent 240x320", img: "https://i.imgur.com/jw3lECq.png" },
+      { title: "Splinter Cell Conviction 240x320", img: "https://i.imgur.com/rxChqAX.png" },
+    ];
 
-  const grid = document.getElementById("gamesGrid");
-  const searchInput = document.getElementById("searchInput");
-  const noResults = document.getElementById("noResults");
+    const listContainer = document.getElementById('gamesList');
+    let githubFiles = [];
 
-  function renderGames(list) {
-    grid.innerHTML = "";
-    if (!list.length) {
-      noResults.classList.remove("hidden");
-      return;
+    fetch(githubApi)
+      .then(res => res.json())
+      .then(data => {
+        githubFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar'));
+        renderList(manualGames);
+      })
+      .catch(() => renderList(manualGames));
+
+    function renderList(list) {
+      listContainer.innerHTML = '';
+      
+      list.forEach(game => {
+        const fileMatch = githubFiles.find(f => 
+          f.name.toLowerCase().includes(game.title.toLowerCase())
+        );
+        
+        const downloadUrl = fileMatch ? fileMatch.download_url : "#";
+        const fileSize = fileMatch ? (fileMatch.size / 1024).toFixed(0) + " KB" : "";
+
+        const row = document.createElement('a');
+        row.href = downloadUrl;
+        row.download = fileMatch ? fileMatch.name : "";
+        row.className = 'game-row flex items-center px-4 py-2.5 bg-container rounded-md border border-border cursor-pointer';
+        
+        row.innerHTML = `
+          <img src="${game.img}" class="game-thumb mr-3" onerror="this.src='https://via.placeholder.com/48?text=RF'">
+          <div class="flex-1 min-w-0">
+            <h3 class="text-sm font-medium text-textLight truncate">${game.title}</h3>
+            <p class="text-[10px] text-accent uppercase opacity-70">Gameloft</p>
+          </div>
+          <span class="text-xs text-textSoft ml-3 whitespace-nowrap">${fileSize}</span>
+        `;
+        listContainer.appendChild(row);
+      });
     }
-    noResults.classList.add("hidden");
-
-    list.forEach(game => {
-      const card = document.createElement("a");
-      card.href = game.link || "#";
-      card.target = "contentFrame";
-      card.className =
-        "group block bg-container rounded-xl overflow-hidden shadow-lg " +
-        "hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 " +
-        "transform hover:-translate-y-2";
-
-      card.innerHTML = `
-        <div class="relative aspect-[3/4] overflow-hidden">
-          <img src="${game.img}" alt="${game.title}" loading="lazy"
-               onerror="this.src='https://via.placeholder.com/300x400?text=Sem+Imagem'"
-               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-        <div class="p-4 text-center">
-          <h3 class="text-lg font-bold text-white group-hover:text-accent transition">
-            ${game.title}
-          </h3>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
-
-  renderGames(games);
-
-  searchInput.addEventListener("input", () => {
-    const term = searchInput.value.toLowerCase().trim();
-    renderGames(games.filter(g => g.title.toLowerCase().includes(term)));
-  });
   </script>
-
 </body>
 </html>
