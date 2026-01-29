@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Jogos - Devalley</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 
+            accent: '#5aa0e6',
+            background: '#0a0a0a',
+            container: '#111111',
+            border: '#5c606a',
+            textLight: '#f0f4f8',
+            textSoft: '#b0b8c4'
+          },
+        },
+      },
+    }
+  </script>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: #0a0a0a; }
+    .scroll-container { height: 100%; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    
+    .game-row { transition: all 0.2s ease; }
+    .game-row:hover {
+      background: rgba(90, 160, 230, 0.12);
+      border-left: 4px solid #5aa0e6;
+      padding-left: 1.25rem !important;
+    }
+
+    /* Ajuste da Capa: Sem fundo e sem bordas extras */
+    .game-thumb {
+      width: 68px;
+      height: 68px;
+      object-fit: contain; /* Mantém a proporção sem cortar */
+      background: transparent; /* Remove qualquer cor de fundo */
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-background text-textLight">
+
+  <div class="scroll-container">
+    <div class="w-full px-3 py-2">
+      <div id="gamesList" class="space-y-1"></div>
+    </div>
+  </div>
+
+  <script>
+    const apiUrl = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/Devalley';
+    const list = document.getElementById('gamesList');
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const jars = data.filter(item => item.name.toLowerCase().endsWith('.jar'));
+        const images = data.filter(item => /\.(png|jpg|jpeg|webp)$/i.test(item.name));
+        renderList(jars.sort((a, b) => a.name.localeCompare(b.name)), images);
+      })
+      .catch(() => { list.innerHTML = '<p class="p-4 text-textSoft">Erro ao carregar.</p>'; });
+
+    function renderList(games, images) {
+      list.innerHTML = '';
+      games.forEach(file => {
+        const fileNameNoExt = file.name.replace(/\.jar$/i, '');
+        const coverFile = images.find(img => img.name.toLowerCase().startsWith(fileNameNoExt.toLowerCase()));
+        const cleanName = fileNameNoExt.replace(/\[.*?\]/g, '').replace(/\(.*?\)/g, '').trim();
+        
+        const row = document.createElement('a');
+        row.href = file.download_url;
+        row.className = 'game-row flex items-center px-4 py-2 bg-container rounded-md border border-border mb-1 cursor-pointer';
+        
+        // Se não houver capa, o ícone de café fica centralizado sem fundo
+        const iconHtml = coverFile 
+          ? `<img src="${coverFile.download_url}" class="game-thumb mr-3">`
+          : `<div class="game-thumb mr-3 flex items-center justify-center">
+               <span class="material-icons text-accent">coffee</span>
+             </div>`;
+
+        row.innerHTML = `
+          ${iconHtml}
+          <div class="flex-1 min-w-0">
+            <h3 class="text-sm font-medium text-textLight truncate">${cleanName}</h3>
+            <p class="text-[10px] text-textSoft uppercase">Devalley Entertainment</p>
+          </div>
+          <span class="text-xs text-textSoft ml-3">${(file.size / 1024).toFixed(0)} KB</span>
+        `;
+        list.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Jogos - Gameloft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 
+            accent: '#5aa0e6',
+            background: '#0a0a0a',
+            container: '#111111',
+            border: '#5c606a',
+            textLight: '#f0f4f8',
+            textSoft: '#b0b8c4'
+          },
+        },
+      },
+    }
+  </script>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
+  
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0d0d0d;
+    }
+    .scroll-container {
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    
+    .game-row {
+      transition: all 0.2s ease;
+    }
+    .game-row:hover {
+      background: rgba(113, 219, 167, 0.1); 
+      border-left: 4px solid #71dba7;
+      padding-left: 1.25rem !important;
+    }
+
+    .game-thumb {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      background: transparent;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-background text-textLight font-pixel">
+
+  <div class="scroll-container">
+    <div class="w-full px-3 py-2">
+      <div id="gamesList" class="space-y-1">
+        </div>
+    </div>
+  </div>
+
+  <script>
+    const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/GL';
+    
+    const manualGames = [
+      { title: "Real Football 2005", img: "https://i.imgur.com/gFLwhZg.png" },
+      { title: "Real Football 2005", img: "https://i.imgur.com/iNAKYN8.png" },
+      { title: "Real Football 2006", img: "https://i.imgur.com/DtECPgV.png" },
+      { title: "Real Football 2007", img: "https://media.pocketgamer.com/artwork/na-cyv/rf_2007.jpg" },
+      { title: "Real Football 2008", img: "https://i.imgur.com/6jNeoOk.png" },
+      { title: "Real Football 2009", img: "https://i.imgur.com/492ZGur.png" },
+      { title: "Real Football 2010", img: "https://i.imgur.com/5xHVU5m.jpeg" },
+      { title: "Real Football 2011", img: "https://i.imgur.com/sGip2xp.png" },
+      { title: "Real Football 2012", img: "https://i.imgur.com/LaevIZL.jpeg" },
+      { title: "Real Football 2013", img: "https://i.imgur.com/BpVvKTz.jpeg" },
+      { title: "Real Football 2014", img: "https://i.imgur.com/j8XloEI.jpeg" },
+      { title: "Real Football 2015", img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co7rko.webp" },
+      { title: "Real Football 2016", img: "https://i.imgur.com/waAiBZu.png" },
+      { title: "Real Football 2017", img: "https://i.imgur.com/HSFhI13.png" },
+      { title: "Real Football 2018", img: "https://i.imgur.com/jkxg36L.jpeg" }
+    ];
+
+    const listContainer = document.getElementById('gamesList');
+    let githubFiles = [];
+
+    fetch(githubApi)
+      .then(res => res.json())
+      .then(data => {
+        githubFiles = data.filter(item => item.name.toLowerCase().endsWith('.jar'));
+        renderList(manualGames);
+      })
+      .catch(() => renderList(manualGames));
+
+    function renderList(list) {
+      listContainer.innerHTML = '';
+      
+      list.forEach(game => {
+        const fileMatch = githubFiles.find(f => 
+          f.name.toLowerCase().includes(game.title.toLowerCase())
+        );
+        
+        const downloadUrl = fileMatch ? fileMatch.download_url : "#";
+        const fileSize = fileMatch ? (fileMatch.size / 1024).toFixed(0) + " KB" : "";
+
+        const row = document.createElement('a');
+        row.href = downloadUrl;
+        row.download = fileMatch ? fileMatch.name : "";
+        row.className = 'game-row flex items-center px-4 py-2.5 bg-container rounded-md border border-border cursor-pointer';
+        
+        row.innerHTML = `
+          <img src="${game.img}" class="game-thumb mr-3" onerror="this.src='https://via.placeholder.com/48?text=RF'">
+          <div class="flex-1 min-w-0">
+            <h3 class="text-sm font-medium text-textLight truncate">${game.title}</h3>
+            <p class="text-[10px] text-accent uppercase opacity-70">Gameloft</p>
+          </div>
+          <span class="text-xs text-textSoft ml-3 whitespace-nowrap">${fileSize}</span>
+        `;
+        listContainer.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
