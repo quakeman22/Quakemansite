@@ -15,6 +15,8 @@
             --blue-dark:   #001f3f;
             --blue-mid:    #003366;
             --blue-light:  #5aa0e6;
+            --cyan-neon:   #00f0ff;     /* neon principal desktop */
+            --cyan-soft:   #00ccff;     /* links mobile harmonizado */
             --gray-darker: #1e2127;
             --gray-dark:   #2a2d33;
             --gray-mid:    #3a3e46;
@@ -30,224 +32,149 @@
             box-sizing: border-box;
         }
 
+        /* =============================================
+           MOBILE FIRST - WAP simples, cores harmonizadas (suaves, azuis/ciano)
+           ============================================= */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Pixelify Sans', Arial, sans-serif;
-            color: var(--text-light);
-            background: linear-gradient(135deg, #141618 0%, #1e2127 100%);
+            font-family: 'Courier New', Courier, monospace;
+            color: #c0c0c0;               /* cinza claro nostálgico, não verde forte */
+            background: #000000;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-size: 14px;
+            line-height: 1.4;
         }
 
         #ref_bar_out {
-            background: var(--blue-mid);
-            color: white;
-            font-size: 13px;
+            background: #000022;
+            color: #88ccff;
+            font-size: 12px;
             text-align: center;
-            padding: 8px 12px;
-            letter-spacing: 0.3px;
-            border-bottom: 1px solid #0a1f38;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            padding: 8px 10px;
+            border-bottom: 1px solid #003366;
         }
 
         #ref_bar_in a {
-            color: #a0d0ff;
+            color: var(--cyan-soft);
             text-decoration: none;
-            font-weight: 500;
             margin: 0 10px;
-            transition: color 0.2s;
         }
 
-        #ref_bar_in a:hover {
-            color: white;
+        #ref_bar_in a:hover,
+        #ref_bar_in a:active {
+            color: #ffffff;
             text-decoration: underline;
         }
 
         #main_container {
-            max-width: 980px;
-            width: 95%;
-            margin: 25px auto;
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--gray-darker);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-border);
+            width: 100%;
+            margin: 0;
+            border: none;
+            box-shadow: none;
+            background: #000000;
         }
 
         .header_table {
-            background: linear-gradient(to right, #0f1e3a, #1a3559);
-            padding: 18px 25px;
+            background: #000011;
+            padding: 12px 15px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            border-bottom: 3px solid var(--blue-light);
+            text-align: center;
+            border-bottom: 2px solid #003366;
         }
 
         .neon-logo {
-            font-family: 'Pixelify Sans', 'Courier New', monospace;
-            font-size: 30px;
-            font-weight: 0;
-            color: #ffffff;
-            letter-spacing: 3px;
-            text-shadow:
-                0 0 7px  #00f0ff,
-                0 0 10px #00f0ff,
-                0 0 21px #00f0ff,
-                0 0 42px #00f0ff,
-                0 0 82px #00f0ff,
-                0 0 92px #00f0ff,
-                0 0 102px #00f0ff,
-                0 0 151px rgba(0, 240, 255, 0.7);
-            animation: 
-                neon-flicker 1.8s infinite alternate,
-                neon-glow 4s ease-in-out infinite alternate;
-            transition: all 0.35s ease;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--cyan-soft);
+            letter-spacing: 2px;
+            text-shadow: none;
+            animation: none;
             user-select: none;
-            padding: 0 10px;
-        }
-
-        .neon-logo:hover {
-            color: #ffffff;
-            transform: scale(1.04);
-            text-shadow:
-                0 0 10px #fff,
-                0 0 20px #fff,
-                0 0 40px #00f0ff,
-                0 0 70px #00f0ff,
-                0 0 100px #00f0ff;
-        }
-
-        @keyframes neon-flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow:
-                    0 0 7px  #00f0ff,
-                    0 0 10px #00f0ff,
-                    0 0 21px #00f0ff,
-                    0 0 42px #00f0ff;
-                opacity: 0.92;
-            }
-            20%, 24%, 55% {
-                text-shadow: none;
-                opacity: 0.45;
-            }
-        }
-
-        @keyframes neon-glow {
-            from {
-                text-shadow:
-                    0 0 10px #00f0ff,
-                    0 0 20px #00f0ff,
-                    0 0 30px #00f0ff,
-                    0 0 50px #00f0ff;
-            }
-            to {
-                text-shadow:
-                    0 0 20px #00f0ff,
-                    0 0 40px #00f0ff,
-                    0 0 70px #00f0ff,
-                    0 0 120px rgba(0, 240, 255, 0.8);
-            }
         }
 
         .header_table small {
-            font-size: 13px;
-            color: #a0d0ff;
-            font-weight: 500;
+            font-size: 12px;
+            color: #6699cc;
+            margin-top: 6px;
         }
 
         .content_layout {
             display: flex;
-            min-height: 580px;
+            flex-direction: column;
+            min-height: auto;
         }
 
         .sidebar {
-            width: 240px;
-            padding: 20px 16px;
-            border-right: 1px solid var(--gray-border);
-            background: var(--gray-dark);
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border-bottom: 1px solid #003366;
         }
 
         .accordion {
-            border: 1px solid var(--gray-border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--gray-mid);
-            margin-bottom: 20px;
+            border: 1px solid #003366;
+            margin-bottom: 14px;
+            background: #000000;
         }
 
         .accordion-header {
             width: 100%;
-            background: linear-gradient(#454b55, #3a3f47);
+            background: #001122;
             border: none;
             padding: 12px 16px;
             text-align: left;
-            font-size: 14px;
-            font-weight: 600;
-            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--cyan-soft);
             cursor: pointer;
-            transition: all 0.25s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .accordion-header:hover {
-            background: var(--blue-light);
-            color: white;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        .accordion-header:hover,
+        .accordion-header:active {
+            background: #002244;
         }
 
         .accordion-body {
             max-height: 0;
             overflow: hidden;
-            background: var(--gray-dark);
             transition: max-height 0.3s ease;
         }
 
         .accordion-body a {
             display: block;
-            padding: 10px 16px;
-            font-size: 13.5px;
-            color: var(--text-soft);
+            padding: 10px 18px;
+            font-size: 14px;
+            color: #88ccff;
             text-decoration: none;
-            border-bottom: 1px solid var(--gray-border);
-            transition: all 0.2s;
+            border-bottom: 1px dashed #003366;
         }
 
         .accordion-body a:last-child {
             border-bottom: none;
         }
 
-        .accordion-body a:hover {
-            background: linear-gradient(to right, #3a4a6a, var(--blue-light));
-            color: white;
-            padding-left: 22px;
-        }
-
-        .sidebar small {
-            font-size: 12px;
-            color: var(--text-soft);
-            margin-top: 16px;
-            display: block;
-            text-align: center;
-            opacity: 0.8;
+        .accordion-body a:hover,
+        .accordion-body a:active {
+            background: #001133;
+            color: #ffffff;
         }
 
         .main_content {
-            flex: 1;
-            padding: 20px;
-            background: #181b21;
+            padding: 12px 10px;
+            background: #000000;
         }
 
         .iframe-wrapper {
             width: 100%;
-            height: 520px;
-            border-radius: var(--radius);
+            height: 4500px;
+            border: 2px solid #003366;
+            background: #000811;
             overflow: hidden;
-            border: 2px solid var(--blue-light);
-            background: #0f1115;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
+            margin: 8px 0;
         }
 
         iframe {
@@ -257,37 +184,155 @@
         }
 
         .footer {
-            background: var(--blue-mid);
-            color: #d0e0ff;
-            padding: 14px;
-            font-size: 12px;
+            background: #000011;
+            color: #6699cc;
+            padding: 12px;
+            font-size: 11px;
             text-align: center;
-            border-top: 1px solid #0a1f38;
+            border-top: 1px solid #003366;
         }
 
-        @media (max-width: 768px) {
-            .content_layout {
-                flex-direction: column;
+        /* =============================================
+           DESKTOP - Neon completo, harmonizado com ciano/azul
+           ============================================= */
+        @media (min-width: 769px) {
+            body {
+                background: linear-gradient(135deg, #141618 0%, #1e2127 100%);
+                color: var(--text-light);
+                font-family: 'Pixelify Sans', Arial, sans-serif;
             }
+
+            #main_container {
+                max-width: 980px;
+                width: 95%;
+                margin: 25px auto;
+                border-radius: var(--radius);
+                overflow: hidden;
+                background: var(--gray-darker);
+                box-shadow: var(--shadow);
+                border: 1px solid var(--gray-border);
+            }
+
+            #ref_bar_out {
+                background: var(--blue-mid);
+                color: white;
+                font-size: 13px;
+                padding: 8px 12px;
+                border-bottom: 1px solid #0a1f38;
+            }
+
+            #ref_bar_in a {
+                color: #a0d0ff;
+            }
+
+            #ref_bar_in a:hover {
+                color: white;
+            }
+
+            .header_table {
+                background: linear-gradient(to right, #0f1e3a, #1a3559);
+                padding: 18px 25px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 3px solid var(--cyan-neon);
+            }
+
+            .neon-logo {
+                font-size: 30px;
+                color: #ffffff;
+                letter-spacing: 3px;
+                text-shadow:
+                    0 0 7px  var(--cyan-neon),
+                    0 0 10px var(--cyan-neon),
+                    0 0 21px var(--cyan-neon),
+                    0 0 42px var(--cyan-neon),
+                    0 0 82px var(--cyan-neon),
+                    0 0 92px var(--cyan-neon),
+                    0 0 102px var(--cyan-neon),
+                    0 0 151px rgba(0, 240, 255, 0.7);
+                animation: 
+                    neon-flicker 1.8s infinite alternate,
+                    neon-glow 4s ease-in-out infinite alternate;
+            }
+
+            @keyframes neon-flicker {
+                0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 0.92; text-shadow: 0 0 7px var(--cyan-neon), 0 0 10px var(--cyan-neon), 0 0 21px var(--cyan-neon), 0 0 42px var(--cyan-neon); }
+                20%, 24%, 55% { opacity: 0.45; text-shadow: none; }
+            }
+
+            @keyframes neon-glow {
+                from { text-shadow: 0 0 10px var(--cyan-neon), 0 0 20px var(--cyan-neon), 0 0 30px var(--cyan-neon), 0 0 50px var(--cyan-neon); }
+                to   { text-shadow: 0 0 20px var(--cyan-neon), 0 0 40px var(--cyan-neon), 0 0 70px var(--cyan-neon), 0 0 120px rgba(0, 240, 255, 0.8); }
+            }
+
+            .content_layout {
+                flex-direction: row;
+                min-height: 580px;
+            }
+
             .sidebar {
-                width: 100%;
-                border-right: none;
+                width: 240px;
+                padding: 20px 16px;
+                border-right: 1px solid var(--gray-border);
+                background: var(--gray-dark);
+            }
+
+            .accordion {
+                border: 1px solid var(--gray-border);
+                border-radius: var(--radius);
+                background: var(--gray-mid);
+                margin-bottom: 20px;
+            }
+
+            .accordion-header {
+                background: linear-gradient(#454b55, #3a3f47);
+                color: white;
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .accordion-header:hover {
+                background: var(--blue-light);
+            }
+
+            .accordion-body a {
+                color: var(--text-soft);
                 border-bottom: 1px solid var(--gray-border);
             }
+
+            .accordion-body a:hover {
+                background: linear-gradient(to right, #3a4a6a, var(--blue-light));
+                color: white;
+                padding-left: 22px;
+            }
+
+            .main_content {
+                flex: 1;
+                padding: 20px;
+                background: #181b21;
+            }
+
             .iframe-wrapper {
-                height: 420px;
+                height: 520px;
+                border: 2px solid var(--cyan-neon);
+                box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
+            }
+
+            .footer {
+                background: var(--blue-mid);
+                color: #d0e0ff;
+                padding: 14px;
+                font-size: 12px;
             }
         }
 
-        @media (max-width: 500px) {
-            .header_table {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-            }
-            .neon-logo {
-                font-size: 42px;
-            }
+        /* Ajustes para telas pequenas */
+        @media (max-width: 480px) {
+            .neon-logo { font-size: 20px; }
+            .iframe-wrapper { height: 320px; }
+            body { font-size: 13px; }
+            .main_content { padding: 8px 6px; }
         }
     </style>
 </head>
@@ -313,8 +358,8 @@
         <nav class="sidebar">
             <div class="accordion">
                 <button class="accordion-header">Menu</button>
-                <div class="accordion-body">
-				    <a href="https://quakeman22.github.io/Quakemansite/HTML/downloads2.html" target="post_frame">Todos os Jogos</a>
+                <div class="accordion-body" style="max-height: none;">
+                    <a href="https://quakeman22.github.io/Quakemansite/HTML/downloads2.html" target="post_frame">Todos os Jogos</a>
                     <a href="https://quakeman22.github.io/Quakemansite/HTML/sc1.html" target="post_frame">Splinter Cell</a>
                     <a href="https://quakeman22.github.io/Quakemansite/HTML/devalley1.html" target="post_frame">Devalley</a>
                     <a href="https://quakeman22.github.io/Quakemansite/HTML/rf1.html" target="post_frame">Real Football</a>
@@ -344,21 +389,21 @@
 </div>
 
 <script>
-    // Accordion functionality
-    document.querySelectorAll(".accordion-header").forEach(header => {
-        header.addEventListener("click", () => {
-            const body = header.nextElementSibling;
-            const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
+// Accordion functionality
+document.querySelectorAll(".accordion-header").forEach(header => {
+    header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
 
-            document.querySelectorAll(".accordion-body").forEach(el => {
-                el.style.maxHeight = null;
-            });
-
-            if (!isOpen) {
-                body.style.maxHeight = body.scrollHeight + "px";
-            }
+        document.querySelectorAll(".accordion-body").forEach(el => {
+            el.style.maxHeight = null;
         });
+
+        if (!isOpen) {
+            body.style.maxHeight = body.scrollHeight + "px";
+        }
     });
+});
 </script>
 
 </body>
