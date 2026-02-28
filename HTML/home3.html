@@ -1,130 +1,231 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>Home - Quakeman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
-
   <style>
-   html, body {
-  margin: 0;
-  padding: 0;
-  background: transparent; /* importante para iframe */
-  font-family: Tahoma, Arial, sans-serif;
-  font-size: 12px;
-  color: #333;
-}
+    /* ESTILO ORKUT - COMBINANDO COM O SITE PRINCIPAL */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent; /* importante para iframe */
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #000000;
+    }
 
-.content {
-  padding: 10px;
-}
+    .content {
+      padding: 15px;
+    }
 
-h1 {
-  font-size: 18px;
-  color: #6d59c0;
-  margin-bottom: 10px;
-}
+    /* TÍTULO ESTILO ORKUT */
+    h1 {
+      font-size: 16px;
+      color: #2c3e50;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: bold;
+      border-left: 4px solid #d1136b; /* Rosa do Orkut */
+      padding-left: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-.intro {
-  font-size: 12px;
-  margin-bottom: 15px;
-  color: #555;
-}
+    /* TEXTO DE INTRODUÇÃO */
+    .intro {
+      font-size: 12px;
+      margin-bottom: 20px;
+      color: #333;
+      line-height: 1.5;
+      background: #f8faff;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #e0e6f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
+    .intro br {
+      display: none; /* Ajusta a quebra de linha */
+    }
 
-.game-card {
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-decoration: none;
-  color: inherit;
-  transition: 0.2s;
-  overflow: hidden;
-}
+    /* GRID DE CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
 
-.game-card:hover {
-  border-color: #6d59c0;
-  box-shadow: 0 0 5px rgba(109, 89, 192, 0.3);
-}
+    /* CARDS ESTILO ORKUT */
+    .game-card {
+      background: white;
+      border: 1px solid #e0e6f0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      overflow: hidden;
+      display: block;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
 
-.img-wrapper {
-  background: #f0f0ff;
-  text-align: center;
-  padding: 5px;
-}
+    .game-card:hover {
+      border-color: #84a5c9; /* Azul do Orkut */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(132, 165, 201, 0.2);
+    }
 
-.game-card img {
-  max-width: 100%;
-  height: 120px;
-  object-fit: contain;
-}
+    .img-wrapper {
+      background: linear-gradient(to bottom, #f8faff, #eef3fc);
+      text-align: center;
+      padding: 10px;
+      border-bottom: 1px solid #e0e6f0;
+    }
 
-.info {
-  padding: 6px;
-  text-align: center;
-}
+    .game-card img {
+      max-width: 100%;
+      height: 100px;
+      object-fit: contain;
+      transition: transform 0.2s;
+    }
 
-.title {
-  font-weight: bold;
-  font-size: 12px;
-  margin-bottom: 3px;
-}
+    .game-card:hover img {
+      transform: scale(1.05);
+    }
 
-.status {
-  font-size: 11px;
-  color: #777;
-}
+    .info {
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #2c3e50;
+    }
+
+    .game-card:hover .title {
+      color: #84a5c9;
+    }
+
+    .status {
+      font-size: 11px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* SEÇÃO DE NOVIDADES (OPCIONAL) */
+    .updates-section {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid #84a5c9;
+    }
+
+    .updates-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .updates-title span {
+      color: #d1136b;
+      font-size: 16px;
+    }
+
+    .update-item {
+      padding: 8px 10px;
+      background: #f8faff;
+      border-radius: 6px;
+      margin-bottom: 5px;
+      font-size: 11px;
+      color: #333;
+      border-left: 3px solid #84a5c9;
+    }
+
+    .update-item strong {
+      color: #d1136b;
+      font-weight: bold;
+    }
+
+    /* VERSÃO MOBILE */
+    @media (max-width: 600px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="scroll-container">
-    <div class="content">
-      <h1>Bem-vindo ao Quakeman</h1>
+  <div class="content">
+    <!-- TÍTULO PRINCIPAL -->
+    <h1>📢 Atualizações do Acervo</h1>
+    
+    <!-- TEXTO DE INTRODUÇÃO ESTILIZADO -->
+    <div class="intro">
+      <strong style="color: #d1136b; font-size: 13px;">🎮 Seja bem-vindo ao Quakeman!</strong><br><br>
+      Se você viveu a era do celular com botão, vai se sentir em casa aqui.<br>
+      Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br>
+      Pode fuçar à vontade, baixar, testar e matar a saudade.
+    </div>
+
+    <!-- GRID DE JOGOS -->
+    <div class="cards-grid">
+      <!-- CARD 1 -->
+      <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
+        <div class="img-wrapper">
+          <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
+        </div>
+        <div class="info">
+          <div class="title">📰 O Jornaleiro</div>
+          <div class="status">"CLT e foda."</div>
+        </div>
+      </a>
+
+      <!-- CARD 2 -->
+      <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank">
+        <div class="img-wrapper">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
+        </div>
+        <div class="info">
+          <div class="title">✈️ Panic Flight</div>
+          <div class="status">"Vôos mais loucos."</div>
+        </div>
+      </a>
+
+      <!-- CARD 3 -->
+      <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank">
+        <div class="img-wrapper">
+          <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
+        </div>
+        <div class="info">
+          <div class="title">💀 Death Traps 2</div>
+          <div class="status">"Essa mina é louca."</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- SEÇÃO DE NOVIDADES (OPCIONAL) -->
+    <div class="updates-section">
+      <div class="updates-title">
+        <span>⚡</span> Últimas novidades
+      </div>
       
-      <p class="intro">
-Se você viveu a era do celular com botão, vai se sentir em casa aqui.<br>
-Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br><br>
-Pode fuçar à vontade, baixar, testar e matar a saudade.
-      </p>
-
-      <div class="cards-grid">
-        <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
-          <div class="img-wrapper">
-            <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
-          </div>
-          <div class="info">
-            <div class="title">O Jornaleiro</div>
-            <div class="status">CLT e foda.</div>
-          </div>
-        </a>
-
-        <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank">
-          <div class="img-wrapper">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
-          </div>
-          <div class="info">
-            <div class="title">Panic Flight</div>
-            <div class="status">Vôos mais loucos.</div>
-          </div>
-        </a>
-
-        <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank">
-          <div class="img-wrapper">
-            <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
-          </div>
-          <div class="info">
-            <div class="title">Death Traps 2</div>
-            <div class="status">Essa mina é louca.</div>
-          </div>
-        </a>
+      <div class="update-item">
+        <strong>📌 28/02/2026</strong> - Novo layout do site no estilo Orkut!
+      </div>
+      <div class="update-item">
+        <strong>📌 25/02/2026</strong> - Adicionada tradução de "O Jornaleiro"
+      </div>
+      <div class="update-item">
+        <strong>📌 20/02/2026</strong> - Emulador online disponível na seção Extras
+      </div>
     </div>
   </div>
 
