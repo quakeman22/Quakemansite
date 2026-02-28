@@ -2,240 +2,485 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Home - Quakeman</title>
+  <title>Downloads - Jogos Java</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <style>
     /* ESTILO ORKUT - COMBINANDO COM O SITE PRINCIPAL */
     html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      background: transparent; /* importante para iframe */
+      overflow: hidden;
+      background: transparent; /* Fundo transparente para o iframe */
       font-family: Arial, Helvetica, sans-serif;
       font-size: 12px;
-      color: #000000;
     }
 
-    .content {
-      padding: 15px;
+    .scroll-container {
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #84a5c9 #e4eaf4;
     }
 
-    /* TÍTULO ESTILO ORKUT */
-    h1 {
-      font-size: 16px;
+    /* Scrollbar personalizada */
+    .scroll-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+      background: #e4eaf4;
+      border-radius: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #84a5c9;
+      border-radius: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #6a90b9;
+    }
+
+    /* TÍTULO DA SEÇÃO */
+    .section-title {
+      font-size: 14px;
       color: #2c3e50;
-      margin-top: 0;
-      margin-bottom: 15px;
+      margin: 5px 0 15px 0;
       font-weight: bold;
-      border-left: 4px solid #d1136b; /* Rosa do Orkut */
+      border-left: 4px solid #d1136b;
       padding-left: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    /* TEXTO DE INTRODUÇÃO */
-    .intro {
-      font-size: 12px;
-      margin-bottom: 20px;
-      color: #333;
-      line-height: 1.5;
+    /* ESTATÍSTICAS */
+    .stats-bar {
       background: #f8faff;
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 1px solid #e0e6f0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-
-    /* GRID DE CARDS - LADO A LADO COMO ORIGINAL */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    /* CARDS ESTILO ORKUT */
-    .game-card {
-      background: white;
       border: 1px solid #e0e6f0;
       border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s;
-      overflow: hidden;
-      display: block;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
-    .game-card:hover {
-      border-color: #84a5c9; /* Azul do Orkut */
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(132, 165, 201, 0.2);
-    }
-
-    .img-wrapper {
-      background: linear-gradient(to bottom, #f8faff, #eef3fc);
-      text-align: center;
-      padding: 10px;
-      border-bottom: 1px solid #e0e6f0;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .game-card img {
-      max-width: 100%;
-      max-height: 80px;
-      object-fit: contain;
-      transition: transform 0.2s;
-    }
-
-    .game-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .info {
-      padding: 10px 8px;
-      text-align: center;
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 4px;
-      color: #2c3e50;
-    }
-
-    .game-card:hover .title {
-      color: #84a5c9;
-    }
-
-    .status {
-      font-size: 11px;
-      color: #666;
-      font-style: italic;
-    }
-
-    /* SEÇÃO DE NOVIDADES */
-    .updates-section {
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 2px solid #84a5c9;
-    }
-
-    .updates-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #2c3e50;
-      margin-bottom: 12px;
+    .stats-item {
       display: flex;
       align-items: center;
       gap: 8px;
+      color: #2c3e50;
     }
 
-    .updates-title span {
-      color: #d1136b;
-      font-size: 18px;
+    .stats-icon {
+      background: #84a5c9;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
     }
 
-    .update-item {
-      padding: 10px 12px;
-      background: #f8faff;
-      border-radius: 8px;
-      margin-bottom: 8px;
+    .stats-text {
       font-size: 12px;
-      color: #333;
-      border-left: 3px solid #84a5c9;
+    }
+
+    .stats-number {
+      font-weight: bold;
+      color: #d1136b;
+      font-size: 14px;
+    }
+
+    /* LISTA DE JOGOS */
+    .games-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* CARD DO JOGO - ESTILO ORKUT */
+    .game-card {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      background: white;
+      border: 1px solid #e0e6f0;
+      border-radius: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .game-card:hover {
+      border-color: #84a5c9;
+      background: #f8faff;
+      transform: translateX(5px);
+      box-shadow: 0 4px 8px rgba(132, 165, 201, 0.15);
+    }
+
+    /* ÍCONE DO JOGO */
+    .game-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #f8faff, #eef3fc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      border: 2px solid #84a5c9;
+      color: #84a5c9;
+      font-size: 20px;
       transition: all 0.2s;
     }
 
-    .update-item:hover {
-      background: white;
-      border-left-color: #d1136b;
-      transform: translateX(3px);
+    .game-card:hover .game-icon {
+      background: #84a5c9;
+      color: white;
+      transform: scale(1.1);
     }
 
-    .update-item strong {
+    /* INFORMAÇÕES DO JOGO */
+    .game-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .game-name {
+      font-weight: bold;
+      font-size: 13px;
+      color: #2c3e50;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .game-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: #666;
+    }
+
+    .game-size {
+      background: #f0f5ff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: #84a5c9;
+      font-weight: bold;
+    }
+
+    .game-type {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .game-type span {
+      color: #d1136b;
+    }
+
+    /* BOTÃO DE DOWNLOAD */
+    .download-btn {
+      background: #84a5c9;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s;
+      margin-left: 10px;
+    }
+
+    .game-card:hover .download-btn {
+      background: #d1136b;
+      transform: scale(1.1);
+    }
+
+    /* FILTRO/BUSCA (OPCIONAL) */
+    .search-box {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #e0e6f0;
+      border-radius: 20px;
+      font-size: 12px;
+      background: white;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #84a5c9;
+      box-shadow: 0 0 0 2px rgba(132, 165, 201, 0.2);
+    }
+
+    .search-button {
+      background: #84a5c9;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0 15px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .search-button:hover {
+      background: #6a90b9;
+    }
+
+    /* MENSAGEM DE CARREGAMENTO */
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      background: #f8faff;
+      border-radius: 8px;
+      border: 1px solid #e0e6f0;
+    }
+
+    .loading span {
       color: #d1136b;
       font-weight: bold;
-      margin-right: 8px;
     }
 
-    /* RESPONSIVIDADE */
-    @media (max-width: 600px) {
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
+    /* NENHUM RESULTADO */
+    .no-results {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      background: #f8faff;
+      border-radius: 8px;
+      border: 1px solid #e0e6f0;
     }
   </style>
 </head>
 <body>
 
-  <div class="content">
-    <!-- TÍTULO PRINCIPAL -->
-    <h1>📢 Atualizações do Acervo</h1>
+  <div class="scroll-container">
+    <div class="section-title">📱 Todos os Jogos</div>
     
-    <!-- TEXTO DE INTRODUÇÃO ESTILIZADO (MANTENDO O ORIGINAL) -->
-    <div class="intro">
-      Se você viveu a era do celular com botão, vai se sentir em casa aqui.<br>
-      Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br><br>
-      Pode fuçar à vontade, baixar, testar e matar a saudade.
+    <!-- BARRA DE ESTATÍSTICAS -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stats-item">
+        <div class="stats-icon">🎮</div>
+        <div class="stats-text">Carregando...</div>
+      </div>
     </div>
 
-    <!-- GRID DE JOGOS - 3 CARDS LADO A LADO -->
-    <div class="cards-grid">
-      <!-- CARD 1 -->
-      <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
-        <div class="img-wrapper">
-          <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
-        </div>
-        <div class="info">
-          <div class="title">O Jornaleiro</div>
-          <div class="status">CLT e foda.</div>
-        </div>
-      </a>
-
-      <!-- CARD 2 -->
-      <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank">
-        <div class="img-wrapper">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
-        </div>
-        <div class="info">
-          <div class="title">Panic Flight</div>
-          <div class="status">Vôos mais loucos.</div>
-        </div>
-      </a>
-
-      <!-- CARD 3 -->
-      <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank">
-        <div class="img-wrapper">
-          <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
-        </div>
-        <div class="info">
-          <div class="title">Death Traps 2</div>
-          <div class="status">Essa mina é louca.</div>
-        </div>
-      </a>
+    <!-- CAIXA DE BUSCA -->
+    <div class="search-box">
+      <input type="text" class="search-input" id="searchInput" placeholder="Buscar jogo..." value="">
+      <button class="search-button" id="searchButton">Buscar</button>
     </div>
 
-    <!-- SEÇÃO DE NOVIDADES (MANTIDA) -->
-    <div class="updates-section">
-      <div class="updates-title">
-        <span>⚡</span> Últimas novidades
-      </div>
-      
-      <div class="update-item">
-        <strong>28/02/2026</strong> Novo layout do site no estilo Orkut!
-      </div>
-      <div class="update-item">
-        <strong>25/02/2026</strong> Adicionada tradução de "O Jornaleiro"
-      </div>
-      <div class="update-item">
-        <strong>20/02/2026</strong> Emulador online disponível na seção Extras
+    <!-- LISTA DE JOGOS -->
+    <div id="gamesList" class="games-list">
+      <div class="loading">
+        <span>⏳</span> Carregando jogos...
       </div>
     </div>
   </div>
 
+  <script>
+    const apiUrl = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Novas%20Tradu%C3%A7%C3%B5es';
+    const list = document.getElementById('gamesList');
+    const statsBar = document.getElementById('statsBar');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    let allGames = [];
+    let filteredGames = [];
+
+    // Função para limpar nome do jogo
+    function cleanGameName(name) {
+      return name
+        .replace(/\.jar$/i, '')
+        .replace(/\[.*?\]/g, '')
+        .replace(/\(.*?\)/g, '')
+        .replace(/_/g, ' ')
+        .trim();
+    }
+
+    // Função para extrair informações do nome
+    function extractGameInfo(name) {
+      let cleanName = name
+        .replace(/\.jar$/i, '')
+        .trim();
+      
+      // Verifica se tem resolução no nome
+      const resolutionMatch = cleanName.match(/(\d{3,4}x\d{3,4})/i);
+      const resolution = resolutionMatch ? resolutionMatch[0] : null;
+      
+      // Verifica se tem [BR] no nome
+      const isBrazilian = cleanName.includes('[BR]') || cleanName.includes('(BR)');
+      
+      // Remove metadados do nome para exibição
+      let displayName = cleanName
+        .replace(/\[\d{3,4}x\d{3,4}\]/gi, '')
+        .replace(/\[BR\]/gi, '')
+        .replace(/\(BR\)/gi, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      
+      return {
+        displayName,
+        resolution,
+        isBrazilian
+      };
+    }
+
+    // Função para renderizar a lista
+    function renderList(games) {
+      if (games.length === 0) {
+        list.innerHTML = '<div class="no-results">Nenhum jogo encontrado 🎮</div>';
+        return;
+      }
+
+      list.innerHTML = '';
+      games.forEach(file => {
+        const info = extractGameInfo(file.name);
+        
+        const card = document.createElement('a');
+        card.href = file.download_url;
+        card.download = file.name;
+        card.className = 'game-card';
+        
+        // Escolhe o ícone baseado no tipo de jogo
+        let gameIcon = '🎮';
+        if (info.displayName.toLowerCase().includes('football') || info.displayName.toLowerCase().includes('soccer')) {
+          gameIcon = '⚽';
+        } else if (info.displayName.toLowerCase().includes('racing') || info.displayName.toLowerCase().includes('race')) {
+          gameIcon = '🏎️';
+        } else if (info.displayName.toLowerCase().includes('shooting') || info.displayName.toLowerCase().includes('shoot')) {
+          gameIcon = '🔫';
+        } else if (info.displayName.toLowerCase().includes('rpg')) {
+          gameIcon = '⚔️';
+        } else if (info.displayName.toLowerCase().includes('puzzle')) {
+          gameIcon = '🧩';
+        } else if (info.displayName.toLowerCase().includes('sport')) {
+          gameIcon = '🏆';
+        }
+        
+        card.innerHTML = `
+          <div class="game-icon">${gameIcon}</div>
+          <div class="game-info">
+            <div class="game-name" title="${info.displayName}">${info.displayName}</div>
+            <div class="game-meta">
+              ${info.resolution ? `<span class="game-size">${info.resolution}</span>` : ''}
+              ${info.isBrazilian ? '<span class="game-type"><span>🇧🇷</span> Traduzido</span>' : ''}
+            </div>
+          </div>
+          <div class="game-size">${(file.size / 1024).toFixed(0)} KB</div>
+          <div class="download-btn">⬇️</div>
+        `;
+        
+        list.appendChild(card);
+      });
+
+      // Atualiza estatísticas
+      updateStats(games.length);
+    }
+
+    // Função para atualizar estatísticas
+    function updateStats(count) {
+      statsBar.innerHTML = `
+        <div class="stats-item">
+          <div class="stats-icon">📊</div>
+          <div class="stats-text">Total de jogos: <span class="stats-number">${count}</span></div>
+        </div>
+        <div class="stats-item">
+          <div class="stats-icon">🇧🇷</div>
+          <div class="stats-text">Traduzidos: <span class="stats-number">${allGames.filter(g => g.name.includes('[BR]')).length}</span></div>
+        </div>
+      `;
+    }
+
+    // Função de busca
+    function filterGames(searchTerm) {
+      if (!searchTerm.trim()) {
+        return allGames;
+      }
+      
+      const term = searchTerm.toLowerCase().trim();
+      return allGames.filter(file => {
+        const cleanName = cleanGameName(file.name).toLowerCase();
+        return cleanName.includes(term);
+      });
+    }
+
+    // Carregar jogos da API
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Erro ao carregar');
+        return response.json();
+      })
+      .then(data => {
+        const jarFiles = data.filter(item => 
+          item.name.toLowerCase().endsWith('.jar') && item.type === 'file'
+        );
+        
+        allGames = jarFiles.sort((a, b) => {
+          return cleanGameName(a.name).localeCompare(cleanGameName(b.name));
+        });
+        
+        filteredGames = [...allGames];
+        renderList(filteredGames);
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        list.innerHTML = '<div class="no-results">Erro ao carregar jogos. Tente novamente mais tarde.</div>';
+        statsBar.innerHTML = `
+          <div class="stats-item">
+            <div class="stats-icon">⚠️</div>
+            <div class="stats-text">Erro ao carregar</div>
+          </div>
+        `;
+      });
+
+    // Eventos de busca
+    function performSearch() {
+      const searchTerm = searchInput.value;
+      filteredGames = filterGames(searchTerm);
+      renderList(filteredGames);
+    }
+
+    searchButton.addEventListener('click', performSearch);
+    
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // Limpar busca quando o input estiver vazio (opcional)
+    searchInput.addEventListener('input', (e) => {
+      if (e.target.value === '') {
+        filteredGames = [...allGames];
+        renderList(filteredGames);
+      }
+    });
+  </script>
 </body>
 </html>
