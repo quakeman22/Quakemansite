@@ -6,79 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* ESTILO ORKUT - COMBINANDO COM O SITE PRINCIPAL */
+    /* ESTILO MÍNIMO PARA MANTER COMPACTO */
     html, body {
       margin: 0;
       padding: 0;
-      background: transparent; /* importante para iframe */
+      background: transparent;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 12px;
-      color: #000000;
     }
 
     .content {
-      padding: 15px;
+      padding: 8px;
     }
 
-    /* TÍTULO ESTILO ORKUT */
+    /* TÍTULO PEQUENO */
     h1 {
-      font-size: 16px;
+      font-size: 14px;
       color: #2c3e50;
-      margin-top: 0;
-      margin-bottom: 15px;
+      margin: 0 0 8px 0;
       font-weight: bold;
-      border-left: 4px solid #d1136b; /* Rosa do Orkut */
-      padding-left: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    /* TEXTO DE INTRODUÇÃO */
+    /* TEXTO INTRO COMPACTO */
     .intro {
-      font-size: 12px;
-      margin-bottom: 20px;
-      color: #333;
-      line-height: 1.5;
-      background: #f8faff;
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 1px solid #e0e6f0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #555;
+      line-height: 1.3;
     }
 
-    /* GRID DE CARDS - LADO A LADO COMO ORIGINAL */
+    /* GRID COMPACTO - LADO A LADO */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 6px;
     }
 
-    /* CARDS ESTILO ORKUT */
+    /* CARD COMPACTO */
     .game-card {
       background: white;
-      border: 1px solid #e0e6f0;
-      border-radius: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
       text-decoration: none;
       color: inherit;
-      transition: all 0.2s;
       overflow: hidden;
-      display: block;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .game-card:hover {
-      border-color: #84a5c9; /* Azul do Orkut */
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(132, 165, 201, 0.2);
+      border-color: #84a5c9;
     }
 
     .img-wrapper {
-      background: linear-gradient(to bottom, #f8faff, #eef3fc);
+      background: #f5f5f5;
       text-align: center;
-      padding: 10px;
-      border-bottom: 1px solid #e0e6f0;
-      height: 100px;
+      padding: 5px;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -86,104 +68,44 @@
 
     .game-card img {
       max-width: 100%;
-      max-height: 80px;
+      max-height: 60px;
       object-fit: contain;
-      transition: transform 0.2s;
-    }
-
-    .game-card:hover img {
-      transform: scale(1.05);
     }
 
     .info {
-      padding: 10px 8px;
+      padding: 5px;
       text-align: center;
     }
 
     .title {
       font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 4px;
-      color: #2c3e50;
-    }
-
-    .game-card:hover .title {
-      color: #84a5c9;
+      font-size: 11px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .status {
-      font-size: 11px;
-      color: #666;
+      font-size: 9px;
+      color: #777;
       font-style: italic;
-    }
-
-    /* SEÇÃO DE NOVIDADES */
-    .updates-section {
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 2px solid #84a5c9;
-    }
-
-    .updates-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #2c3e50;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .updates-title span {
-      color: #d1136b;
-      font-size: 18px;
-    }
-
-    .update-item {
-      padding: 10px 12px;
-      background: #f8faff;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      font-size: 12px;
-      color: #333;
-      border-left: 3px solid #84a5c9;
-      transition: all 0.2s;
-    }
-
-    .update-item:hover {
-      background: white;
-      border-left-color: #d1136b;
-      transform: translateX(3px);
-    }
-
-    .update-item strong {
-      color: #d1136b;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-
-    /* RESPONSIVIDADE */
-    @media (max-width: 600px) {
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
 <body>
 
   <div class="content">
-    <!-- TÍTULO PRINCIPAL -->
-    <h1>📢 Atualizações do Acervo</h1>
+    <h1>Atualizações</h1>
     
-    <!-- TEXTO DE INTRODUÇÃO ESTILIZADO (MANTENDO O ORIGINAL) -->
     <div class="intro">
-      Se você viveu a era do celular com botão, vai se sentir em casa aqui.<br>
-      Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br><br>
-      Pode fuçar à vontade, baixar, testar e matar a saudade.
+      Acervo de clássicos J2ME.
     </div>
 
-    <!-- GRID DE JOGOS - 3 CARDS LADO A LADO -->
+    <!-- CARDS LADO A LADO COMPACTOS -->
     <div class="cards-grid">
       <!-- CARD 1 -->
       <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
@@ -192,7 +114,7 @@
         </div>
         <div class="info">
           <div class="title">O Jornaleiro</div>
-          <div class="status">CLT e foda.</div>
+          <div class="status">CLT e foda</div>
         </div>
       </a>
 
@@ -203,7 +125,7 @@
         </div>
         <div class="info">
           <div class="title">Panic Flight</div>
-          <div class="status">Vôos mais loucos.</div>
+          <div class="status">Vôos mais loucos</div>
         </div>
       </a>
 
@@ -214,26 +136,9 @@
         </div>
         <div class="info">
           <div class="title">Death Traps 2</div>
-          <div class="status">Essa mina é louca.</div>
+          <div class="status">Essa mina é louca</div>
         </div>
       </a>
-    </div>
-
-    <!-- SEÇÃO DE NOVIDADES (MANTIDA) -->
-    <div class="updates-section">
-      <div class="updates-title">
-        <span>⚡</span> Últimas novidades
-      </div>
-      
-      <div class="update-item">
-        <strong>28/02/2026</strong> Novo layout do site no estilo Orkut!
-      </div>
-      <div class="update-item">
-        <strong>25/02/2026</strong> Adicionada tradução de "O Jornaleiro"
-      </div>
-      <div class="update-item">
-        <strong>20/02/2026</strong> Emulador online disponível na seção Extras
-      </div>
     </div>
   </div>
 
