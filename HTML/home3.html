@@ -46,15 +46,12 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
-    .intro br {
-      display: none; /* Ajusta a quebra de linha */
-    }
-
-    /* GRID DE CARDS */
+    /* GRID DE CARDS - LADO A LADO COMO ORIGINAL */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
+      margin-bottom: 20px;
     }
 
     /* CARDS ESTILO ORKUT */
@@ -81,11 +78,15 @@
       text-align: center;
       padding: 10px;
       border-bottom: 1px solid #e0e6f0;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .game-card img {
       max-width: 100%;
-      height: 100px;
+      max-height: 80px;
       object-fit: contain;
       transition: transform 0.2s;
     }
@@ -116,9 +117,9 @@
       font-style: italic;
     }
 
-    /* SEÇÃO DE NOVIDADES (OPCIONAL) */
+    /* SEÇÃO DE NOVIDADES */
     .updates-section {
-      margin-top: 20px;
+      margin-top: 25px;
       padding-top: 15px;
       border-top: 2px solid #84a5c9;
     }
@@ -127,33 +128,41 @@
       font-size: 14px;
       font-weight: bold;
       color: #2c3e50;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
     }
 
     .updates-title span {
       color: #d1136b;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .update-item {
-      padding: 8px 10px;
+      padding: 10px 12px;
       background: #f8faff;
-      border-radius: 6px;
-      margin-bottom: 5px;
-      font-size: 11px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
       color: #333;
       border-left: 3px solid #84a5c9;
+      transition: all 0.2s;
+    }
+
+    .update-item:hover {
+      background: white;
+      border-left-color: #d1136b;
+      transform: translateX(3px);
     }
 
     .update-item strong {
       color: #d1136b;
       font-weight: bold;
+      margin-right: 8px;
     }
 
-    /* VERSÃO MOBILE */
+    /* RESPONSIVIDADE */
     @media (max-width: 600px) {
       .cards-grid {
         grid-template-columns: 1fr;
@@ -167,15 +176,14 @@
     <!-- TÍTULO PRINCIPAL -->
     <h1>📢 Atualizações do Acervo</h1>
     
-    <!-- TEXTO DE INTRODUÇÃO ESTILIZADO -->
+    <!-- TEXTO DE INTRODUÇÃO ESTILIZADO (MANTENDO O ORIGINAL) -->
     <div class="intro">
-      <strong style="color: #d1136b; font-size: 13px;">🎮 Seja bem-vindo ao Quakeman!</strong><br><br>
       Se você viveu a era do celular com botão, vai se sentir em casa aqui.<br>
-      Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br>
+      Esse é um acervo feito pra preservar os clássicos J2ME que marcaram época.<br><br>
       Pode fuçar à vontade, baixar, testar e matar a saudade.
     </div>
 
-    <!-- GRID DE JOGOS -->
+    <!-- GRID DE JOGOS - 3 CARDS LADO A LADO -->
     <div class="cards-grid">
       <!-- CARD 1 -->
       <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
@@ -183,8 +191,8 @@
           <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
         </div>
         <div class="info">
-          <div class="title">📰 O Jornaleiro</div>
-          <div class="status">"CLT e foda."</div>
+          <div class="title">O Jornaleiro</div>
+          <div class="status">CLT e foda.</div>
         </div>
       </a>
 
@@ -194,8 +202,8 @@
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
         </div>
         <div class="info">
-          <div class="title">✈️ Panic Flight</div>
-          <div class="status">"Vôos mais loucos."</div>
+          <div class="title">Panic Flight</div>
+          <div class="status">Vôos mais loucos.</div>
         </div>
       </a>
 
@@ -205,26 +213,26 @@
           <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
         </div>
         <div class="info">
-          <div class="title">💀 Death Traps 2</div>
-          <div class="status">"Essa mina é louca."</div>
+          <div class="title">Death Traps 2</div>
+          <div class="status">Essa mina é louca.</div>
         </div>
       </a>
     </div>
 
-    <!-- SEÇÃO DE NOVIDADES (OPCIONAL) -->
+    <!-- SEÇÃO DE NOVIDADES (MANTIDA) -->
     <div class="updates-section">
       <div class="updates-title">
         <span>⚡</span> Últimas novidades
       </div>
       
       <div class="update-item">
-        <strong>📌 28/02/2026</strong> - Novo layout do site no estilo Orkut!
+        <strong>28/02/2026</strong> Novo layout do site no estilo Orkut!
       </div>
       <div class="update-item">
-        <strong>📌 25/02/2026</strong> - Adicionada tradução de "O Jornaleiro"
+        <strong>25/02/2026</strong> Adicionada tradução de "O Jornaleiro"
       </div>
       <div class="update-item">
-        <strong>📌 20/02/2026</strong> - Emulador online disponível na seção Extras
+        <strong>20/02/2026</strong> Emulador online disponível na seção Extras
       </div>
     </div>
   </div>
