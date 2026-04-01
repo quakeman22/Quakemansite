@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clínica Empathy — Terapia ABA | Barcarena, PA</title>
+  <meta name="description" content="Clínica especializada em transtorno do neurodesenvolvimento, terapia ABA com empatia e cuidado multidisciplinar em Barcarena-PA."/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --plum: #6B3FA0;
+      --plum-dark: #4A2870;
+      --plum-light: #9B6DD0;
+      --rose: #E8607A;
+      --rose-light: #F5A0B0;
+      --peach: #F7B89A;
+      --mint: #7EC8B0;
+      --cream: #FDF8F5;
+      --warm-white: #FFFBF8;
+      --text-dark: #1A1228;
+      --text-mid: #4A3F5C;
+      --text-light: #8A7F9A;
+      --border: rgba(107,63,160,0.12);
+      --shadow-soft: 0 20px 60px rgba(107,63,160,0.12);
+      --shadow-card: 0 4px 24px rgba(107,63,160,0.10);
+      --grad-hero: linear-gradient(135deg, #1A0A2E 0%, #3D1A6E 40%, #6B3FA0 100%);
+      --grad-accent: linear-gradient(135deg, #E8607A, #F7B89A);
+      --grad-mint: linear-gradient(135deg, #7EC8B0, #4AADA0);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ─── CURSOR ─── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--rose);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(232,96,122,0.5);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transition: transform 0.25s cubic-bezier(.25,.46,.45,.94), width 0.3s, height 0.3s, border-color 0.3s;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 2rem;
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(253,248,245,0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 var(--border), var(--shadow-card);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 44px; height: 44px;
+      background: var(--grad-accent);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: white;
+      box-shadow: 0 4px 14px rgba(232,96,122,0.35);
+    }
+    .nav-logo-text {
+      display: flex; flex-direction: column;
+    }
+    .nav-logo-text strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--plum-dark);
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-logo.light .nav-logo-text strong { color: white; }
+    .nav-logo.light .nav-logo-text span { color: rgba(255,255,255,0.6); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 0.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--plum);
+      background: rgba(107,63,160,0.08);
+    }
+    .navbar.light-nav .nav-links a { color: rgba(255,255,255,0.8); }
+    .navbar.light-nav .nav-links a:hover { color: white; background: rgba(255,255,255,0.12); }
+    .navbar.light-nav .nav-links a.active { color: white; background: rgba(255,255,255,0.15); }
+
+    .nav-cta {
+      background: var(--grad-accent) !important;
+      color: white !important;
+      border-radius: 50px !important;
+      padding: 0.6rem 1.4rem !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(232,96,122,0.3);
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,96,122,0.4) !important;
+      background: var(--grad-accent) !important;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ─── HERO ─── */
+    #hero-section {
+      min-height: 100vh;
+      background: var(--grad-hero);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-particles {
+      position: absolute; inset: 0; overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: blobPulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes blobPulse {
+      from { transform: scale(1) translate(0,0); }
+      to { transform: scale(1.15) translate(20px, -20px); }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-left {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s ease both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--peach);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 0.8s ease 0.1s both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--peach);
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      animation: fadeInDown 0.8s ease 0.2s both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeInDown 0.8s ease 0.3s both;
+    }
+    .btn-primary {
+      background: var(--grad-accent);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 8px 24px rgba(232,96,122,0.35);
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(232,96,122,0.45);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      display: flex; gap: 2rem;
+      margin-top: 3rem;
+      animation: fadeInDown 0.8s ease 0.4s both;
+    }
+    .hero-stat {
+      display: flex; flex-direction: column;
+    }
+    .hero-stat strong {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--peach);
+      font-family: 'DM Serif Display', serif;
+    }
+    .hero-stat span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-right {
+      position: relative;
+      animation: fadeInRight 1s ease 0.3s both;
+    }
+    @keyframes fadeInRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+    .hero-mockup {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 28px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    }
+    .mockup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .mockup-dots {
+      display: flex; gap: 6px;
+    }
+    .mockup-dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .mockup-dots span:nth-child(1) { background: #FF5F57; }
+    .mockup-dots span:nth-child(2) { background: #FFBD2E; }
+    .mockup-dots span:nth-child(3) { background: #28CA41; }
+    .mockup-title-bar {
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08); padding: 0.3rem 1rem;
+      border-radius: 20px;
+    }
+    .mockup-section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.8rem;
+    }
+    .mockup-calendar-mini {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 1.5rem;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+      padding: 4px 0;
+      text-transform: uppercase;
+    }
+    .cal-day {
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+      padding: 6px 4px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cal-day:hover { background: rgba(255,255,255,0.1); }
+    .cal-day.today {
+      background: var(--grad-accent);
+      color: white;
+      font-weight: 700;
+    }
+    .cal-day.has-appt {
+      position: relative;
+    }
+    .cal-day.has-appt::after {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--mint);
+      position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+    }
+    .cal-day.other-month { color: rgba(255,255,255,0.2); }
+    .mockup-upcoming {
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .mock-appt {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .mock-appt-color {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .mock-appt-info { flex: 1; min-width: 0; }
+    .mock-appt-name { font-size: 0.8rem; font-weight: 600; color: white; }
+    .mock-appt-time { font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+    .mock-appt-badge {
+      font-size: 0.65rem; font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+    }
+
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: bounceY 2s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes bounceY { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    /* ─── SECTION WRAPPER ─── */
+    .page-section {
+      padding: 6rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--rose);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-title span { color: var(--plum); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .section-head {
+      margin-bottom: 4rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-main {
+      width: 100%;
+      border-radius: 28px;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      box-shadow: var(--shadow-soft);
+    }
+    .about-image-accent {
+      position: absolute;
+      bottom: -2rem; right: -2rem;
+      width: 55%;
+      border-radius: 20px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 6px solid var(--cream);
+      box-shadow: var(--shadow-soft);
+    }
+    .about-badge-float {
+      position: absolute;
+      top: 2rem; left: -1.5rem;
+      background: white;
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      box-shadow: var(--shadow-card);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .about-badge-float .icon { font-size: 1.5rem; }
+    .values-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      margin: 2rem 0;
+    }
+    .values-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .values-list .icon-wrap {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .values-list li strong { display: block; font-weight: 600; margin-bottom: 0.1rem; }
+    .values-list li p { font-size: 0.9rem; color: var(--text-light); }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(.25,.46,.45,.94);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: 24px;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-soft);
+      border-color: transparent;
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.card-plum:hover { background: linear-gradient(135deg, #F8F4FF, #EDE4FF); }
+    .service-card.card-rose:hover { background: linear-gradient(135deg, #FFF4F6, #FFE4E8); }
+    .service-card.card-mint:hover { background: linear-gradient(135deg, #F2FBF8, #DFFFFB); }
+    .service-card.card-peach:hover { background: linear-gradient(135deg, #FFF8F4, #FFE8D6); }
+    .service-icon {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text-dark);
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .service-card .learn-more {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      color: var(--plum);
+      transition: gap 0.2s;
+    }
+    .service-card:hover .learn-more { gap: 10px; }
+
+    /* ─── GALLERY ─── */
+    .gallery-wrapper {
+      overflow: hidden;
+    }
+    .gallery-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 1rem;
+    }
+    .gallery-scroll::-webkit-scrollbar { display: none; }
+    .gallery-item {
+      flex: 0 0 380px;
+      scroll-snap-align: start;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,10,46,0.8), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex; align-items: flex-end; padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay-text { color: white; font-weight: 600; font-size: 1rem; }
+    .gallery-controls {
+      display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;
+    }
+    .gallery-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--plum);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .gallery-btn:hover {
+      background: var(--plum);
+      color: white;
+      border-color: var(--plum);
+    }
+
+    /* ─── TEAM ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .team-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); }
+    .team-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .team-info {
+      padding: 1.5rem;
+    }
+    .team-info h3 { font-weight: 600; margin-bottom: 0.2rem; }
+    .team-info .role {
+      font-size: 0.82rem;
+      color: var(--plum);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+    .team-info p { font-size: 0.85rem; color: var(--text-light); }
+    .team-socials { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .team-social {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--plum);
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .team-social:hover { background: var(--plum); color: white; }
+
+    /* ─── SCHEDULING SYSTEM ─── */
+    .scheduling-hero {
+      background: var(--grad-hero);
+      border-radius: 32px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem;
+    }
+    .scheduling-hero::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,109,208,0.3), transparent);
+      top: -100px; right: -100px;
+    }
+    .scheduling-hero-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .scheduling-hero-text p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+    .scheduling-hero-stats {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      z-index: 1; position: relative;
+    }
+    .sched-stat {
+      text-align: center;
+    }
+    .sched-stat strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--peach);
+      font-family: 'DM Serif Display', serif;
+    }
+    .sched-stat span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .scheduling-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr 340px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* Sidebar */
+    .sched-sidebar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .sched-sidebar-head {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sched-sidebar-head h3 { font-size: 1rem; font-weight: 600; }
+    .search-box {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .search-box i {
+      position: absolute;
+      left: 2rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-light); font-size: 0.85rem;
+    }
+    .search-box input {
+      width: 100%;
+      background: var(--cream);
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1rem 0.7rem 2.2rem;
+      font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      color: var(--text-dark);
+    }
+    .patients-list { max-height: 420px; overflow-y: auto; }
+    .patients-list::-webkit-scrollbar { width: 4px; }
+    .patients-list::-webkit-scrollbar-track { background: transparent; }
+    .patients-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .patient-item {
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-bottom: 1px solid rgba(107,63,160,0.05);
+    }
+    .patient-item:hover, .patient-item.selected { background: #F8F4FF; }
+    .patient-item.selected { border-left: 3px solid var(--plum); }
+    .patient-avatar {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .patient-info { flex: 1; min-width: 0; }
+    .patient-name { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .patient-detail { font-size: 0.75rem; color: var(--text-light); }
+    .patient-badge {
+      font-size: 0.65rem; font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Calendar */
+    .sched-calendar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .cal-header {
+      padding: 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-month-title {
+      font-weight: 600; font-size: 1rem;
+    }
+    .cal-nav {
+      display: flex; gap: 0.5rem;
+    }
+    .cal-nav-btn {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text-mid);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      font-size: 0.8rem;
+    }
+    .cal-nav-btn:hover { background: var(--cream); }
+    .cal-view-tabs {
+      display: flex; gap: 0.3rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-view-tab {
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-light);
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cal-view-tab.active, .cal-view-tab:hover {
+      background: #F8F4FF;
+      color: var(--plum);
+    }
+    .cal-grid-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 0.8rem 1.5rem 0;
+      gap: 0;
+    }
+    .cal-grid-header span {
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 0;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 0.5rem 1.5rem 1.5rem;
+      gap: 4px;
+    }
+    .cal-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cal-cell:hover { background: var(--cream); }
+    .cal-cell.other { color: var(--text-light); opacity: 0.4; }
+    .cal-cell.today {
+      background: var(--grad-accent) !important;
+      color: white !important;
+      font-weight: 700;
+    }
+    .cal-cell.selected {
+      background: var(--plum);
+      color: white;
+      font-weight: 700;
+    }
+    .cal-cell.has-events::after {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--mint);
+      position: absolute;
+      bottom: 3px;
+    }
+    .cal-cell.today.has-events::after { background: rgba(255,255,255,0.8); }
+
+    .week-view {
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: 60px repeat(5, 1fr);
+      gap: 0;
+      min-width: 600px;
+    }
+    .time-col { color: var(--text-light); font-size: 0.72rem; text-align: right; padding-right: 1rem; }
+    .week-day-header {
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      border-bottom: 1px solid var(--border);
+    }
+    .week-day-header.today { color: var(--rose); }
+    .time-slot {
+      height: 50px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .week-event {
+      position: absolute;
+      left: 4px; right: 4px;
+      border-radius: 8px;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+    .week-event:hover { transform: scale(1.02); z-index: 10; }
+
+    /* Right panel */
+    .sched-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .panel-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .panel-card-head {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .panel-card-head h3 { font-size: 0.95rem; font-weight: 600; }
+    .panel-card-body { padding: 1.5rem; }
+    .new-appt-btn {
+      width: 100%;
+      background: var(--grad-accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 4px 14px rgba(232,96,122,0.25);
+      margin-bottom: 1rem;
+    }
+    .new-appt-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,96,122,0.35); }
+
+    .today-list {
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .today-appt {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .today-appt:hover { background: var(--cream); border-color: var(--border); }
+    .today-appt.active-now { background: #F8F4FF; border-color: rgba(107,63,160,0.2); }
+    .appt-time-tag {
+      display: flex; flex-direction: column; align-items: center;
+      width: 42px; flex-shrink: 0;
+    }
+    .appt-time-tag .time { font-size: 0.72rem; font-weight: 700; color: var(--text-dark); }
+    .appt-time-tag .ampm { font-size: 0.6rem; color: var(--text-light); }
+    .appt-divider {
+      width: 1px; height: 100%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .appt-bar {
+      width: 4px; height: 40px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .appt-detail { flex: 1; min-width: 0; }
+    .appt-patient { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .appt-type { font-size: 0.75rem; color: var(--text-light); }
+    .appt-status {
+      font-size: 0.65rem; font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Stats panel */
+    .mini-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
+    }
+    .mini-stat {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .mini-stat .icon { font-size: 1.2rem; }
+    .mini-stat strong { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
+    .mini-stat span { font-size: 0.75rem; color: var(--text-light); }
+    .mini-stat .trend {
+      font-size: 0.72rem; font-weight: 600;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .trend.up { color: var(--mint); }
+    .trend.down { color: var(--rose); }
+
+    /* Progress bar */
+    .progress-item { margin-bottom: 1.2rem; }
+    .progress-item:last-child { margin-bottom: 0; }
+    .progress-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.82rem;
+    }
+    .progress-label span { color: var(--text-mid); }
+    .progress-label strong { color: var(--text-dark); }
+    .progress-bar {
+      height: 8px;
+      background: var(--cream);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width 1s cubic-bezier(.25,.46,.45,.94);
+    }
+
+    /* ─── BOOKING MODAL ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(26,10,46,0.6);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .modal {
+      background: white;
+      border-radius: 28px;
+      width: 100%; max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      animation: slideUp 0.4s cubic-bezier(.25,.46,.45,.94);
+    }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-header {
+      padding: 2rem 2rem 1.5rem;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+    }
+    .modal-header p { font-size: 0.85rem; color: var(--text-light); margin-top: 0.2rem; }
+    .modal-close {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-light);
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    .modal-close:hover { background: var(--cream); color: var(--text-dark); }
+    .modal-body { padding: 1.5rem 2rem 2rem; }
+    .modal-steps {
+      display: flex; gap: 0; margin-bottom: 2rem; overflow: hidden;
+      border: 1px solid var(--border); border-radius: 12px;
+    }
+    .modal-step {
+      flex: 1;
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-light);
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-right: 1px solid var(--border);
+    }
+    .modal-step:last-child { border-right: none; }
+    .modal-step.active {
+      background: var(--plum);
+      color: white;
+    }
+    .modal-step.done {
+      background: #F8F4FF;
+      color: var(--plum);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--plum);
+      background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .time-slots {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+    }
+    .time-slot-btn {
+      padding: 0.6rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--cream);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      color: var(--text-mid);
+      font-family: 'DM Sans', sans-serif;
+    }
+    .time-slot-btn:hover { border-color: var(--plum); color: var(--plum); background: #F8F4FF; }
+    .time-slot-btn.selected { background: var(--plum); color: white; border-color: var(--plum); }
+    .time-slot-btn.occupied {
+      opacity: 0.4;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    .specialist-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
+    }
+    .specialist-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--cream);
+    }
+    .specialist-card:hover { border-color: var(--plum); background: #F8F4FF; }
+    .specialist-card.selected { border-color: var(--plum); background: #F8F4FF; }
+    .specialist-name { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+    .specialist-role { font-size: 0.75rem; color: var(--text-light); }
+    .specialist-avail { font-size: 0.7rem; color: var(--mint); font-weight: 500; margin-top: 0.2rem; }
+    .modal-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-back {
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-back:hover { background: var(--cream); }
+    .btn-next {
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      border: none;
+      background: var(--grad-accent);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(232,96,122,0.25);
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,96,122,0.35); }
+
+    /* Confirmation */
+    .confirmation-card {
+      background: linear-gradient(135deg, #F8F4FF, #EDE4FF);
+      border: 1px solid rgba(107,63,160,0.2);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .confirmation-icon {
+      width: 60px; height: 60px;
+      background: var(--grad-accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin: 0 auto 1rem;
+    }
+    .confirmation-details {
+      background: white;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .conf-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .conf-row:last-child { border-bottom: none; }
+    .conf-row span:first-child { color: var(--text-light); }
+    .conf-row span:last-child { font-weight: 600; color: var(--text-dark); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info {}
+    .contact-info-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info-card h3 {
+      font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-info-card h3 i { color: var(--rose); }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .contact-detail-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--plum);
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .contact-detail-text strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+    .contact-detail-text span { font-size: 0.82rem; color: var(--text-light); }
+    .hours-grid {
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.85rem;
+    }
+    .hours-row span:first-child { color: var(--text-mid); }
+    .hours-row span:last-child { font-weight: 600; color: var(--text-dark); }
+    .hours-row.closed span:last-child { color: var(--text-light); }
+    .contact-form-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+    .contact-form-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .contact-form-card > p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2rem; }
+    .form-submit-btn {
+      width: 100%;
+      background: var(--grad-accent);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 1.1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 4px 14px rgba(232,96,122,0.25);
+    }
+    .form-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,96,122,0.35); }
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 240px;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+    .map-container iframe { width: 100%; height: 100%; border: none; }
+    .social-links {
+      display: flex; gap: 0.8rem; margin-top: 1rem;
+    }
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--plum);
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-link:hover { background: var(--plum); color: white; border-color: var(--plum); transform: translateY(-3px); }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.7);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.8; margin-top: 1rem; color: rgba(255,255,255,0.5); }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+    }
+
+    /* ─── NOTIFICATION TOAST ─── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      box-shadow: var(--shadow-soft);
+      z-index: 5000;
+      transform: translateX(200%);
+      transition: transform 0.4s cubic-bezier(.25,.46,.45,.94);
+      max-width: 360px;
+    }
+    .toast.show { transform: translateX(0); }
+    .toast-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .toast-text strong { font-size: 0.9rem; display: block; color: var(--text-dark); }
+    .toast-text span { font-size: 0.8rem; color: var(--text-light); }
+    .toast-close { margin-left: auto; cursor: pointer; color: var(--text-light); font-size: 0.85rem; }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .scheduling-layout { grid-template-columns: 1fr 1fr; }
+      .sched-sidebar { display: none; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .scheduling-layout { grid-template-columns: 1fr; }
+      .sched-calendar { order: -1; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .page-section { padding: 4rem 1.5rem; }
+      .scheduling-hero { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem; left: 2rem;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.5rem;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 900;
+      animation: waPulse 2s ease-in-out infinite;
+      transition: transform 0.3s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
+      50% { box-shadow: 0 8px 24px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5591999999999" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon" style="background:#E8F8F0; color:#2ECC71;">✓</div>
+  <div class="toast-text">
+    <strong id="toast-title">Consulta agendada!</strong>
+    <span id="toast-msg">Você receberá uma confirmação em breve.</span>
+  </div>
+  <div class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar light-nav" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo light" id="navLogo">
+      <div class="nav-logo-icon"><i class="fas fa-heart"></i></div>
+      <div class="nav-logo-text">
+        <strong>Empathy</strong>
+        <span>Clínica Especializada</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="navigate('home')" class="active" id="nav-home">Início</a></li>
+      <li><a onclick="navigate('sobre')" id="nav-sobre">Quem Somos</a></li>
+      <li><a onclick="navigate('servicos')" id="nav-servicos">Serviços</a></li>
+      <li><a onclick="navigate('galeria')" id="nav-galeria">Galeria</a></li>
+      <li><a onclick="navigate('agendamento')" id="nav-agendamento">Agendamento</a></li>
+      <li><a onclick="navigate('contato')" id="nav-contato">Contato</a></li>
+      <li><a onclick="openModal()" class="nav-cta"><i class="fas fa-calendar-plus"></i> Agendar Consulta</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ SECTION: HOME ═══ -->
+<section class="section active" id="section-home">
+  <!-- HERO -->
+  <div id="hero-section">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(155,109,208,0.25),transparent);top:-200px;right:-100px;"></div>
+    <div class="hero-blob" style="width:400px;height:400px;background:radial-gradient(circle,rgba(232,96,122,0.15),transparent);bottom:-100px;left:-50px;animation-delay:4s;"></div>
+
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="dot"></div>
+          Barcarena · Pará · Referência em ABA
+        </div>
+        <h1 class="hero-title">
+          Cuidado que <em>transforma</em><br>vidas com ciência
+        </h1>
+        <p class="hero-subtitle">
+          Terapia ABA, Psicologia, Fonoaudiologia e Terapia Ocupacional em um ambiente acolhedor e humanizado. Cada criança, uma jornada única.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="openModal()">
+            <i class="fas fa-calendar-plus"></i> Agendar Consulta
+          </button>
+          <button class="btn-outline" onclick="navigate('sobre')">
+            Conhecer a Clínica <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>200+</strong>
+            <span>Famílias atendidas</span>
+          </div>
+          <div class="hero-stat">
+            <strong>8</strong>
+            <span>Especialistas</span>
+          </div>
+          <div class="hero-stat">
+            <strong>5★</strong>
+            <span>Avaliação média</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mockup-title-bar">Sistema de Agendamento</div>
+            <div style="width:60px;"></div>
+          </div>
+          <div class="mockup-section-title">Março 2026</div>
+          <div class="mockup-calendar-mini" id="miniCal"></div>
+          <div class="mockup-section-title">Próximas Consultas</div>
+          <div class="mockup-upcoming">
+            <div class="mock-appt">
+              <div class="mock-appt-color" style="background:rgba(126,200,176,0.2);color:#7EC8B0;">🧠</div>
+              <div class="mock-appt-info">
+                <div class="mock-appt-name">Lucas M. — Terapia ABA</div>
+                <div class="mock-appt-time">08:00 · Dra. Ana Paula</div>
+              </div>
+              <div class="mock-appt-badge" style="background:rgba(126,200,176,0.2);color:#5DAA90;">Confirmado</div>
+            </div>
+            <div class="mock-appt">
+              <div class="mock-appt-color" style="background:rgba(232,96,122,0.2);color:#E8607A;">💬</div>
+              <div class="mock-appt-info">
+                <div class="mock-appt-name">Sofia R. — Fonoaudiologia</div>
+                <div class="mock-appt-time">09:30 · Dr. Carlos</div>
+              </div>
+              <div class="mock-appt-badge" style="background:rgba(247,184,154,0.3);color:#C07040;">Aguardando</div>
+            </div>
+            <div class="mock-appt">
+              <div class="mock-appt-color" style="background:rgba(107,63,160,0.2);color:#9B6DD0;">🎯</div>
+              <div class="mock-appt-info">
+                <div class="mock-appt-name">Pedro A. — T. Ocupacional</div>
+                <div class="mock-appt-time">11:00 · Dra. Mariana</div>
+              </div>
+              <div class="mock-appt-badge" style="background:rgba(107,63,160,0.15);color:#7A50B0;">Confirmado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Rolar</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <!-- Services preview -->
+  <div style="background:white; padding:5rem 2rem;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="section-head" style="text-align:center; max-width:600px; margin:0 auto 4rem;">
+        <div class="section-label">Nossas Especialidades</div>
+        <h2 class="section-title">Terapias que <span>transformam</span></h2>
+        <p class="section-sub" style="margin:0 auto;">Abordagem multidisciplinar com base científica para cada fase do desenvolvimento.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card card-plum reveal">
+          <div class="service-icon" style="background:#F8F4FF; color:var(--plum);">🧠</div>
+          <h3>Terapia ABA</h3>
+          <p>Análise Aplicada do Comportamento com protocolos individualizados e evidência científica robusta para TEA e neurodesenvolvimento.</p>
+          <div class="learn-more" style="color:var(--plum);">Saiba mais <i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card card-rose reveal reveal-delay-1">
+          <div class="service-icon" style="background:#FFF4F6; color:var(--rose);">💬</div>
+          <h3>Fonoaudiologia</h3>
+          <p>Avaliação e intervenção em linguagem, fala, voz e comunicação alternativa e aumentativa (CAA).</p>
+          <div class="learn-more" style="color:var(--rose);">Saiba mais <i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card card-mint reveal reveal-delay-2">
+          <div class="service-icon" style="background:#F2FBF8; color:var(--mint);">🎯</div>
+          <h3>Terapia Ocupacional</h3>
+          <p>Integração sensorial, coordenação motora, AVDs e habilidades de vida diária para maior autonomia.</p>
+          <div class="learn-more" style="color:var(--mint);">Saiba mais <i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card card-peach reveal reveal-delay-3">
+          <div class="service-icon" style="background:#FFF8F4; color:#C07040;">🧩</div>
+          <h3>Psicologia</h3>
+          <p>Acompanhamento psicológico para crianças, adolescentes e famílias. Orientação parental especializada.</p>
+          <div class="learn-more" style="color:#C07040;">Saiba mais <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div style="background:var(--cream); padding:5rem 2rem;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="section-head" style="text-align:center; max-width:600px; margin:0 auto 4rem;">
+        <div class="section-label">Depoimentos</div>
+        <h2 class="section-title">O que as famílias <span>dizem</span></h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;">
+        <div style="background:white; border-radius:24px; padding:2rem; border:1px solid var(--border);" class="reveal">
+          <div style="display:flex;gap:4px;margin-bottom:1rem;">★★★★★</div>
+          <p style="font-size:0.95rem; color:var(--text-mid); line-height:1.8;">"A Empathy mudou completamente a vida do meu filho. A equipe é incrível, carinhosa e muito profissional. Vemos a evolução a cada sessão."</p>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--grad-accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">M</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;">Maria Fernanda S.</div>
+              <div style="font-size:0.78rem;color:var(--text-light);">Mãe do Lucas, 5 anos</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:white; border-radius:24px; padding:2rem; border:1px solid var(--border);" class="reveal reveal-delay-1">
+          <div style="display:flex;gap:4px;margin-bottom:1rem;">★★★★★</div>
+          <p style="font-size:0.95rem; color:var(--text-mid); line-height:1.8;">"Estrutura linda, profissionais dedicados e um sistema de agendamento super fácil de usar. Recomendo demais para todas as famílias!"</p>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem;">
+            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7EC8B0,#4AADA0);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">R</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;">Roberto Alves</div>
+              <div style="font-size:0.78rem;color:var(--text-light);">Pai da Sofia, 7 anos</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:white; border-radius:24px; padding:2rem; border:1px solid var(--border);" class="reveal reveal-delay-2">
+          <div style="display:flex;gap:4px;margin-bottom:1rem;">★★★★★</div>
+          <p style="font-size:0.95rem; color:var(--text-mid); line-height:1.8;">"Nossa filha ama ir à clínica! O ambiente é acolhedor, colorido e seguro. A evolução na fala foi surpreendente em apenas 3 meses."</p>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem;">
+            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--plum),var(--plum-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">C</div>
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;">Cristiane Monteiro</div>
+              <div style="font-size:0.78rem;color:var(--text-light);">Mãe da Vitória, 4 anos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION: SOBRE ═══ -->
+<section class="section" id="section-sobre">
+  <div style="padding-top:80px; background:white;">
+    <div class="page-section">
+      <div class="about-grid">
+        <div class="about-image-wrap">
+          <img class="about-image-main" src="https://images.unsplash.com/photo-1576765608622-067973a79f53?w=600&q=80" alt="Clínica Empathy"/>
+          <img class="about-image-accent" src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&q=80" alt="Terapia"/>
+          <div class="about-badge-float">
+            <div class="icon">🏆</div>
+            <div>
+              <strong>Referência</strong>
+              <div style="font-size:0.72rem;color:var(--text-light);font-weight:400;">em Barcarena-PA</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">Quem Somos</div>
+          <h2 class="section-title">Onde ciência e <span>empatia</span> se encontram</h2>
+          <p style="color:var(--text-mid); line-height:1.8; margin-bottom:1.5rem;">
+            A Clínica Empathy nasceu do sonho de criar um espaço onde cada criança e família se sentisse verdadeiramente acolhida. Somos referência em Barcarena-PA no atendimento especializado em transtornos do neurodesenvolvimento.
+          </p>
+          <p style="color:var(--text-mid); line-height:1.8; margin-bottom:2rem;">
+            Nossa abordagem combina a rigorosidade científica da Terapia ABA com a calor humano que cada família merece. Porque desenvolvimento não se mede apenas em metas — se mede em sorrisos.
+          </p>
+          <ul class="values-list">
+            <li>
+              <div class="icon-wrap" style="background:#F8F4FF; color:var(--plum);"><i class="fas fa-heart"></i></div>
+              <div><strong>Atendimento Humanizado</strong><p>Cada criança é única. Nossos protocolos são 100% individualizados.</p></div>
+            </li>
+            <li>
+              <div class="icon-wrap" style="background:#F2FBF8; color:var(--mint);"><i class="fas fa-microscope"></i></div>
+              <div><strong>Base Científica</strong><p>Intervenções baseadas nas melhores evidências em neurodesenvolvimento.</p></div>
+            </li>
+            <li>
+              <div class="icon-wrap" style="background:#FFF4F6; color:var(--rose);"><i class="fas fa-users"></i></div>
+              <div><strong>Família no Centro</strong><p>Orientamos e capacitamos as famílias para maximizar os resultados.</p></div>
+            </li>
+          </ul>
+          <button class="btn-primary" style="margin-top:1rem;" onclick="navigate('contato')">
+            Falar com a equipe <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div style="background:var(--cream); padding:5rem 2rem;">
+      <div style="max-width:1280px; margin:0 auto;">
+        <div class="section-head" style="text-align:center; max-width:500px; margin:0 auto 4rem;">
+          <div class="section-label">Nossa Equipe</div>
+          <h2 class="section-title">Profissionais <span>dedicados</span></h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <img class="team-image" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80" alt="Dra. Ana Paula"/>
+            <div class="team-info">
+              <h3>Dra. Ana Paula Costa</h3>
+              <div class="role">Psicóloga ABA · CRP 09/12345</div>
+              <p>Especialista em Terapia ABA com 8 anos de experiência em TEA e TDAH.</p>
+              <div class="team-socials">
+                <a class="team-social" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="team-social" href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-1">
+            <img class="team-image" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80" alt="Dr. Carlos"/>
+            <div class="team-info">
+              <h3>Dr. Carlos Henrique</h3>
+              <div class="role">Fonoaudiólogo · CRFa 12/678</div>
+              <p>Especialista em linguagem infantil, CAA e distúrbios de comunicação.</p>
+              <div class="team-socials">
+                <a class="team-social" href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <img class="team-image" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80" alt="Dra. Mariana"/>
+            <div class="team-info">
+              <h3>Dra. Mariana Lopes</h3>
+              <div class="role">Terapeuta Ocupacional · CREFITO 3/45678</div>
+              <p>Integração sensorial, desenvolvimento motor e autonomia nas AVDs.</p>
+              <div class="team-socials">
+                <a class="team-social" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="team-social" href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <img class="team-image" src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80" alt="Dr. Rafael"/>
+            <div class="team-info">
+              <h3>Dr. Rafael Matos</h3>
+              <div class="role">Psicólogo · CRP 09/98765</div>
+              <p>Avaliação psicológica, orientação parental e acompanhamento familiar.</p>
+              <div class="team-socials">
+                <a class="team-social" href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION: SERVIÇOS ═══ -->
+<section class="section" id="section-servicos">
+  <div style="padding-top:80px;">
+    <div class="page-section">
+      <div class="section-head">
+        <div class="section-label">O que oferecemos</div>
+        <h2 class="section-title">Nossas <span>Especialidades</span></h2>
+        <p class="section-sub">Cada terapia pensada para potencializar o desenvolvimento e promover autonomia.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card card-plum reveal" style="grid-column: span 2;">
+          <div style="display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:center;">
+            <div class="service-icon" style="background:#F8F4FF; color:var(--plum); width:80px; height:80px; font-size:2rem;">🧠</div>
+            <div>
+              <h3 style="font-size:1.4rem; margin-bottom:0.5rem;">Terapia ABA</h3>
+              <p style="font-size:0.95rem;">A Análise do Comportamento Aplicada (ABA) é a intervenção com maior evidência científica para Transtorno do Espectro Autista. Trabalhamos habilidades de comunicação, socialização, comportamentos adaptativos e redução de comportamentos desafiadores por meio de programas 100% individualizados.</p>
+              <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+                <span style="background:#F8F4FF; color:var(--plum); padding:0.3rem 0.8rem; border-radius:20px; font-size:0.78rem; font-weight:500;">TEA / Autismo</span>
+                <span style="background:#F8F4FF; color:var(--plum); padding:0.3rem 0.8rem; border-radius:20px; font-size:0.78rem; font-weight:500;">TDAH</span>
+                <span style="background:#F8F4FF; color:var(--plum); padding:0.3rem 0.8rem; border-radius:20px; font-size:0.78rem; font-weight:500;">Desenvolvimento atípico</span>
+                <span style="background:#F8F4FF; color:var(--plum); padding:0.3rem 0.8rem; border-radius:20px; font-size:0.78rem; font-weight:500;">Orientação parental</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-card card-rose reveal">
+          <div class="service-icon" style="background:#FFF4F6; color:var(--rose);">💬</div>
+          <h3>Fonoaudiologia</h3>
+          <p>Linguagem, fala, voz, fluência e CAA (Comunicação Alternativa e Aumentativa) para crianças com diversas necessidades.</p>
+        </div>
+        <div class="service-card card-mint reveal reveal-delay-1">
+          <div class="service-icon" style="background:#F2FBF8; color:var(--mint);">🎯</div>
+          <h3>Terapia Ocupacional</h3>
+          <p>Integração sensorial, coordenação motora fina e grossa, e habilidades de autocuidado para maior independência.</p>
+        </div>
+        <div class="service-card card-peach reveal reveal-delay-2">
+          <div class="service-icon" style="background:#FFF8F4; color:#C07040;">🧩</div>
+          <h3>Psicologia Infantil</h3>
+          <p>Avaliação e acompanhamento psicológico, com foco no bem-estar emocional da criança e suporte à família.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon" style="background:#F0F8FF; color:#5B8DEE;">👨‍👩‍👧</div>
+          <h3>Orientação Familiar</h3>
+          <p>Capacitamos as famílias com ferramentas e estratégias para generalizar os ganhos terapêuticos no dia a dia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION: GALERIA ═══ -->
+<section class="section" id="section-galeria">
+  <div style="padding-top:80px; background:white;">
+    <div class="page-section">
+      <div class="section-head">
+        <div class="section-label">Nossa Estrutura</div>
+        <h2 class="section-title">Um ambiente feito com <span>amor</span></h2>
+        <p class="section-sub">Espaços pensados para o conforto, desenvolvimento e segurança de cada criança.</p>
+      </div>
+      <div class="gallery-wrapper">
+        <div class="gallery-scroll" id="galleryScroll">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1587653915936-5a29d2b6e81f?w=800&q=80" alt="Sala de Terapia"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Sala de Terapia ABA</div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1587613864521-9ef8dfe617cc?w=800&q=80" alt="Espaço Sensorial"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Espaço de Integração Sensorial</div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" alt="Atendimento"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Atendimento Individualizado</div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1576765608622-067973a79f53?w=800&q=80" alt="Recepção"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Recepção Acolhedora</div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800&q=80" alt="Brinquedoteca"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Sala de Atividades</div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Relaxamento"/>
+            <div class="gallery-overlay"><div class="gallery-overlay-text">Espaço de Bem-Estar</div></div>
+          </div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-btn" onclick="scrollGallery(-1)"><i class="fas fa-arrow-left"></i></button>
+          <button class="gallery-btn" onclick="scrollGallery(1)"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION: AGENDAMENTO ═══ -->
+<section class="section" id="section-agendamento">
+  <div style="padding-top:80px;">
+    <div class="page-section">
+      <!-- Hero banner -->
+      <div class="scheduling-hero">
+        <div class="scheduling-hero-text" style="position:relative;z-index:1;">
+          <h2>Sistema de Agendamento</h2>
+          <p>Gerencie consultas, veja disponibilidade em tempo real e acompanhe seus pacientes.</p>
+          <div style="display:flex;gap:0.8rem;margin-top:1.5rem;">
+            <button class="btn-primary" onclick="openModal()" style="font-size:0.9rem; padding:0.8rem 1.5rem;">
+              <i class="fas fa-plus"></i> Nova Consulta
+            </button>
+            <button class="btn-outline" style="font-size:0.9rem; padding:0.8rem 1.5rem;">
+              <i class="fas fa-download"></i> Exportar
+            </button>
+          </div>
+        </div>
+        <div class="scheduling-hero-stats">
+          <div class="sched-stat">
+            <strong>24</strong>
+            <span>Esta semana</span>
+          </div>
+          <div class="sched-stat">
+            <strong>87%</strong>
+            <span>Taxa de presença</span>
+          </div>
+          <div class="sched-stat">
+            <strong>12</strong>
+            <span>Hoje</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout -->
+      <div class="scheduling-layout">
+        <!-- Pacientes -->
+        <div class="sched-sidebar">
+          <div class="sched-sidebar-head">
+            <h3>Pacientes</h3>
+            <button style="background:var(--plum);color:white;border:none;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;">+ Novo</button>
+          </div>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar paciente..." oninput="filterPatients(this.value)"/>
+          </div>
+          <div class="patients-list" id="patientsList"></div>
+        </div>
+
+        <!-- Calendar -->
+        <div class="sched-calendar">
+          <div class="cal-header">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="cal-month-title" id="calMonthTitle">Março 2026</div>
+            <button class="cal-nav-btn" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="cal-view-tabs">
+            <button class="cal-view-tab active" onclick="setView('month',this)">Mês</button>
+            <button class="cal-view-tab" onclick="setView('week',this)">Semana</button>
+            <button class="cal-view-tab" onclick="setView('day',this)">Dia</button>
+          </div>
+          <div id="calendarBody"></div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="sched-panel">
+          <div class="panel-card">
+            <div class="panel-card-body">
+              <button class="new-appt-btn" onclick="openModal()">
+                <i class="fas fa-calendar-plus"></i> Agendar Consulta
+              </button>
+              <div class="section-label" style="font-size:0.72rem;">Hoje, 31 de Março</div>
+              <div class="today-list" id="todayList"></div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3>Resumo do Mês</h3>
+            </div>
+            <div class="panel-card-body">
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <div class="icon">📅</div>
+                  <strong>96</strong>
+                  <span>Consultas</span>
+                  <div class="trend up"><i class="fas fa-arrow-up"></i> +12%</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="icon">✅</div>
+                  <strong>84</strong>
+                  <span>Realizadas</span>
+                  <div class="trend up"><i class="fas fa-arrow-up"></i> +5%</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="icon">👥</div>
+                  <strong>38</strong>
+                  <span>Pacientes</span>
+                  <div class="trend up"><i class="fas fa-arrow-up"></i> +3</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="icon">⏰</div>
+                  <strong>4</strong>
+                  <span>Cancelados</span>
+                  <div class="trend down"><i class="fas fa-arrow-down"></i> -2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3>Ocupação por Terapia</h3>
+            </div>
+            <div class="panel-card-body">
+              <div class="progress-item">
+                <div class="progress-label"><span>Terapia ABA</span><strong>78%</strong></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:78%;background:var(--grad-accent) !important; background: linear-gradient(90deg, #E8607A, #F7B89A);"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Fonoaudiologia</span><strong>65%</strong></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:65%;background:linear-gradient(90deg,#7EC8B0,#4AADA0);"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Terapia Ocupacional</span><strong>55%</strong></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:55%;background:linear-gradient(90deg,#9B6DD0,#6B3FA0);"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Psicologia</span><strong>40%</strong></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:40%;background:linear-gradient(90deg,#5B8DEE,#3A6BD4);"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION: CONTATO ═══ -->
+<section class="section" id="section-contato">
+  <div style="padding-top:80px; background:white;">
+    <div class="page-section">
+      <div class="section-head">
+        <div class="section-label">Fale Conosco</div>
+        <h2 class="section-title">Estamos aqui para <span>ajudar</span></h2>
+        <p class="section-sub">Entre em contato ou agende uma visita. Nossa equipe está pronta para te receber.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <h3><i class="fas fa-map-marker-alt"></i> Localização</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fas fa-building"></i></div>
+              <div class="contact-detail-text">
+                <strong>Endereço</strong>
+                <span>Rua Manoel Paraense, 45b — Vila dos Cabanos<br>Barcarena - PA, CEP 68447-000</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="contact-detail-text">
+                <strong>WhatsApp</strong>
+                <span>(91) 9 9999-9999</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fab fa-instagram"></i></div>
+              <div class="contact-detail-text">
+                <strong>Instagram</strong>
+                <span><a href="https://instagram.com/clinic_empathy" style="color:var(--plum); text-decoration:none;">@clinic_empathy</a></span>
+              </div>
+            </div>
+            <div class="social-links">
+              <a class="social-link" href="https://instagram.com/clinic_empathy" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a class="social-link" href="https://wa.me/5591999999999" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <h3><i class="fas fa-clock"></i> Horários</h3>
+            <div class="hours-grid">
+              <div class="hours-row"><span>Segunda–Sexta</span><span>08:00 – 18:00</span></div>
+              <div class="hours-row"><span>Sábado</span><span>08:00 – 12:00</span></div>
+              <div class="hours-row closed"><span>Domingo</span><span>Fechado</span></div>
+            </div>
+          </div>
+
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5!2d-48.625!3d-1.505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMzAnMTguMCJTIDQ4wrAzNyczMC4wIlc!5e0!3m2!1spt-BR!2sbr!4v1730000000000" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3>Envie uma mensagem</h3>
+          <p>Preencha o formulário e entraremos em contato em até 24 horas.</p>
+          <div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome completo</label>
+                <input type="text" placeholder="Seu nome"/>
+              </div>
+              <div class="form-group">
+                <label>WhatsApp</label>
+                <input type="tel" placeholder="(91) 9 9999-9999"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" placeholder="seu@email.com"/>
+            </div>
+            <div class="form-group">
+              <label>Assunto</label>
+              <select>
+                <option>Agendamento de consulta</option>
+                <option>Informações sobre terapias</option>
+                <option>Convênios e valores</option>
+                <option>Outro assunto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea placeholder="Descreva como podemos ajudar..."></textarea>
+            </div>
+            <button class="form-submit-btn" onclick="submitContact()">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </div>
+          <div style="margin-top:1.5rem; padding:1rem; background:var(--cream); border-radius:14px; display:flex; align-items:center; gap:0.8rem;">
+            <div style="font-size:1.5rem;">💚</div>
+            <p style="font-size:0.82rem; color:var(--text-light); margin:0;">Ou fale direto pelo <strong style="color:var(--text-dark);">WhatsApp</strong> para atendimento mais rápido!</p>
+            <a href="https://wa.me/5591999999999" style="margin-left:auto; background:#25D366; color:white; border:none; padding:0.5rem 1rem; border-radius:20px; font-size:0.8rem; font-weight:600; text-decoration:none; white-space:nowrap; display:flex; align-items:center; gap:6px;"><i class="fab fa-whatsapp"></i> Chamar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:1rem;">
+          <div style="width:44px;height:44px;background:var(--grad-accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:white;box-shadow:0 4px 14px rgba(232,96,122,0.35);">❤</div>
+          <div>
+            <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:white;line-height:1;">Empathy</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;">Clínica Especializada</div>
+          </div>
+        </div>
+        <p>Referência em Terapia ABA e Neurodesenvolvimento em Barcarena-PA. Empatia que transforma vidas.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a onclick="navigate('home')">Início</a></li>
+          <li><a onclick="navigate('sobre')">Quem Somos</a></li>
+          <li><a onclick="navigate('servicos')">Serviços</a></li>
+          <li><a onclick="navigate('galeria')">Galeria</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Terapias</h4>
+        <ul>
+          <li><a>Terapia ABA</a></li>
+          <li><a>Fonoaudiologia</a></li>
+          <li><a>Terapia Ocupacional</a></li>
+          <li><a>Psicologia</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a>Barcarena — PA</a></li>
+          <li><a href="https://wa.me/5591999999999">(91) 9 9999-9999</a></li>
+          <li><a href="https://instagram.com/clinic_empathy">@clinic_empathy</a></li>
+          <li><a onclick="openModal()">Agendar Consulta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Clínica Empathy — Todos os direitos reservados</span>
+      <span style="color:rgba(255,255,255,0.3);">Desenvolvido com ❤️</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── MODAL: AGENDAMENTO ─── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <h2>Agendar Consulta</h2>
+        <p>Preencha os dados para solicitar seu agendamento</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-steps">
+        <div class="modal-step active" id="step-tab-1">1 · Paciente</div>
+        <div class="modal-step" id="step-tab-2">2 · Especialista</div>
+        <div class="modal-step" id="step-tab-3">3 · Data & Hora</div>
+        <div class="modal-step" id="step-tab-4">4 · Confirmar</div>
+      </div>
+
+      <!-- Step 1 -->
+      <div id="modal-step-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome do Paciente</label>
+            <input type="text" id="modalPatientName" placeholder="Nome completo"/>
+          </div>
+          <div class="form-group">
+            <label>Data de Nascimento</label>
+            <input type="date" id="modalPatientDob"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Responsável</label>
+          <input type="text" id="modalGuardian" placeholder="Nome do responsável"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>WhatsApp do Responsável</label>
+            <input type="tel" id="modalPhone" placeholder="(91) 9 9999-9999"/>
+          </div>
+          <div class="form-group">
+            <label>Tipo de Terapia</label>
+            <select id="modalTherapy">
+              <option value="">Selecionar...</option>
+              <option>Terapia ABA</option>
+              <option>Fonoaudiologia</option>
+              <option>Terapia Ocupacional</option>
+              <option>Psicologia</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Observações</label>
+          <textarea id="modalNotes" placeholder="Informações relevantes sobre o paciente..."></textarea>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="modal-step-2" style="display:none;">
+        <div class="form-group">
+          <label>Escolha o especialista</label>
+          <div class="specialist-cards" id="specialistCards">
+            <div class="specialist-card selected" onclick="selectSpecialist(this,'Dra. Ana Paula Costa')">
+              <div class="specialist-name">Dra. Ana Paula Costa</div>
+              <div class="specialist-role">Psicóloga ABA</div>
+              <div class="specialist-avail">● Disponível hoje</div>
+            </div>
+            <div class="specialist-card" onclick="selectSpecialist(this,'Dr. Carlos Henrique')">
+              <div class="specialist-name">Dr. Carlos Henrique</div>
+              <div class="specialist-role">Fonoaudiólogo</div>
+              <div class="specialist-avail">● Disponível amanhã</div>
+            </div>
+            <div class="specialist-card" onclick="selectSpecialist(this,'Dra. Mariana Lopes')">
+              <div class="specialist-name">Dra. Mariana Lopes</div>
+              <div class="specialist-role">Terapeuta Ocupacional</div>
+              <div class="specialist-avail">● Disponível hoje</div>
+            </div>
+            <div class="specialist-card" onclick="selectSpecialist(this,'Dr. Rafael Matos')">
+              <div class="specialist-name">Dr. Rafael Matos</div>
+              <div class="specialist-role">Psicólogo</div>
+              <div class="specialist-avail" style="color:var(--rose);">● Ocupado hoje</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="modal-step-3" style="display:none;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Data da Consulta</label>
+            <input type="date" id="modalDate"/>
+          </div>
+          <div class="form-group">
+            <label>Duração</label>
+            <select id="modalDuration">
+              <option>45 minutos</option>
+              <option>1 hora</option>
+              <option>1h30</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Horário disponível</label>
+          <div class="time-slots">
+            <button class="time-slot-btn occupied">07:00</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">08:00</button>
+            <button class="time-slot-btn selected" onclick="selectTime(this)">08:30</button>
+            <button class="time-slot-btn occupied">09:00</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">09:30</button>
+            <button class="time-slot-btn occupied">10:00</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">10:30</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">11:00</button>
+            <button class="time-slot-btn occupied">11:30</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">13:00</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">13:30</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">14:00</button>
+            <button class="time-slot-btn occupied">14:30</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">15:00</button>
+            <button class="time-slot-btn" onclick="selectTime(this)">15:30</button>
+            <button class="time-slot-btn occupied">16:00</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div id="modal-step-4" style="display:none;">
+        <div class="confirmation-card">
+          <div class="confirmation-icon">✓</div>
+          <h3 style="font-family:'DM Serif Display',serif; font-size:1.3rem;">Confirmar Agendamento</h3>
+          <p style="font-size:0.88rem; color:var(--text-mid); margin-top:0.3rem;">Revise os dados antes de confirmar</p>
+          <div class="confirmation-details" id="confirmationDetails">
+            <div class="conf-row"><span>Paciente</span><span id="confPatient">—</span></div>
+            <div class="conf-row"><span>Especialista</span><span id="confSpecialist">Dra. Ana Paula Costa</span></div>
+            <div class="conf-row"><span>Terapia</span><span id="confTherapy">—</span></div>
+            <div class="conf-row"><span>Data</span><span id="confDate">—</span></div>
+            <div class="conf-row"><span>Horário</span><span id="confTime">08:30</span></div>
+            <div class="conf-row"><span>Duração</span><span id="confDuration">45 minutos</span></div>
+          </div>
+        </div>
+        <div style="margin-top:1rem; padding:0.8rem 1rem; background:#F2FBF8; border-radius:12px; font-size:0.82rem; color:#4A8A7A; display:flex; align-items:center; gap:8px;">
+          <i class="fas fa-info-circle"></i>
+          Você receberá uma confirmação via WhatsApp em até 30 minutos.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-back" id="modalBackBtn" onclick="modalPrev()" style="visibility:hidden;">← Voltar</button>
+        <button class="btn-next" id="modalNextBtn" onclick="modalNext()">Continuar <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── NAVIGATION ──
+  const sections = ['home','sobre','servicos','galeria','agendamento','contato'];
+  function navigate(tab) {
+    sections.forEach(s => {
+      document.getElementById('section-'+s).classList.remove('active');
+      const navEl = document.getElementById('nav-'+s);
+      if(navEl) navEl.classList.remove('active');
+    });
+    document.getElementById('section-'+tab).classList.add('active');
+    const navEl = document.getElementById('nav-'+tab);
+    if(navEl) navEl.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+
+    const nb = document.getElementById('navbar');
+    const logo = document.getElementById('navLogo');
+    if(tab === 'home') {
+      nb.classList.add('light-nav');
+      nb.classList.remove('scrolled');
+      logo.classList.add('light');
+    } else {
+      nb.classList.remove('light-nav');
+      nb.classList.add('scrolled');
+      logo.classList.remove('light');
+    }
+    // Trigger reveal
+    setTimeout(triggerReveal, 100);
+  }
+
+  // ── NAVBAR SCROLL ──
+  window.addEventListener('scroll', () => {
+    const nb = document.getElementById('navbar');
+    const logo = document.getElementById('navLogo');
+    const isHome = document.getElementById('section-home').classList.contains('active');
+    if(isHome) {
+      if(window.scrollY > 60) {
+        nb.classList.remove('light-nav'); nb.classList.add('scrolled');
+        logo.classList.remove('light');
+      } else {
+        nb.classList.add('light-nav'); nb.classList.remove('scrolled');
+        logo.classList.add('light');
+      }
+    }
+  });
+
+  // ── CURSOR ──
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX=0, mouseY=0, ringX=0, ringY=0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX-4}px,${mouseY-4}px)`;
+  });
+  (function animRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.transform = `translate(${ringX-18}px,${ringY-18}px)`;
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('button, a, .service-card, .team-card, .patient-item, .cal-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width='50px'; ring.style.height='50px'; ring.style.borderColor='rgba(232,96,122,0.8)'; });
+    el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(232,96,122,0.5)'; });
+  });
+
+  // ── PARTICLES ──
+  const colors = ['rgba(155,109,208,0.6)','rgba(232,96,122,0.5)','rgba(247,184,154,0.6)','rgba(126,200,176,0.5)'];
+  const pContainer = document.getElementById('heroParticles');
+  for(let i=0;i<30;i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random()*6+2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    pContainer.appendChild(p);
+  }
+
+  // ── MINI CALENDAR ──
+  function buildMiniCal() {
+    const cal = document.getElementById('miniCal');
+    const days = ['D','S','T','Q','Q','S','S'];
+    days.forEach(d => { const el=document.createElement('div'); el.className='cal-day-name'; el.textContent=d; cal.appendChild(el); });
+    const hasAppt=[2,5,7,10,12,14,18,21,25,28];
+    for(let i=1;i<=31;i++) {
+      const el=document.createElement('div');
+      el.className='cal-day'+(i===31?' today':'')+(hasAppt.includes(i)?' has-appt':'');
+      el.textContent=i;
+      cal.appendChild(el);
+    }
+  }
+  buildMiniCal();
+
+  // ── PATIENTS DATA ──
+  const patients = [
+    {id:1, name:'Lucas Mendes', age:'5a', therapy:'ABA', avatar:'LM', color:'#F8F4FF', textColor:'#6B3FA0', badge:'ABA', badgeBg:'rgba(107,63,160,0.1)', badgeColor:'#6B3FA0'},
+    {id:2, name:'Sofia Rodrigues', age:'7a', therapy:'Fono', avatar:'SR', color:'#FFF4F6', textColor:'#E8607A', badge:'Fono', badgeBg:'rgba(232,96,122,0.1)', badgeColor:'#E8607A'},
+    {id:3, name:'Pedro Albuquerque', age:'6a', therapy:'TO', avatar:'PA', color:'#F2FBF8', textColor:'#7EC8B0', badge:'TO', badgeBg:'rgba(126,200,176,0.15)', badgeColor:'#5DAA90'},
+    {id:4, name:'Ana Beatriz Lima', age:'4a', therapy:'ABA', avatar:'AB', color:'#F8F4FF', textColor:'#6B3FA0', badge:'ABA', badgeBg:'rgba(107,63,160,0.1)', badgeColor:'#6B3FA0'},
+    {id:5, name:'Gabriel Costa', age:'8a', therapy:'Psico', avatar:'GC', color:'#F0F8FF', textColor:'#5B8DEE', badge:'Psico', badgeBg:'rgba(91,141,238,0.1)', badgeColor:'#5B8DEE'},
+    {id:6, name:'Isabela Ferreira', age:'5a', therapy:'Fono', avatar:'IF', color:'#FFF4F6', textColor:'#E8607A', badge:'Fono', badgeBg:'rgba(232,96,122,0.1)', badgeColor:'#E8607A'},
+    {id:7, name:'Mateus Oliveira', age:'9a', therapy:'ABA', avatar:'MO', color:'#F8F4FF', textColor:'#6B3FA0', badge:'ABA', badgeBg:'rgba(107,63,160,0.1)', badgeColor:'#6B3FA0'},
+    {id:8, name:'Valentina Santos', age:'3a', therapy:'TO', avatar:'VS', color:'#F2FBF8', textColor:'#7EC8B0', badge:'TO', badgeBg:'rgba(126,200,176,0.15)', badgeColor:'#5DAA90'},
+  ];
+  let selectedPatientId = 1;
+  function renderPatients(list) {
+    const container = document.getElementById('patientsList');
+    if(!container) return;
+    container.innerHTML = '';
+    list.forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'patient-item'+(p.id===selectedPatientId?' selected':'');
+      el.onclick = () => { selectedPatientId=p.id; renderPatients(patients); };
+      el.innerHTML = `
+        <div class="patient-avatar" style="background:${p.color};color:${p.textColor};">${p.avatar}</div>
+        <div class="patient-info">
+          <div class="patient-name">${p.name}</div>
+          <div class="patient-detail">${p.age} · ${p.therapy}</div>
+        </div>
+        <div class="patient-badge" style="background:${p.badgeBg};color:${p.badgeColor};">${p.badge}</div>
+      `;
+      container.appendChild(el);
+    });
+  }
+  function filterPatients(q) {
+    const filtered = patients.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+    renderPatients(filtered);
+  }
+  renderPatients(patients);
+
+  // ── CALENDAR ──
+  let currentMonth = 2, currentYear = 2026;
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const eventDays = [2,5,7,10,12,14,15,18,21,22,25,28,29,31];
+  function renderCalendar() {
+    const title = document.getElementById('calMonthTitle');
+    const body = document.getElementById('calendarBody');
+    if(!title||!body) return;
+    title.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth+1, 0).getDate();
+    const today = new Date();
+    const isCurrentMonth = today.getMonth()===currentMonth && today.getFullYear()===currentYear;
+
+    let html = `<div class="cal-grid-header">`;
+    ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].forEach(d => { html+=`<span>${d}</span>`; });
+    html += `</div><div class="cal-grid">`;
+    for(let i=0;i<firstDay;i++) html+=`<div class="cal-cell other">${new Date(currentYear,currentMonth,1-firstDay+i).getDate()}</div>`;
+    for(let d=1;d<=daysInMonth;d++) {
+      const isToday = isCurrentMonth && d===today.getDate();
+      const hasEv = eventDays.includes(d);
+      html+=`<div class="cal-cell${isToday?' today':''}${hasEv?' has-events':''}" onclick="selectDay(${d})">${d}</div>`;
+    }
+    html += `</div>`;
+    body.innerHTML = html;
+  }
+  function changeMonth(dir) { currentMonth+=dir; if(currentMonth>11){currentMonth=0;currentYear++;} if(currentMonth<0){currentMonth=11;currentYear--;} renderCalendar(); }
+  function selectDay(d) {
+    document.querySelectorAll('.cal-cell').forEach(c => c.classList.remove('selected'));
+    event.target.classList.add('selected');
+  }
+  function setView(view, el) {
+    document.querySelectorAll('.cal-view-tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    renderCalendar();
+  }
+  renderCalendar();
+
+  // ── TODAY LIST ──
+  const todayAppts = [
+    {time:'08:00',ampm:'AM',name:'Lucas Mendes',type:'Terapia ABA',bar:'#9B6DD0',status:'Em andamento',statusBg:'rgba(107,63,160,0.15)',statusColor:'#6B3FA0',active:true},
+    {time:'09:30',ampm:'AM',name:'Sofia Rodrigues',type:'Fonoaudiologia',bar:'#E8607A',status:'Aguardando',statusBg:'rgba(247,184,154,0.3)',statusColor:'#C07040'},
+    {time:'11:00',ampm:'AM',name:'Pedro Albuquerque',type:'T. Ocupacional',bar:'#7EC8B0',status:'Confirmado',statusBg:'rgba(126,200,176,0.15)',statusColor:'#5DAA90'},
+    {time:'13:30',ampm:'PM',name:'Ana Beatriz Lima',type:'Terapia ABA',bar:'#9B6DD0',status:'Confirmado',statusBg:'rgba(107,63,160,0.15)',statusColor:'#6B3FA0'},
+    {time:'15:00',ampm:'PM',name:'Gabriel Costa',type:'Psicologia',bar:'#5B8DEE',status:'Confirmado',statusBg:'rgba(91,141,238,0.1)',statusColor:'#5B8DEE'},
+  ];
+  function renderToday() {
+    const container = document.getElementById('todayList');
+    if(!container) return;
+    container.innerHTML = todayAppts.map(a=>`
+      <div class="today-appt${a.active?' active-now':''}">
+        <div class="appt-time-tag"><div class="time">${a.time}</div><div class="ampm">${a.ampm}</div></div>
+        <div class="appt-bar" style="background:${a.bar};"></div>
+        <div class="appt-detail">
+          <div class="appt-patient">${a.name}</div>
+          <div class="appt-type">${a.type}</div>
+        </div>
+        <div class="appt-status" style="background:${a.statusBg};color:${a.statusColor};">${a.status}</div>
+      </div>
+    `).join('');
+  }
+  renderToday();
+
+  // ── GALLERY SCROLL ──
+  function scrollGallery(dir) {
+    const g = document.getElementById('galleryScroll');
+    if(g) g.scrollBy({ left: dir * 400, behavior: 'smooth' });
+  }
+
+  // ── MODAL ──
+  let modalStep = 1;
+  let selectedSpecialist = 'Dra. Ana Paula Costa';
+  let selectedTime = '08:30';
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+    goToStep(1);
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+  function goToStep(step) {
+    modalStep = step;
+    for(let i=1;i<=4;i++) {
+      document.getElementById('modal-step-'+i).style.display = i===step?'block':'none';
+      const tab = document.getElementById('step-tab-'+i);
+      tab.classList.remove('active','done');
+      if(i<step) tab.classList.add('done');
+      else if(i===step) tab.classList.add('active');
+    }
+    document.getElementById('modalBackBtn').style.visibility = step>1?'visible':'hidden';
+    const nextBtn = document.getElementById('modalNextBtn');
+    if(step===4) { nextBtn.innerHTML='<i class="fas fa-check"></i> Confirmar Agendamento'; }
+    else { nextBtn.innerHTML='Continuar <i class="fas fa-arrow-right"></i>'; }
+  }
+  function modalNext() {
+    if(modalStep===3) { updateConfirmation(); }
+    if(modalStep===4) { confirmBooking(); return; }
+    goToStep(modalStep+1);
+  }
+  function modalPrev() { if(modalStep>1) goToStep(modalStep-1); }
+  function selectSpecialist(el, name) {
+    document.querySelectorAll('.specialist-card').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSpecialist = name;
+  }
+  function selectTime(el) {
+    if(el.classList.contains('occupied')) return;
+    document.querySelectorAll('.time-slot-btn').forEach(b=>b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedTime = el.textContent;
+  }
+  function updateConfirmation() {
+    const name = document.getElementById('modalPatientName').value || '—';
+    const therapy = document.getElementById('modalTherapy').value || '—';
+    const date = document.getElementById('modalDate').value;
+    const dur = document.getElementById('modalDuration').value;
+    document.getElementById('confPatient').textContent = name;
+    document.getElementById('confSpecialist').textContent = selectedSpecialist;
+    document.getElementById('confTherapy').textContent = therapy;
+    document.getElementById('confDate').textContent = date ? new Date(date+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}) : '—';
+    document.getElementById('confTime').textContent = selectedTime;
+    document.getElementById('confDuration').textContent = dur;
+  }
+  function confirmBooking() {
+    closeModal();
+    showToast('Consulta agendada! 🎉', 'Confirmação enviada via WhatsApp em breve.');
+  }
+
+  // ── TOAST ──
+  let toastTimeout;
+  function showToast(title, msg) {
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-msg').textContent = msg;
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => t.classList.remove('show'), 5000);
+  }
+  function closeToast() { document.getElementById('toast').classList.remove('show'); }
+
+  // ── CONTACT SUBMIT ──
+  function submitContact() { showToast('Mensagem enviada! ✓', 'Entraremos em contato em até 24 horas.'); }
+
+  // ── SCROLL REVEAL ──
+  function triggerReveal() {
+    const els = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    els.forEach(el => { if(!el.classList.contains('visible')) observer.observe(el); });
+  }
+  window.addEventListener('load', triggerReveal);
+  window.addEventListener('scroll', triggerReveal);
+</script>
+</body>
+</html>
