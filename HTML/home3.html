@@ -17,18 +17,17 @@
     }
 
     body {
-      background: #FEF7FF;  /* Material 3 background */
+      background: #FEF7FF;
       font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
       height: 100vh;
       overflow: hidden;
       color: #1C1B1F;
     }
 
-    /* scroll container limpo, sem cabeçalhos extras */
     .md-scroll-container {
       height: 100%;
       overflow-y: auto;
-      padding: 16px 16px 24px 16px;
+      padding: 12px 12px 20px 12px;
       scrollbar-width: thin;
       scrollbar-color: #CAC4D0 #E8DEF8;
     }
@@ -45,75 +44,75 @@
       border-radius: 8px;
     }
 
-    /* GRADE DE CARDS - 3 colunas no estilo Material 3 */
+    /* GRADE 3 COLUNAS FIXAS (encaixa 3 na maioria) */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 10px;
     }
 
-    /* CARD MATERIAL 3 (elevation suave, cantos arredondados) */
+    /* CARD MATERIAL 3 COMPACTO */
     .game-card {
       background: #FFFFFF;
-      border-radius: 20px;
+      border-radius: 16px;
       text-decoration: none;
       overflow: hidden;
-      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+      transition: all 0.2s ease;
       border: 1px solid #E7E0EC;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
     }
 
     .game-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
       border-color: #CAC4D0;
       background: #FEF7FF;
     }
 
-    /* wrapper da imagem centralizada, fundo neutro */
+    /* Wrapper da imagem com bordas mínimas */
     .img-wrapper {
       background: #F3EDF7;
-      padding: 20px;
+      padding: 10px;         /* REDUZIDO drasticamente */
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 160px;
+      height: 110px;         /* Altura compacta (antes 160px) */
       border-bottom: 1px solid #EADDFF;
     }
 
     .game-card img {
       max-width: 100%;
-      max-height: 120px;
+      max-height: 90px;
       object-fit: contain;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
     }
 
     .game-card:hover img {
       transform: scale(1.02);
     }
 
-    /* informações do card */
+    /* Informações compactas */
     .info {
-      padding: 12px 10px 14px 10px;
+      padding: 8px 6px 10px 6px;
       text-align: center;
       background: white;
     }
 
     .title {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #1C1B1F;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: 0.1px;
+      letter-spacing: 0px;
     }
 
     .status {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #49454F;
       font-weight: 400;
       display: flex;
@@ -126,31 +125,32 @@
     }
 
     .status .material-symbols-outlined {
-      font-size: 14px;
+      font-size: 12px;
       color: #6750A4;
     }
 
-    /* pequeno footer opcional (igual ao downloads) */
     .footer-note {
       text-align: center;
-      margin-top: 28px;
-      font-size: 0.7rem;
+      margin-top: 24px;
+      font-size: 0.65rem;
       color: #A294B9;
     }
 
-    /* Responsivo: em telas muito pequenas, 2 colunas, depois 1 */
-    @media (max-width: 520px) {
+    /* Ajustes para telas muito pequenas: ainda tenta manter 3, mas se for menor que 440px, vai pra 2 colunas */
+    @media (max-width: 500px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 8px;
       }
       .img-wrapper {
-        height: 140px;
-        padding: 12px;
+        height: 100px;
+      }
+      .game-card img {
+        max-height: 80px;
       }
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: 360px) {
       .cards-grid {
         grid-template-columns: 1fr;
       }
@@ -160,7 +160,7 @@
 <body>
 
 <div class="md-scroll-container">
-  <!-- SOMENTE A GRADE DE CARDS (sem títulos, sem intro, exatamente como no estilo minimalista) -->
+  <!-- GRADE DE CARDS -->
   <div class="cards-grid">
     <!-- CARD 1 - O Jornaleiro -->
     <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank" rel="noopener noreferrer">
@@ -169,35 +169,29 @@
       </div>
       <div class="info">
         <div class="title">O Jornaleiro</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> CLT e foda
-        </div>
+        <div class="status"><span class="material-symbols-outlined">sports_esports</span> CLT e foda</div>
       </div>
     </a>
 
-    <!-- CARD 2 - Panic Flight (Scarface link original) -->
+    <!-- CARD 2 - Panic Flight -->
     <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank" rel="noopener noreferrer">
       <div class="img-wrapper">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
       </div>
       <div class="info">
         <div class="title">Panic Flight</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Vôos mais loucos
-        </div>
+        <div class="status"><span class="material-symbols-outlined">flight</span> Vôos mais loucos</div>
       </div>
     </a>
 
-    <!-- CARD 3 - Death Traps 2 (via zb3 emulador) -->
+    <!-- CARD 3 - Death Traps 2 -->
     <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank" rel="noopener noreferrer">
       <div class="img-wrapper">
         <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
       </div>
       <div class="info">
         <div class="title">Death Traps 2</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Essa mina é louca
-        </div>
+        <div class="status"><span class="material-symbols-outlined">warning</span> Essa mina é louca</div>
       </div>
     </a>
 
@@ -208,35 +202,29 @@
       </div>
       <div class="info">
         <div class="title">Guerra dos Mundos</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Na minha vez é isso
-        </div>
+        <div class="status"><span class="material-symbols-outlined">public</span> Na minha vez é isso</div>
       </div>
     </a>
 
-    <!-- CARD 5 - Onde está Wally em Hollywood -->
+    <!-- CARD 5 - Onde está Wally -->
     <a href="#" class="game-card" target="_blank" rel="noopener noreferrer">
       <div class="img-wrapper">
-        <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/360885_wheres_wally_in_ho_1.gif" alt="Onde está Wally">
+        <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/360885_wheres_wally_in_ho_1.gif" alt="Wally">
       </div>
       <div class="info">
         <div class="title">Onde está Wally em Hollywood</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Eai tua visão é boa?
-        </div>
+        <div class="status"><span class="material-symbols-outlined">visibility</span> Eai tua visão é boa?</div>
       </div>
     </a>
 
-    <!-- CARD 6 - And1 Street Basketball -->
+    <!-- CARD 6 - And1 -->
     <a href="#" class="game-card" target="_blank" rel="noopener noreferrer">
       <div class="img-wrapper">
         <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/360035_and_1_street_basketb_1.gif" alt="And1">
       </div>
       <div class="info">
         <div class="title">And1</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Monte sua equipe
-        </div>
+        <div class="status"><span class="material-symbols-outlined">sports_basketball</span> Monte sua equipe</div>
       </div>
     </a>
 
@@ -247,9 +235,7 @@
       </div>
       <div class="info">
         <div class="title">Prison Break</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Conhece os bizus da cadeia?
-        </div>
+        <div class="status"><span class="material-symbols-outlined">handcuffs</span> Conhece os bizus?</div>
       </div>
     </a>
 
@@ -260,15 +246,13 @@
       </div>
       <div class="info">
         <div class="title">R6 lockdown</div>
-        <div class="status">
-          <span class="material-symbols-outlined"></span> Estratégia é tudo
-        </div>
+        <div class="status"><span class="material-symbols-outlined">strategy</span> Estratégia é tudo</div>
       </div>
     </a>
   </div>
 
   <div class="footer-note">
-    <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;"></span> 
+    <span class="material-symbols-outlined" style="font-size: 12px;">download</span> downloads diretos · coleção J2ME traduzida
   </div>
 </div>
 
