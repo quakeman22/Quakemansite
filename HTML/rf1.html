@@ -1,78 +1,133 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Lista de Jogos - Gameloft</title>
+  <title>Real Football - Gameloft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { 
-            accent: '#5aa0e6',
-            background: '#0a0a0a',
-            container: '#111111',
-            border: '#5c606a',
-            textLight: '#f0f4f8',
-            textSoft: '#b0b8c4'
-          },
-        },
-      },
-    }
-  </script>
-  
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">
-  
+
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #0d0d0d;
+    :root {
+      --md-primary:           #D0BCFF;
+      --md-on-primary:        #381E72;
+      --md-primary-container: #4F378B;
+      --md-on-primary-container: #EADDFF;
+      --md-secondary:         #CCC2DC;
+      --md-surface:           #141218;
+      --md-surface-container-low:  #1D1B20;
+      --md-surface-container:      #211F26;
+      --md-surface-container-high: #2B2930;
+      --md-on-surface:        #E6E1E5;
+      --md-on-surface-variant:#CAC4D0;
+      --md-outline-variant:   #49454F;
     }
+
+    html, body {
+      height: 100%; margin: 0; padding: 0;
+      overflow: hidden;
+      background: var(--md-surface);
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      color: var(--md-on-surface);
+    }
+
     .scroll-container {
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      scrollbar-width: none;
+      scrollbar-width: thin;
+      scrollbar-color: var(--md-primary) var(--md-surface-container);
     }
-    .scroll-container::-webkit-scrollbar { display: none; }
-    
-    .game-row {
-      transition: all 0.2s ease;
-    }
-    .game-row:hover {
-      background: rgba(90, 160, 230, 0.12); 
-      border-left: 4px solid #5aa0e6;
-      padding-left: 1.25rem !important;
+    .scroll-container::-webkit-scrollbar { width: 4px; }
+    .scroll-container::-webkit-scrollbar-track { background: var(--md-surface-container); }
+    .scroll-container::-webkit-scrollbar-thumb { background: var(--md-primary); border-radius: 4px; }
+
+    .list-wrap {
+      padding: 8px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
+    .game-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--md-surface-container-low);
+      border-radius: 12px;
+      border: 1px solid var(--md-outline-variant);
+      text-decoration: none;
+      color: var(--md-on-surface);
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .game-row::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--md-primary);
+      opacity: 0;
+      transition: opacity 0.15s;
+      pointer-events: none;
+    }
+    .game-row:hover::before  { opacity: 0.08; }
+    .game-row:active::before { opacity: 0.12; }
+    .game-row:hover { border-color: var(--md-primary); }
+
     .game-thumb {
-      width: 68px;
-      height: 68px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
-      background: transparent;
       flex-shrink: 0;
+      border-radius: 8px;
+      margin-right: 14px;
+    }
+
+    .game-info { flex: 1; min-width: 0; }
+
+    .game-name {
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--md-on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.4;
+    }
+
+    .game-vendor {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: var(--md-primary);
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .size-chip {
+      flex-shrink: 0;
+      margin-left: 10px;
+      background: var(--md-surface-container-high);
+      border: 1px solid var(--md-outline-variant);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--md-on-surface-variant);
+      white-space: nowrap;
     }
   </style>
 </head>
-<body class="bg-background text-textLight font-pixel">
+<body>
 
   <div class="scroll-container">
-    <div class="w-full px-3 py-2">
-      <div id="gamesList" class="space-y-1">
-        </div>
-    </div>
+    <div class="list-wrap" id="gamesList"></div>
   </div>
 
   <script>
     const githubApi = 'https://api.github.com/repos/quakeman22/j2metraduzidos/contents/Vendor/GL';
-    
+
     const manualGames = [
       { title: "Real Football 2005", img: "https://i.imgur.com/gFLwhZg.png" },
       { title: "Real Football 2005", img: "https://i.imgur.com/iNAKYN8.png" },
@@ -88,7 +143,7 @@
       { title: "Real Football 2015", img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co7rko.webp" },
       { title: "Real Football 2016", img: "https://i.imgur.com/waAiBZu.png" },
       { title: "Real Football 2017", img: "https://i.imgur.com/HSFhI13.png" },
-      { title: "Real Football 2018", img: "https://i.imgur.com/jkxg36L.jpeg" }
+      { title: "Real Football 2018", img: "https://i.imgur.com/jkxg36L.jpeg" },
     ];
 
     const listContainer = document.getElementById('gamesList');
@@ -104,27 +159,26 @@
 
     function renderList(list) {
       listContainer.innerHTML = '';
-      
       list.forEach(game => {
-        const fileMatch = githubFiles.find(f => 
+        const fileMatch   = githubFiles.find(f =>
           f.name.toLowerCase().includes(game.title.toLowerCase())
         );
-        
-        const downloadUrl = fileMatch ? fileMatch.download_url : "#";
-        const fileSize = fileMatch ? (fileMatch.size / 1024).toFixed(0) + " KB" : "";
+        const downloadUrl = fileMatch ? fileMatch.download_url : '#';
+        const fileSize    = fileMatch ? (fileMatch.size / 1024).toFixed(0) + ' KB' : '';
 
         const row = document.createElement('a');
-        row.href = downloadUrl;
-        row.download = fileMatch ? fileMatch.name : "";
-        row.className = 'game-row flex items-center px-4 py-2.5 bg-container rounded-md border border-border cursor-pointer';
-        
+        row.href      = downloadUrl;
+        row.download  = fileMatch ? fileMatch.name : '';
+        row.className = 'game-row';
+
         row.innerHTML = `
-          <img src="${game.img}" class="game-thumb mr-3" onerror="this.src='https://via.placeholder.com/48?text=RF'">
-          <div class="flex-1 min-w-0">
-            <h3 class="text-sm font-medium text-textLight truncate">${game.title}</h3>
-            <p class="text-[10px] text-accent uppercase opacity-70">Gameloft</p>
+          <img src="${game.img}" class="game-thumb" alt="${game.title}"
+               onerror="this.src='https://via.placeholder.com/52?text=RF'">
+          <div class="game-info">
+            <div class="game-name">${game.title}</div>
+            <div class="game-vendor">Gameloft</div>
           </div>
-          <span class="text-xs text-textSoft ml-3 whitespace-nowrap">${fileSize}</span>
+          ${fileSize ? `<div class="size-chip">${fileSize}</div>` : ''}
         `;
         listContainer.appendChild(row);
       });
