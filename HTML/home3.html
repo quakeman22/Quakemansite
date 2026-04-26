@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Home · Quakeman J2ME</title>
   
-  <!-- Material 3 Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -18,48 +17,32 @@
 
     body {
       background: #FEF7FF;
-      font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: 'Roboto', sans-serif;
       height: 100vh;
       overflow: hidden;
-      color: #1C1B1F;
     }
 
     .md-scroll-container {
       height: 100%;
       overflow-y: auto;
-      padding: 12px 12px 20px 12px;
+      padding: 12px 12px 20px;
       scrollbar-width: thin;
-      scrollbar-color: #CAC4D0 #E8DEF8;
     }
 
-    .md-scroll-container::-webkit-scrollbar {
-      width: 6px;
-    }
-    .md-scroll-container::-webkit-scrollbar-track {
-      background: #E8DEF8;
-      border-radius: 8px;
-    }
-    .md-scroll-container::-webkit-scrollbar-thumb {
-      background: #CAC4D0;
-      border-radius: 8px;
-    }
-
-    /* GRADE 3 COLUNAS FIXAS (encaixa 3 na maioria) */
+    /* Grid 3 colunas fixas */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
-    /* CARD MATERIAL 3 COMPACTO */
     .game-card {
       background: #FFFFFF;
       border-radius: 16px;
       text-decoration: none;
       overflow: hidden;
-      transition: all 0.2s ease;
+      transition: 0.2s;
       border: 1px solid #E7E0EC;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
     }
@@ -68,25 +51,25 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.08);
       border-color: #CAC4D0;
-      background: #FEF7FF;
     }
 
-    /* Wrapper da imagem com bordas mínimas */
+    /* SEM ALTURA FIXA, SEM PADDING EXCESSIVO */
     .img-wrapper {
       background: #F3EDF7;
-      padding: 10px;         /* REDUZIDO drasticamente */
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 110px;         /* Altura compacta (antes 160px) */
-      border-bottom: 1px solid #EADDFF;
+      padding: 0;          /* zero padding - imagem encosta nas bordas */
+      /* Altura será determinada pela imagem */
     }
 
     .game-card img {
-      max-width: 100%;
-      max-height: 90px;
+      width: 100%;         /* ocupa toda largura do wrapper */
+      height: auto;        /* altura automática para manter proporção */
+      max-height: 130px;   /* limite para não ficar gigante, mas sem espaços vazios */
       object-fit: contain;
-      transition: transform 0.2s;
+      transition: 0.2s;
+      display: block;
     }
 
     .game-card:hover img {
@@ -95,7 +78,7 @@
 
     /* Informações compactas */
     .info {
-      padding: 8px 6px 10px 6px;
+      padding: 8px 6px 10px;
       text-align: center;
       background: white;
     }
@@ -108,13 +91,11 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: 0px;
     }
 
     .status {
       font-size: 0.65rem;
       color: #49454F;
-      font-weight: 400;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -136,17 +117,11 @@
       color: #A294B9;
     }
 
-    /* Ajustes para telas muito pequenas: ainda tenta manter 3, mas se for menor que 440px, vai pra 2 colunas */
-    @media (max-width: 500px) {
+    /* Responsivo: telas pequenas ainda tentam 3, se não couber 2 */
+    @media (max-width: 520px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-      }
-      .img-wrapper {
-        height: 100px;
-      }
-      .game-card img {
-        max-height: 80px;
       }
     }
 
@@ -160,10 +135,9 @@
 <body>
 
 <div class="md-scroll-container">
-  <!-- GRADE DE CARDS -->
   <div class="cards-grid">
-    <!-- CARD 1 - O Jornaleiro -->
-    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 1 -->
+    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://i.imgur.com/tOdjMps.jpeg" alt="O Jornaleiro">
       </div>
@@ -173,8 +147,8 @@
       </div>
     </a>
 
-    <!-- CARD 2 - Panic Flight -->
-    <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 2 -->
+    <a href="https://quakeman22.github.io/Quakemansite/HTML/scarface.html" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4BAqID_7qkCBeiwcQv7_dZ3DIsXPyApBnEHoKPbQ1bTwGZJDsxfO6TA&s=10" alt="Panic Flight">
       </div>
@@ -184,8 +158,8 @@
       </div>
     </a>
 
-    <!-- CARD 3 - Death Traps 2 -->
-    <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 3 -->
+    <a href="https://zb3.me/freej2me-web/web/run?app=Panic%20Flight&mobile=1" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://cdn.mobygames.com/fffb5bac-beda-11ed-9c42-02420a000140.webp" alt="Death Traps 2">
       </div>
@@ -195,8 +169,8 @@
       </div>
     </a>
 
-    <!-- CARD 4 - Guerra dos Mundos -->
-    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 4 -->
+    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/362926_war_of_the_worlds_1.gif" alt="Guerra dos Mundos">
       </div>
@@ -206,8 +180,8 @@
       </div>
     </a>
 
-    <!-- CARD 5 - Onde está Wally -->
-    <a href="#" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 5 -->
+    <a href="#" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/360885_wheres_wally_in_ho_1.gif" alt="Wally">
       </div>
@@ -217,8 +191,8 @@
       </div>
     </a>
 
-    <!-- CARD 6 - And1 -->
-    <a href="#" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 6 -->
+    <a href="#" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://downloadwap.com/thumbs4/games/preview/2020d/img/360035_and_1_street_basketb_1.gif" alt="And1">
       </div>
@@ -228,8 +202,8 @@
       </div>
     </a>
 
-    <!-- CARD 7 - Prison Break -->
-    <a href="#" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 7 -->
+    <a href="#" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://i.imgur.com/wGk0s8l.png" alt="Prison Break">
       </div>
@@ -239,8 +213,8 @@
       </div>
     </a>
 
-    <!-- CARD 8 - R6 Lockdown -->
-    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank" rel="noopener noreferrer">
+    <!-- CARD 8 -->
+    <a href="https://github.com/quakeman22/J2me-Tradu-es/blob/main/Novas%20Tradu%C3%A7%C3%B5es/PaperBoy%20Wheels%20on%20Fire%20240x320%20%5BBR%5D.jar" class="game-card" target="_blank">
       <div class="img-wrapper">
         <img src="https://i.imgur.com/Mf9Z88X.png" alt="R6 lockdown">
       </div>
