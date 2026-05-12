@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Jogoteca J2ME · Downloads</title>
-  
-  <!-- Material 3 Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <style>
     * {
@@ -17,246 +13,220 @@
     }
 
     body {
-      font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
       height: 100vh;
       overflow: hidden;
-      color: #1C1B1F;
+      color: #000;
+      background: #e4eaf4;
     }
 
-    /* scroll container - sem cabeçalho extra */
-    .md-scroll-container {
+    .page-shell {
       height: 100%;
       overflow-y: auto;
-      padding: 12px 16px 24px 16px;
+      padding: 12px 12px 18px;
       scrollbar-width: thin;
+      background: #e4eaf4;
     }
 
-    .md-scroll-container::-webkit-scrollbar {
+    .page-shell::-webkit-scrollbar {
       width: 6px;
     }
-    .md-scroll-container::-webkit-scrollbar-track {
-      background: #E8DEF8;
-      border-radius: 8px;
+    .page-shell::-webkit-scrollbar-track {
+      background: #f0f5ff;
+      border-radius: 0;
     }
-    .md-scroll-container::-webkit-scrollbar-thumb {
-      background: #CAC4D0;
-      border-radius: 8px;
+    .page-shell::-webkit-scrollbar-thumb {
+      background: #84a5c9;
+      border-radius: 0;
     }
 
-    /* Barra de pesquisa Material 3 - único elemento superior */
     .search-section {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
+      background: white;
+      border: 1px solid #9eb3cf;
+      padding: 10px;
     }
+
     .search-container {
       display: flex;
-      gap: 12px;
       align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
     }
+
     .md-input-wrapper {
       flex: 1;
       display: flex;
       align-items: center;
-      background: #FFFBFE;
-      border: 1px solid #CAC4D0;
-      border-radius: 28px;
-      padding: 6px 18px;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+      background: white;
+      border: 1px solid #a5b9d4;
+      border-radius: 0;
+      padding: 4px 8px;
     }
+
     .md-input-wrapper:focus-within {
-      border-color: #6750A4;
-      box-shadow: 0 0 0 2px rgba(103,80,164,0.2);
+      border-color: #6a90b9;
     }
-    .md-input-wrapper .material-symbols-outlined {
-      color: #6750A4;
-      font-size: 22px;
-      margin-right: 12px;
+
+    .search-icon {
+      color: #84a5c9;
+      font-weight: bold;
+      margin-right: 8px;
     }
+
     .md-input-wrapper input {
       border: none;
       background: transparent;
-      font-size: 1rem;
-      font-family: 'Roboto', sans-serif;
-      padding: 10px 0;
+      font-size: 12px;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      padding: 4px 0;
       width: 100%;
       outline: none;
-      color: #1C1B1F;
+      color: #000;
     }
+
     .md-input-wrapper input::placeholder {
-      color: #79747E;
+      color: #666;
       font-weight: 400;
     }
+
     .btn-filled {
-      background: #6750A4;
-      border: none;
-      padding: 0 24px;
-      height: 48px;
-      border-radius: 40px;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
+      background: #84a5c9;
+      border: 1px solid #6a90b9;
+      padding: 0 14px;
+      height: 30px;
+      border-radius: 0;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
       color: white;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-    .btn-filled:hover {
-      background: #5A4694;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transform: translateY(-1px);
-    }
-    .btn-filled:active {
-      transform: translateY(1px);
     }
 
-    /* LISTA DE JOGOS - cards Material Design 3 */
+    .btn-filled:hover {
+      background: #6a90b9;
+    }
+
+    .section-title {
+      background: #84a5c9;
+      color: white;
+      display: inline-block;
+      padding: 4px 10px;
+      margin: 0 0 10px 0;
+      border: 1px solid #6a90b9;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .intro-text {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
     .games-grid {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .game-item {
       display: flex;
       align-items: center;
       background: #FFFFFF;
-      border-radius: 20px;
-      padding: 12px 16px;
+      border-radius: 0;
+      padding: 10px;
       text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-      border: 1px solid #E7E0EC;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      border: 1px solid #9eb3cf;
     }
+
     .game-item:hover {
-      background: #FEF7FF;
-      border-color: #CAC4D0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transform: translateX(4px);
+      background: #f8fbff;
+      border-color: #6a90b9;
     }
+
     .game-cover-md {
-      width: 68px;
-      height: 98px;
-      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      border-radius: 0;
       object-fit: cover;
-      background: #E8DEF8;
-      margin-right: 16px;
-      border: 1px solid #EADDFF;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      background: #e4eaf4;
+      margin-right: 10px;
+      border: 1px solid #9eb3cf;
     }
+
     .game-info-md {
       flex: 1;
     }
+
     .game-title {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #1C1B1F;
-      letter-spacing: 0.1px;
+      font-weight: bold;
+      font-size: 12px;
+      color: #0000cc;
       margin-bottom: 4px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 6px;
     }
-    .badge-translation {
-      background: #EADDFF;
-      color: #21005E;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 2px 12px;
-      border-radius: 30px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      letter-spacing: 0.3px;
-    }
+
     .game-meta-md {
-      font-size: 0.75rem;
-      color: #49454F;
+      font-size: 11px;
+      color: #555;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .genero-chip {
-      background: #F3EDF7;
-      padding: 2px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #4A2C7A;
+
+    .game-meta-md span {
+      display: inline-block;
     }
-    .download-icon-md {
-      background: #F3EDF7;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 40px;
-      color: #6750A4;
-      transition: 0.2s;
-    }
-    .game-item:hover .download-icon-md {
-      background: #6750A4;
-      color: white;
-      transform: scale(1.02);
-    }
+
     .empty-state {
       text-align: center;
       padding: 48px 20px;
-      background: #F9F6FE;
-      border-radius: 28px;
-      color: #49454F;
-      font-weight: 500;
+      background: #FFFFFF;
+      border: 1px solid #9eb3cf;
+      color: #555;
     }
+
     .loading-skeleton {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 14px 16px;
+      gap: 10px;
+      padding: 10px;
       background: #FFFFFF;
-      border-radius: 20px;
-      border: 1px solid #E7E0EC;
+      border-radius: 0;
+      border: 1px solid #9eb3cf;
     }
-    .shimmer {
-      background: linear-gradient(90deg, #E8DEF8 25%, #F3EDF7 50%, #E8DEF8 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.2s infinite;
-      border-radius: 16px;
-    }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
+
     footer-credit {
       display: block;
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 11px;
       margin-top: 28px;
-      color: #A294B9;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-<div class="md-scroll-container">
-  <!-- APENAS barra de pesquisa (sem stats, sem cabeçalho) -->
+<div class="page-shell">
   <div class="search-section">
     <div class="search-container">
       <div class="md-input-wrapper">
-        <span class="material-symbols-outlined">search</span>
+        <span class="search-icon">buscar</span>
         <input type="text" id="searchInput" placeholder="Buscar jogo... Ex: Asphalt, The Sims, Doom" autocomplete="off">
       </div>
       <button class="btn-filled" id="searchButton">
-        <span class="material-symbols-outlined" style="font-size: 20px;">filter_alt</span>
         Buscar
       </button>
     </div>
   </div>
 
-  <!-- Lista dinâmica de jogos -->
+  <div class="section-title">Downloads</div>
+  <div class="intro-text">Lista de jogos Java traduzidos e organizados no estilo retrô.</div>
+
   <div id="gamesContainer" class="games-grid"></div>
   <footer-credit>downloads diretos · repositório de traduções</footer-credit>
 </div>
@@ -281,12 +251,11 @@
       const skeleton = document.createElement('div');
       skeleton.className = 'loading-skeleton';
       skeleton.innerHTML = `
-        <div class="shimmer" style="width: 56px; height: 56px; border-radius: 16px;"></div>
+        <div style="width: 56px; height: 56px; background:#dbe7f5; border:1px solid #9eb3cf;"></div>
         <div style="flex:1">
-          <div class="shimmer" style="width: 70%; height: 16px; border-radius: 8px; margin-bottom: 8px;"></div>
-          <div class="shimmer" style="width: 40%; height: 12px; border-radius: 8px;"></div>
+          <div style="width: 70%; height: 12px; background:#dbe7f5; border:1px solid #9eb3cf; margin-bottom: 8px;"></div>
+          <div style="width: 40%; height: 10px; background:#dbe7f5; border:1px solid #9eb3cf;"></div>
         </div>
-        <div class="shimmer" style="width: 44px; height: 44px; border-radius: 40px;"></div>
       `;
       gamesContainer.appendChild(skeleton);
     }
@@ -309,7 +278,6 @@
     if (!gamesArray || gamesArray.length === 0) {
       gamesContainer.innerHTML = `
         <div class="empty-state">
-          <span class="material-symbols-outlined" style="font-size: 48px; color: #CAC4D0;">search_off</span>
           <p style="margin-top: 12px; font-weight: 500;">Nenhum jogo encontrado :(</p>
           <p style="font-size: 0.8rem;">Tente outro nome ou limpe a busca.</p>
         </div>
@@ -335,23 +303,11 @@
         <img class="game-cover-md" src="${finalCover}" alt="capa" 
              onerror="this.src='https://via.placeholder.com/56?text=Java'">
         <div class="game-info-md">
-          <div class="game-title">
-            ${escapeHtml(game.display_name)}
-            <span class="badge-translation">
-              <span class="material-symbols-outlined" style="font-size: 12px; margin-right: 2px;">translate</span>
-              PT-BR
-            </span>
-          </div>
+          <div class="game-title">${escapeHtml(game.display_name)}</div>
           <div class="game-meta-md">
-            <span class="genero-chip">🎮 ${escapeHtml(genero)}</span>
-            <span style="display: flex; align-items: center; gap: 2px;">
-              <span class="material-symbols-outlined" style="font-size: 14px;">file_download</span>
-              .jar
-            </span>
+            <span>${escapeHtml(genero)}</span>
+            <span>.jar</span>
           </div>
-        </div>
-        <div class="download-icon-md">
-          <span class="material-symbols-outlined">download</span>
         </div>
       `;
       gamesContainer.appendChild(cardLink);
@@ -402,11 +358,10 @@
       console.error(error);
       gamesContainer.innerHTML = `
         <div class="empty-state" style="background:#FFEDED; border-left: 6px solid #B3261E;">
-          <span class="material-symbols-outlined" style="font-size: 48px; color:#B3261E;">error</span>
           <p style="margin-top: 12px; font-weight: 600;">Erro ao carregar a biblioteca</p>
           <p style="font-size: 0.8rem;">Verifique sua conexão ou tente novamente.</p>
           <button id="retryBtn" class="btn-filled" style="margin-top: 16px; background:#5A4694;">
-            <span class="material-symbols-outlined">refresh</span> Recarregar
+            Recarregar
           </button>
         </div>
       `;
