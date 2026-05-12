@@ -4,145 +4,93 @@
   <meta charset="UTF-8">
   <title>Home - Quakeman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --md-sys-color-primary: #6750A4;
-      --md-sys-color-on-primary: #FFFFFF;
-      --md-sys-color-primary-container: #EADDFF;
-      --md-sys-color-on-primary-container: #21005D;
-      --md-sys-color-surface: #FFFBFE;
-      --md-sys-color-surface-variant: #E7E0EC;
-      --md-sys-color-on-surface: #1C1B1F;
-      --md-sys-color-on-surface-variant: #49454F;
-      --md-sys-color-outline: #79747E;
-      --md-sys-color-outline-variant: #CAC4D0;
-      --md-elevation-1: 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15);
-      --md-shape-medium: 12px;
-      --md-shape-small: 8px;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
-      background: transparent;
-      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background: #e4eaf4;
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
       font-size: 12px;
-      color: var(--md-sys-color-on-surface);
+      color: #000;
     }
 
     .content {
       padding: 12px 10px 10px;
     }
 
-    /* Label style M3 */
     .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1px;
-      color: var(--md-sys-color-primary);
+      background: #84a5c9;
+      color: white;
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
       text-transform: uppercase;
-      margin: 0 0 4px 2px;
+      margin: 0 0 10px 0;
+      border: 1px solid #6a90b9;
     }
 
     h1 {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--md-sys-color-on-surface);
-      margin: 0 0 4px 0;
-      line-height: 1.2;
+      display: none;
     }
 
     .intro {
       font-size: 11px;
       margin-bottom: 12px;
-      color: var(--md-sys-color-on-surface-variant);
+      color: #555;
       line-height: 1.4;
     }
 
-    /* Grid mantendo 3 colunas igual original */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
     }
 
-    /* M3 Filled Card */
     .game-card {
-      background: var(--md-sys-color-surface);
-      border-radius: var(--md-shape-medium);
+      background: white;
+      border-radius: 0;
       text-decoration: none;
       color: inherit;
       overflow: hidden;
-      box-shadow: var(--md-elevation-1);
-      border: 1px solid var(--md-sys-color-outline-variant);
-      transition: box-shadow 0.2s, transform 0.15s;
-      position: relative;
+      border: 1px solid #9eb3cf;
     }
 
-    .game-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--md-sys-color-primary);
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-
-    .game-card:hover::after { opacity: 0.08; }
-    .game-card:active::after { opacity: 0.12; }
-
-    .game-card:hover {
-      box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15);
-    }
-
-    /* Mantendo proporções originais: padding 28px, height 106px */
     .img-wrapper {
-      background: var(--md-sys-color-surface-variant);
+      background: #f8fbff;
       text-align: center;
-      padding: 28px;
-      height: 106px;
+      padding: 16px;
+      height: 92px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-bottom: 1px solid #d0dbe8;
     }
 
     .game-card img {
-      max-width: 141%;
-      max-height: 143px;
+      max-width: 100%;
+      max-height: 80px;
       object-fit: contain;
     }
 
-    /* M3 divider sutil */
-    .img-wrapper + .info {
-      border-top: 1px solid var(--md-sys-color-outline-variant);
-    }
-
     .info {
-      padding: 6px 6px 7px;
+      padding: 8px 8px 9px;
       text-align: center;
-      background: var(--md-sys-color-surface);
+      background: white;
     }
 
     .title {
-      font-weight: 500;
+      font-weight: bold;
       font-size: 11px;
-      color: var(--md-sys-color-on-surface);
+      color: #0000cc;
       margin-bottom: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       line-height: 1.3;
     }
 
     .status {
       font-size: 9px;
-      color: var(--md-sys-color-on-surface-variant);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: #666;
       line-height: 1.3;
     }
   </style>
